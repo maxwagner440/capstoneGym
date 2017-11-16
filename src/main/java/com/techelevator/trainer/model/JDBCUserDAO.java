@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.beans.Trainer;
+import com.techelevator.beans.User;
 import com.techelevator.trainer.security.PasswordHasher;
 
 @Component
@@ -23,20 +25,20 @@ public class JDBCUserDAO implements UserDAO {
 	}
 	
 	@Override
-	public void saveUser(String userName, String password) {
+	public void saveUser(User user, String password) {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?)", userName, hashedPassword, saltString);
+		jdbcTemplate.update("INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?)", user.getUsername(), hashedPassword, saltString, user.getRole());
 	}
 
 	@Override
 	public boolean searchForUsernameAndPassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
-							      "FROM app_user "+
-							      "WHERE UPPER(user_name) = ?";
+							      "FROM users "+
+							      "WHERE username = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
 		if(results.next()) {
 			String storedSalt = results.getString("salt");
 			String storedPassword = results.getString("password");
@@ -52,7 +54,7 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
+		jdbcTemplate.update("UPDATE users SET password = ?, salt = ? WHERE username = ?", hashedPassword, saltString, userName);
 	}
 
 }

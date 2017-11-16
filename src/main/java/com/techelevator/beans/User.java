@@ -5,6 +5,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String age;
+	private String role;
 	
 	public String getUsername() {
 		return username;
@@ -29,6 +30,12 @@ public class User {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }
