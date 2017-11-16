@@ -14,6 +14,34 @@ CREATE TABLE users(
         CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );
 
+CREATE TABLE trainers(
+		entry_id Serial NOT NULL,
+		role VARCHAR(255) NOT NULL,
+		age int,
+		bio VARCHAR(255),
+		class VARCHAR(255),
+		philosophy VARCHAR(255),
+		success_stories VARCHAR(255),
+		experience VARCHAR(255),
+		rating int,
+		hourly_price DECIMAL,
+		trainer_id Serial NOT NULL,
+		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
+		CONSTRAINT fk_users_trainers FOREIGN KEY (trainer_id) REFERENCES users (user_id)
+);
+
+CREATE TABLE clients(
+		entry_id Serial NOT NULL,
+		role VARCHAR(255) NOT NULL,
+		age int,
+		goal VARCHAR(255),
+		modality VARCHAR(255),
+		weight int NOT NULL,
+		client_id Serial NOT NULL,
+		CONSTRAINT pk_clients_entry_id PRIMARY KEY (entry_id),
+		CONSTRAINT fk_users_clients FOREIGN KEY (client_id) REFERENCES users (user_id)
+);
+
 CREATE TABLE workouts(
         workout_id Serial NOT NULL,
         user_id Serial NOT NULL,

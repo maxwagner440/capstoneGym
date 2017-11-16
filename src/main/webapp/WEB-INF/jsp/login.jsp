@@ -1,3 +1,4 @@
+<link href="css/capstone.css" rel="stylesheet" name="log-regist-styles"/>
 <script type="text/javascript">
 $(function() {
 
