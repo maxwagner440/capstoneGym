@@ -2,6 +2,8 @@ package com.techelevator.trainer.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,18 +36,34 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/usersNewTrainer", method=RequestMethod.POST)
+<<<<<<< HEAD
 	public String createTrainer(@ModelAttribute Trainer trainer, @RequestParam String password) {
+=======
+	public String createClient(@ModelAttribute Trainer trainer, @RequestParam String password, HttpSession session) {
+		if(! userDAO.seeIfUsernameExists(trainer.getUsername())){
+>>>>>>> 533a659da9fa69fbcefd3a4cbfe0816078482da0
 			userDAO.saveUser(trainer, password);
 			userDAO.saveTrainer(trainer, trainer.getId());
 		return "redirect:/login";
-		
+		}
+		else{
+			
+		}
 	}
 	
 	@RequestMapping(path="/usersNewClient", method=RequestMethod.POST)
+<<<<<<< HEAD
 	public String createClient(@ModelAttribute Client client, @RequestParam String password) {
 		userDAO.saveUser(client, password);
 		userDAO.saveClient(client, client.getId());
+=======
+	public String createTrainer(@ModelAttribute Client client, @RequestParam String password, HttpSession session) {
+		if(! userDAO.seeIfUsernameExists(client.getUsername())){
+			userDAO.saveUser(client, password);
+			userDAO.saveClient(client, client.getId());
+>>>>>>> 533a659da9fa69fbcefd3a4cbfe0816078482da0
 		return "redirect:/login";
+		}
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
