@@ -5,6 +5,8 @@ public class Client extends User{
 	private double heightInInches;
 	private String goals;
 	private String modalityPreference;
+	
+	
 	public double getWeightInPounds() {
 		return weightInPounds;
 	}

@@ -15,5 +15,5 @@ public interface UserDAO {
 	public String getUserRole(String username);
 	public Trainer getTrainerByUsername(String username);
 	public Client getClientByUsername(String username);
-	public List<String> getAllUsernames();
+	public boolean seeIfUsernameExists(String username);
 }

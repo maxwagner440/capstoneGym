@@ -157,17 +157,12 @@ public class JDBCUserDAO implements UserDAO {
 		user.setUsername(results.getString("username"));
 	}
 	
-	public List<String> getAllUsernames(){ //need to test.
-		List<String> usernames=new ArrayList<String>();
-		String sqlGetAllUsernames = "SELECT username FROM users";
+	public boolean seeIfUsernameExists(String username){ //need to test.
+		String sqlGetAllUsernames = "SELECT username FROM users WHERE username = ?";
 			     
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsernames);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsernames, username);
 		
-		while(results.next()){
-			usernames.add(results.getString("username"));
-		}
-		
-		return usernames;
+		return results.next();
 		
 	}
 	

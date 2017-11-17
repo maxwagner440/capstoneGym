@@ -33,14 +33,15 @@ public class UserController {
 		return "newTrainer";
 	}
 	
-	@RequestMapping(path="/users", method=RequestMethod.POST)
+	@RequestMapping(path="/usersNewTrainer", method=RequestMethod.POST)
 	public String createClient(@ModelAttribute Trainer trainer, @RequestParam String password) {
-		userDAO.saveUser(trainer, password);
-		userDAO.saveTrainer(trainer, trainer.getId());
+			userDAO.saveUser(trainer, password);
+			userDAO.saveTrainer(trainer, trainer.getId());
 		return "redirect:/login";
+		
 	}
 	
-	@RequestMapping(path="/users", method=RequestMethod.POST)
+	@RequestMapping(path="/usersNewClient", method=RequestMethod.POST)
 	public String createTrainer(@ModelAttribute Client client, @RequestParam String password) {
 		userDAO.saveUser(client, password);
 		userDAO.saveClient(client, client.getId());
