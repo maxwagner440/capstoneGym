@@ -1,4 +1,15 @@
- <div class="form">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
+    <script src="js/form.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="form">
       
       <ul class="tab-group">
         <li class="tab active"><a href="#signup">Sign Up</a></li>
@@ -77,3 +88,5 @@
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
+</body>
+</html>
