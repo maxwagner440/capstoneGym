@@ -33,27 +33,27 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("INSERT INTO users(username, password, salt, role) VALUES (?, ?, ?, ?)", user.getUsername(), hashedPassword, saltString, user.getRole());
+		jdbcTemplate.update("INSERT INTO users(username, password, first_name, last_name, age, salt, role) "
+				+ "VALUES (?, ?, ?, ?)", user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
+				user.getAge(), saltString, user.getRole());
 	}
 	
 	@Override
 	public void saveTrainer(Trainer trainer, long id) { //need tests.
-		jdbcTemplate.update("INSERT INTO trainers (age, bio, exercise_philosophy, first_name, last_name, "
-				+ "past_client_success_stories, past_experience, rating, trainer_hourly_price, trainer_id" 
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-				trainer.getAge(), trainer.getBio(), trainer.getExercisePhilosophy(), 
-				trainer.getFirstName(), trainer.getLastName(), trainer.getPastClientSuccessStories(), 
-				trainer.getPastExperience(), trainer.getRating(), trainer.getTrainerHourlyPrice(), id);
+		jdbcTemplate.update("INSERT INTO trainers (bio, philosophy, "
+				+ "success_stories, experience, rating, hourly_price, trainer_id" 
+				+ ") VALUES (?, ?, ?, ?, ?, ?, ?)",
+				trainer.getBio(), trainer.getExercisePhilosophy(),
+				trainer.getPastClientSuccessStories(), trainer.getPastExperience(), 
+				trainer.getRating(), trainer.getTrainerHourlyPrice(), id);
 	}
 	
 	@Override
 	public void saveClient(Client client, long id) {
-		jdbcTemplate.update("INSERT INTO trainers (age, goal, height_in_inches, first_name, last_name, "
-				+ "modality_preference, weight_in_pounds, client_id" 
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-				client.getAge(), client.getGoals(), client.getHeightInInches(), 
-				client.getFirstName(), client.getLastName(), client.getModalityPreference(), 
-				client.getWeightInPounds(), id);
+		jdbcTemplate.update("INSERT INTO clients (goal, height, modality, weight, client_id " 
+				+ ") VALUES (?, ?, ?, ?, ?)",
+				client.getGoals(), client.getHeightInInches(),
+				client.getModalityPreference(), client.getWeightInPounds(), id);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class JDBCUserDAO implements UserDAO {
 	public Trainer getTrainerByUsername(String username) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForTrainer = "SELECT * "+
-			      "FROM users u JOIN trainers t ON u.user_id=t.trainer_id"+
+			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
 			      "WHERE username = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
@@ -108,7 +108,7 @@ public class JDBCUserDAO implements UserDAO {
 	public Client getClientByUsername(String username) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForClient = "SELECT * "+
-			      "FROM users u JOIN clients c ON u.user_id=c.client_id"+
+			      "FROM users u LEFT JOIN clients c ON u.user_id=c.client_id "+
 			      "WHERE username = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForClient, username);
@@ -126,11 +126,11 @@ public class JDBCUserDAO implements UserDAO {
 		mapGenericUserInfoFromRowToRoleType(tBone, results);
 		
 		tBone.setBio(results.getString("bio"));
-		tBone.setExercisePhilosophy(results.getString("exercise_philosophy"));
-		tBone.setPastClientSuccessStories(results.getString("past_client_success_stories"));
-		tBone.setPastExperience(results.getString("past_experience"));
+		tBone.setExercisePhilosophy(results.getString("philosophy"));
+		tBone.setPastClientSuccessStories(results.getString("success_stories"));
+		tBone.setPastExperience(results.getString("experience"));
 		tBone.setRating(results.getDouble("rating"));
-		tBone.setTrainerHourlyPrice(results.getBigDecimal("trainer_hourly_price"));
+		tBone.setTrainerHourlyPrice(results.getBigDecimal("hourly_price"));
 		
 		return tBone;
 	}
@@ -140,10 +140,10 @@ public class JDBCUserDAO implements UserDAO {
 		
 		mapGenericUserInfoFromRowToRoleType(guy, results);
 		
-		guy.setGoals(results.getString("goals"));
-		guy.setHeightInInches(results.getDouble("height_in_inches"));
-		guy.setModalityPreference(results.getString("modalityPreference"));
-		guy.setWeightInPounds(results.getDouble("weightInPounds"));
+		guy.setGoals(results.getString("goal"));
+		guy.setHeightInInches(results.getDouble("height"));
+		guy.setModalityPreference(results.getString("modality"));
+		guy.setWeightInPounds(results.getDouble("weight"));
 		
 		return guy;
 	}
