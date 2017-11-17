@@ -1,16 +1,19 @@
 package com.techelevator.beans;
 
+import java.math.BigDecimal;
+
 public class Trainer extends User {
-	private int rating;
+	private double rating;
 	private String bio;
 	private String pastExperience;
 	private String pastClientSuccessStories;
-	private double trainerHourlyPrice;
+	private BigDecimal trainerHourlyPrice;
 	private String exercisePhilosophy;
-	public int getRating() {
+	
+	public double getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 	public String getBio() {
@@ -31,10 +34,10 @@ public class Trainer extends User {
 	public void setPastClientSuccessStories(String pastClientSuccessStories) {
 		this.pastClientSuccessStories = pastClientSuccessStories;
 	}
-	public double getTrainerHourlyPrice() {
+	public BigDecimal getTrainerHourlyPrice() {
 		return trainerHourlyPrice;
 	}
-	public void setTrainerHourlyPrice(double trainerHourlyPrice) {
+	public void setTrainerHourlyPrice(BigDecimal trainerHourlyPrice) {
 		this.trainerHourlyPrice = trainerHourlyPrice;
 	}
 	public String getExercisePhilosophy() {

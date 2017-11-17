@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.techelevator.beans.Client;
+import com.techelevator.beans.Trainer;
 import com.techelevator.trainer.model.UserDAO;
 
 @Controller
@@ -34,14 +36,25 @@ public class AuthenticationController {
 						@RequestParam String password,
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
+		String userRole=userDAO.getUserRole(userName);
+		String page="";
 		
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			session.invalidate();
-			model.put("currentUser", userName);
-			if(isValidRedirect(destination)) {
+			if(userRole.equalsIgnoreCase("trainer")){
+				Trainer trainer=userDAO.getTrainerByUsername(userName);
+				model.put("trainer", trainer);
+				page+="trainerDashboard";
+			} else if(userRole.equalsIgnoreCase("client")){
+				Client client=userDAO.getClientByUsername(userName);
+				model.put("client", client);
+				page+="clientDashboard";
+			}
+			
+			if(isValidRedirect(destination)) { //check to see if this works.
 				return "redirect:"+destination;
 			} else {
-				return "redirect:/users/"+userName;
+				return "redirect:/"+ page + "/"+userName;
 			}
 		} else {
 			return "redirect:/login";

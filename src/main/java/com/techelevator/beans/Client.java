@@ -1,20 +1,20 @@
 package com.techelevator.beans;
 
 public class Client extends User{
-	private String weightInPounds;
-	private int heightInInches;
+	private double weightInPounds;
+	private double heightInInches;
 	private String goals;
 	private String modalityPreference;
-	public String getWeightInPounds() {
+	public double getWeightInPounds() {
 		return weightInPounds;
 	}
-	public void setWeightInPounds(String weightInPounds) {
+	public void setWeightInPounds(double weightInPounds) {
 		this.weightInPounds = weightInPounds;
 	}
-	public int getHeightInInches() {
+	public double getHeightInInches() {
 		return heightInInches;
 	}
-	public void setHeightInInches(int heightInInches) {
+	public void setHeightInInches(double heightInInches) {
 		this.heightInInches = heightInInches;
 	}
 	public String getGoals() {

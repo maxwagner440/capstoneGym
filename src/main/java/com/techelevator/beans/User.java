@@ -1,10 +1,11 @@
 package com.techelevator.beans;
 
 public class User {
+	private long id;
 	private String username;
 	private String firstName;
 	private String lastName;
-	private String age;
+	private int age;
 	private String role;
 	
 	public String getUsername() {
@@ -25,10 +26,10 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	public String getRole() {
@@ -36,6 +37,12 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }
