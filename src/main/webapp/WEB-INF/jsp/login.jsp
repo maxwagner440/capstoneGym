@@ -1,94 +1,92 @@
-<script type="text/javascript">
-$(function() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
+    <script src="js/form.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Sign Up for Free</h1>
+          
+          <form action="/" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <!-- <label>
+                First Name<span class="req">*</span>
+              </label> -->
+              <input type="text" required autocomplete="off" placeholder="First Name"/>
+            </div>
+        
+            <div class="field-wrap">
+              <!-- <label>
+                Last Name<span class="req">*</span>
+              </label> -->
+              <input type="text"required autocomplete="off" placeholder="Last Name"/>
+            </div>
+          </div>
 
-    $('#login-form-link').click(function(e) {
-		$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
-		$('#register-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-	$('#register-form-link').click(function(e) {
-		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
-		$('#login-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-});
-</script>
+          <div class="field-wrap">
+            <!-- <label>
+              Email Address<span class="req">*</span>
+            </label> -->
+            <input type="email"required autocomplete="off" placeholder="Email Address"/>
+          </div>
+          
+          <div class="field-wrap">
+            <!-- <label>
+              Set A Password<span class="req">*</span>
+            </label> -->
+            <input type="password"required autocomplete="off" placeholder="Set Password"/>
+          </div>
+          
+          <button type="submit" class="button button-block"/>Get Started</button>
+          
+          </form>
 
-<div class="container">
-    	<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Login</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Register</a>
-							</div>
-						</div>
-						<hr>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Remember Me</label>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
-									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        </div>
+        
+        <div id="login">   
+          <h1>Welcome Back!</h1>
+          
+          <form action="/" method="post">
+          
+            <div class="field-wrap">
+            <!-- <label>
+              Email Address<span class="req">*</span>
+            </label> -->
+            <input type="email"required autocomplete="off" placeholder="Email Address"/>
+          </div>
+          
+          <div class="field-wrap">
+            <!-- <label>
+              Password<span class="req">*</span>
+            </label> -->
+            <input type="password"required autocomplete="off" placeholder="Password"/>
+          </div>
+          
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+          
+          <button class="button button-block"/>Log In</button>
+          
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+</body>
+</html>
