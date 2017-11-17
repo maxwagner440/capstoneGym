@@ -3,18 +3,24 @@ package com.techelevator.trainer.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Trainer;
+import com.techelevator.beans.User;
 import com.techelevator.trainer.model.UserDAO;
+
 @Controller
 public class UserController {
 
@@ -25,45 +31,67 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 
-	@RequestMapping(path="/users/newClient", method=RequestMethod.GET)
-	public String displayNewUserForm() {
-		return "newClient";
+	
+	@RequestMapping(path="/newUserRegistration", method=RequestMethod.GET)
+	public String displayNew() {
+		return "newUserRegistration";
 	}
 	
-	@RequestMapping(path="/users/newTrainer", method=RequestMethod.GET)
-	public String displayNewTrainer() {
-		return "newTrainer";
-	}
-	
-	@RequestMapping(path="/usersNewTrainer", method=RequestMethod.POST)
-<<<<<<< HEAD
-	public String createTrainer(@ModelAttribute Trainer trainer, @RequestParam String password) {
-=======
-	public String createClient(@ModelAttribute Trainer trainer, @RequestParam String password, HttpSession session) {
-		if(! userDAO.seeIfUsernameExists(trainer.getUsername())){
->>>>>>> 533a659da9fa69fbcefd3a4cbfe0816078482da0
-			userDAO.saveUser(trainer, password);
-			userDAO.saveTrainer(trainer, trainer.getId());
-		return "redirect:/login";
+
+	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
+	public String createUser(@Valid @ModelAttribute User user, @RequestParam String password, RedirectAttributes attr) {
+		if(! userDAO.seeIfUsernameExists(user.getUsername())){
+			userDAO.saveUser(user, password);
+			attr.addAttribute("user", user);
+			String injenction = user.getRole().substring(0,1).toUpperCase() + 
+					user.getRole().substring(1).toLowerCase() ;
+		return "redirect:/users" + injenction + "Attributes";
 		}
 		else{
-			
+			return "redirect:/newUserRegistration";
 		}
 	}
 	
-	@RequestMapping(path="/usersNewClient", method=RequestMethod.POST)
-<<<<<<< HEAD
-	public String createClient(@ModelAttribute Client client, @RequestParam String password) {
-		userDAO.saveUser(client, password);
-		userDAO.saveClient(client, client.getId());
-=======
-	public String createTrainer(@ModelAttribute Client client, @RequestParam String password, HttpSession session) {
-		if(! userDAO.seeIfUsernameExists(client.getUsername())){
-			userDAO.saveUser(client, password);
-			userDAO.saveClient(client, client.getId());
->>>>>>> 533a659da9fa69fbcefd3a4cbfe0816078482da0
-		return "redirect:/login";
+	
+	@RequestMapping(path="/usersClientAttributes", method=RequestMethod.GET)
+	public String displayBioInputClient(ModelMap modelHolder){
+		if(! modelHolder.containsAttribute("user")){
+			return "redirect:/newUserRegistration";
 		}
+		
+		return "usersClientAttributes";
+	}
+
+	@RequestMapping(path="/usersClientAttributes", method=RequestMethod.POST)
+	public String postWithClientAttributes(@Valid @ModelAttribute("client") Client client,
+											BindingResult result, RedirectAttributes attr){
+		userDAO.saveClient(client, client.getId());
+		if(result.hasErrors()){
+			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
+			return "redirect:/usersClientAttributes";
+		}
+		return "redirect:/users/" + client.getUsername();
+		
+	}
+	
+	@RequestMapping(path="/usersTrainerAttritbutes", method=RequestMethod.GET)
+	public String displayBioInputTrainer(ModelMap modelHolder){
+		if(! modelHolder.containsAttribute("user")){
+			return "redirect:/newUserRegistration";
+		}
+		return "usersTrainerAttributes";
+	}
+	
+	@RequestMapping(path="/usersTrainerAttributes", method=RequestMethod.POST)
+	public String postWithTrainerAttributes(@Valid @ModelAttribute("trainer") Trainer trainer,
+											BindingResult result, RedirectAttributes attr){
+		userDAO.saveTrainer(trainer, trainer.getId());
+		if(result.hasErrors()){
+			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
+			return "redirect:/usersClientAttributes";
+		}
+		return "redirect:/users/" + trainer.getUsername();
+		
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
