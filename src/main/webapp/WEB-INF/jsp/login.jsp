@@ -69,7 +69,7 @@
 	       	 </form:form>
 	    </div>  
 
-        
+        </div>
         
         <div id="login">   
           <h1>Welcome Back!</h1>
@@ -117,7 +117,7 @@
           </form>
 
         </div>
-        </div>
+        
       </div> <!-- /form -->
 </body>
 </html>
