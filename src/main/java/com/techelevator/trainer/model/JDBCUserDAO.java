@@ -33,19 +33,18 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("INSERT INTO users(username, password, first_name, last_name, age, salt, role) "
-				+ "VALUES (?, ?, ?, ?)", user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
+		jdbcTemplate.update("INSERT INTO users(email, username, password, first_name, last_name, age, salt, role) "
+				+ "VALUES (?, ?, ?, ?, ?)", user.getEmail(), user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
 				user.getAge(), saltString, user.getRole());
 	}
 	
 	@Override
 	public void saveTrainer(Trainer trainer, long id) { //need tests.
 		jdbcTemplate.update("INSERT INTO trainers (bio, philosophy, "
-				+ "success_stories, experience, rating, hourly_price, trainer_id" 
-				+ ") VALUES (?, ?, ?, ?, ?, ?, ?)",
+				+ "success_stories, experience, hourly_price, trainer_id" 
+				+ ") VALUES (?, ?, ?, ?, ?, ?)",
 				trainer.getBio(), trainer.getExercisePhilosophy(),
-				trainer.getPastClientSuccessStories(), trainer.getPastExperience(), 
-				trainer.getRating(), trainer.getTrainerHourlyPrice(), id);
+				trainer.getTrainerHourlyPrice(), id);
 	}
 	
 	@Override
@@ -55,14 +54,14 @@ public class JDBCUserDAO implements UserDAO {
 				client.getGoals(), client.getHeightInInches(),
 				client.getModalityPreference(), client.getWeightInPounds(), id);
 	}
-
+	
 	@Override
-	public boolean searchForUsernameAndPassword(String userName, String password) {
+	public boolean searchForEmailAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM users "+
-							      "WHERE username = ?";
+							      "WHERE email = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, email);
 		if(results.next()) {
 			String storedSalt = results.getString("salt");
 			String storedPassword = results.getString("password");
@@ -72,30 +71,47 @@ public class JDBCUserDAO implements UserDAO {
 			return false;
 		}
 	}
+	
+//	@Override
+//	public boolean searchForUsernameAndPassword(String userName, String password) {
+//		String sqlSearchForUser = "SELECT * "+
+//							      "FROM users "+
+//							      "WHERE username = ?";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName);
+//		if(results.next()) {
+//			String storedSalt = results.getString("salt");
+//			String storedPassword = results.getString("password");
+//			String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
+//			return storedPassword.equals(hashedPassword);
+//		} else {
+//			return false;
+//		}
+//	}
 
 	@Override //needs tests
-	public String getUserRole(String username) { 
+	public String getUserRole(String email) { 
 		// TODO Auto-generated method stub
 		String sqlSearchForUser = "SELECT role "+
 			      "FROM users "+
-			      "WHERE username = ?";
+			      "WHERE email = ?";
 
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, username);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, email);
 		if(results.next()){
 			return results.getString("role");
 		} else{
 			return null;
 		}
 	}
-
+	
 	@Override
-	public Trainer getTrainerByUsername(String username) { //need to test.
+	public Trainer getTrainerByEmail(String email) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForTrainer = "SELECT * "+
 			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
-			      "WHERE username = ?";
+			      "WHERE email = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, email);
 		
 		if(results.next()){
 			return mapRowToTrainer(results);
@@ -105,13 +121,13 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public Client getClientByUsername(String username) { //need to test.
+	public Client getClientByEmail(String email) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForClient = "SELECT * "+
 			      "FROM users u LEFT JOIN clients c ON u.user_id=c.client_id "+
-			      "WHERE username = ?";
+			      "WHERE email = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForClient, username);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForClient, email);
 		
 		if(results.next()){
 			return mapRowToClient(results);
@@ -119,6 +135,38 @@ public class JDBCUserDAO implements UserDAO {
 			return null;
 		}
 	}
+
+//	@Override
+//	public Trainer getTrainerByUsername(String username) { //need to test.
+//		// TODO Auto-generated method stub
+//		String sqlSearchForTrainer = "SELECT * "+
+//			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
+//			      "WHERE username = ?";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
+//		
+//		if(results.next()){
+//			return mapRowToTrainer(results);
+//		} else{
+//			return null;
+//		}
+//	}
+//
+//	@Override
+//	public Client getClientByUsername(String username) { //need to test.
+//		// TODO Auto-generated method stub
+//		String sqlSearchForClient = "SELECT * "+
+//			      "FROM users u LEFT JOIN clients c ON u.user_id=c.client_id "+
+//			      "WHERE username = ?";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForClient, username);
+//		
+//		if(results.next()){
+//			return mapRowToClient(results);
+//		} else{
+//			return null;
+//		}
+//	}
 	
 	private Trainer mapRowToTrainer(SqlRowSet results){ //need to test.
 		Trainer tBone=new Trainer();
@@ -127,9 +175,7 @@ public class JDBCUserDAO implements UserDAO {
 		
 		tBone.setBio(results.getString("bio"));
 		tBone.setExercisePhilosophy(results.getString("philosophy"));
-		tBone.setPastClientSuccessStories(results.getString("success_stories"));
 		tBone.setPastExperience(results.getString("experience"));
-		tBone.setRating(results.getDouble("rating"));
 		tBone.setTrainerHourlyPrice(results.getBigDecimal("hourly_price"));
 		
 		return tBone;
@@ -157,14 +203,17 @@ public class JDBCUserDAO implements UserDAO {
 		user.setUsername(results.getString("username"));
 	}
 	
-	public boolean seeIfUsernameExists(String username){ //need to test.
-		String sqlGetAllUsernames = "SELECT username FROM users WHERE username = ?";
-			     
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsernames, username);
-		
+	public boolean seeIfEmailExists(String email){ //need to test.
+		String sqlGetAllUsernames = "SELECT username FROM users WHERE email = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsernames, email);
 		return results.next();
-		
 	}
+	
+//	public boolean seeIfUsernameExists(String username){ //need to test.
+//		String sqlGetAllUsernames = "SELECT username FROM users WHERE username = ?";
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsernames, username);
+//		return results.next();
+//	}
 	
 	@Override
 	public void updatePassword(String userName, String password) {

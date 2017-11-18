@@ -13,8 +13,8 @@
 <body>
 	<div class="form">  
     <ul class="tab-group">
+   	  <li id="login_tab" class="tab active"><a href="#login">Log In</a></li>
       <li id="signup_tab" class="tab"><a href="#signup">Sign Up</a></li>
-      <li id="login_tab" class="tab active"><a href="#login">Log In</a></li>
     </ul>
       
       <div class="tab-content">
@@ -97,11 +97,6 @@
 	      		$('#login_tab').addClass('active');
 	      		$('#signup_tab').removeClass('active');
 	      	});
-	      	
-	      	
-	        
-	        
-          
       });
           
           </script>

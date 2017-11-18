@@ -9,8 +9,8 @@
 	public class HomeController {
 
 
-		@RequestMapping(path="/", method=RequestMethod.GET)
-		public String displayHomePage() {
-			return "home";
+	@RequestMapping(path="/", method=RequestMethod.GET)
+	public String displayHomePage() {
+		return "home";
 		}
 }

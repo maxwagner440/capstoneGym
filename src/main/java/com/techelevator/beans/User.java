@@ -3,12 +3,17 @@ package com.techelevator.beans;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class User {
 	
 	private long id;
 	
+	@NotBlank(message="Please enter an email") 
+	@Email(message="Email must be a valid email address")
+	private String email;
+
 	@NotBlank(message="Please Enter a Username") 
 	private String username;
 	
@@ -65,6 +70,13 @@ public class User {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

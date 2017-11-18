@@ -4,17 +4,12 @@ import java.math.BigDecimal;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-public class Trainer extends User {
-	
-	private double rating;
-	
+public class Trainer extends User {	
 	@NotBlank(message="Please Enter a Bio")
 	private String bio;
 	
 	@NotBlank(message="Please Enter Your Past Experience")
 	private String pastExperience;
-	
-	private String pastClientSuccessStories;
 	
 	@NotBlank(message="Please Enter a Minimum Price")
 	private BigDecimal trainerHourlyPrice;
@@ -22,14 +17,6 @@ public class Trainer extends User {
 	@NotBlank(message="Please Let Us Know About Your Training Philosophy")
 	private String exercisePhilosophy;
 	
-	
-	
-	public double getRating() {
-		return rating;
-	}
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
 	public String getBio() {
 		return bio;
 	}
@@ -42,12 +29,7 @@ public class Trainer extends User {
 	public void setPastExperience(String pastExperience) {
 		this.pastExperience = pastExperience;
 	}
-	public String getPastClientSuccessStories() {
-		return pastClientSuccessStories;
-	}
-	public void setPastClientSuccessStories(String pastClientSuccessStories) {
-		this.pastClientSuccessStories = pastClientSuccessStories;
-	}
+	
 	public BigDecimal getTrainerHourlyPrice() {
 		return trainerHourlyPrice;
 	}

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,22 +33,25 @@ public class AuthenticationController {
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String login(Map<String, Object> model, 
-						@RequestParam String userName, 
+						@RequestParam String email, 
 						@RequestParam String password,
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
-		String userRole=userDAO.getUserRole(userName);
+		String userRole=userDAO.getUserRole(email);
 		String page="";
+		String userName="";
 		
-		if(userDAO.searchForUsernameAndPassword(userName, password)) {
+		if(userDAO.searchForEmailAndPassword(email, password)) {
 			session.invalidate();
 			if(userRole.equalsIgnoreCase("trainer")){
-				Trainer trainer=userDAO.getTrainerByUsername(userName);
+				Trainer trainer=userDAO.getTrainerByEmail(email);
 				model.put("trainer", trainer);
+				userName=trainer.getUsername();
 				page+="trainerDashboard";
 			} else if(userRole.equalsIgnoreCase("client")){
-				Client client=userDAO.getClientByUsername(userName);
+				Client client=userDAO.getClientByEmail(email);
 				model.put("client", client);
+				userName=client.getUsername();
 				page+="clientDashboard";
 			}
 			
@@ -71,5 +75,4 @@ public class AuthenticationController {
 		session.removeAttribute("currentUser");
 		return "redirect:/";
 	}
-
 }

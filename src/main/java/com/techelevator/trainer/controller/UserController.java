@@ -40,7 +40,7 @@ public class UserController {
 
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User user, @RequestParam String password, RedirectAttributes attr) {
-		if(! userDAO.seeIfUsernameExists(user.getUsername())){
+		if(! userDAO.seeIfEmailExists(user.getEmail())){
 			userDAO.saveUser(user, password);
 			attr.addAttribute("user", user);
 			String injenction = user.getRole().substring(0,1).toUpperCase() + 
@@ -70,7 +70,7 @@ public class UserController {
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
 			return "redirect:/usersClientAttributes";
 		}
-		return "redirect:/users/" + client.getUsername();
+		return "redirect:/clientDashBoard/" + client.getUsername();
 		
 	}
 	
@@ -90,13 +90,8 @@ public class UserController {
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
 			return "redirect:/usersClientAttributes";
 		}
-		return "redirect:/users/" + trainer.getUsername();
+		return "redirect:/trainerDashboard/" + trainer.getUsername();
 		
-	}
-	
-	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
-	public String displayDashboard(Map<String, Object> model, @PathVariable String userName) {
-		return "userDashboard";
 	}
 		
 }
