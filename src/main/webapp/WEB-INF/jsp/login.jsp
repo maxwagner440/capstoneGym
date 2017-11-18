@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- <c:import url="/WEB-INF/jsp/common/header.jspf" /> --%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,44 +22,44 @@
         <div id="signup">   
         <h1>Sign Up for Free</h1>
 	       <c:url var="registerAction" value="/newUserRegistration"/> 
-	       <form action="${registerAction}" method="POST">
-	       		<input type="hidden" name="destination" value="${param.destination}"/>
-	 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-	 			<input type="hidden" value="${userId}"/>
+	       <form:form action="${registerAction}" method="POST" modelAttribute="user">
+	       		<form:input type="hidden" path="destination" value="${param.destination}"/>
+	 			<form:input type="hidden" path="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	 			<form:input type="hidden" path="${id}"/>
 	        
 	         	<div class="top-row">
 	          		<div class="field-wrap">
-	            		 <input type="text" required autocomplete="off" placeholder="First Name" name="firstName"/>
+	            		 <form:input type="text" required autocomplete="off" placeholder="First Name" path="firstName"/>
 	           		</div>
 	          		<div class="field-wrap">
-	            		 <input type="text"required autocomplete="off" placeholder="Last Name" name="lastName"/>
+	            		 <form:input type="text"required autocomplete="off" placeholder="Last Name" path="lastName"/>
 	           		</div>
 	         	</div>
 	         	<div class="field-wrap">
-	          		<input type="text"required autocomplete="off" placeholder="Age" name="age"/>
+	          		<form:input type="text"required autocomplete="off" placeholder="Age" path="age"/>
 	         	</div>
 	         	<div class="field-wrap">
-	        		<input type="text"required autocomplete="off" placeholder="Username" name="username"/>
+	        		<form:input type="text"required autocomplete="off" placeholder="Username" path="username"/>
 	      		</div>
 	         	<div class="field-wrap">
-	          		<input type="email"required autocomplete="off" placeholder="Email Address" name="emailAddress"/>
+	          		<form:input type="email"required autocomplete="off" placeholder="Email Address" path="emailAddress"/>
 	         	</div>
 		        <div class="field-wrap">
-		         	<input type="password"required autocomplete="off" placeholder="Set Password" name="password"/>
+		         	<form:input type="password"required autocomplete="off" placeholder="Set Password" path="password"/>
 		        </div>
 	         
 		        <div class="field-wrap">
-		         	<input type="password"required autocomplete="off" placeholder="Confirm Password"/>
+		         	<form:input type="password"required autocomplete="off" placeholder="Confirm Password" path=""/>
 		        </div>        
 		        <div class="field-wrap">
-		        	<select name="select" class="drop-box">
+		        	<form:select path="select" class="drop-box">
 			            <option value="(No Selection)" selected>(No Selection)</option>
-			            <option name="role" value="Client">Client</option>
-			            <option name="role" value="Trainer">Trainer</option>
-		       		</select>
+			            <form:option path="role" value="Client">Client</form:option>
+			            <form:option path="role" value="Trainer">Trainer</form:option>
+		       		</form:select>
 		        </div>
 	         	<button type="submit" class="button button-block">Get Started</button>  
-	       	 </form>
+	       	 </form:form>
 	    </div>  
 
         </div>

@@ -18,20 +18,13 @@
 	    <div class="reg-form">
 	    	<c:url value="/usersTrainerAttributes" var="trainerPathing"/> 
 	    	<form:form method="POST" action="${trainerPathing}">
+	    	
 	    		<div class="field-wrap">
-	    			<label name="age">Age: </label>
-	    			<form:input path="age" placeholder="Enter your age"/>
-	    		</div>
-	    		<div class="field-wrap">
-	    			<label name="price">Set Your Rate: </label>
+	    			<label name="trainerHourlyPrice">Set Your Hourly Rate: </label>
 	    			<form:input path="price" placeholder="Set your hourly rate"/>
 	    		</div>
-	    		<%-- <div class="field-wrap">
-	    			<label name="classOffer">Class Offered: </label>
-	    			<form:input path="classOffer" placeholder="What do you coach?"/>    
-	    		</div> --%>
 	    		<div class="field-box">
-	    			<label name="philosophy">Personal Philosophy: </label>
+	    			<label name="exercisePhilosophy">Training Philosophy: </label>
 	    			<form:input path="philosophy" placeholder="What motivates you?"/>
 	    		</div>
 	    		<div class="field-box">
@@ -39,7 +32,7 @@
 	    			<form:input path="bio" placeholder="What would you like your clients to know about you?"/>
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="experience">Personal Experience: </label>
+	    			<label name="pastExperience">Personal Training Experience: </label>
 	    			<form:input path="experience" placeholder="What is your training experience?"/>
 	    		</div>
 	    		<div>
