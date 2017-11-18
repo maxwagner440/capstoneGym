@@ -2,12 +2,32 @@
 -- This script creates all of the database objects (tables, sequences, etc) for the database
 -- *************************************************************************************************
 
-BEGIN;
+
+BEGIN TRANSACTION;
+
+
+
+
+DROP TABLE IF EXISTS messages_users;
+DROP TABLE IF EXISTS notes_users;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS notes;
+DROP TABLE IF EXISTS workouts;
+DROP TABLE IF EXISTS trainers;
+DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS users;
+
+
+
 
 -- CREATE statements go here
 CREATE TABLE users(
         user_id Serial NOT NULL,
-        username VARCHAR(255) NOT NULL,
+        username VARCHAR(255) UNIQUE  NOT NULL,
+        first_name VARCHAR(255),
+        last_name VARCHAR(255),
+        email VARCHAR(255) NOT NULL,
+        age int,
         password VARCHAR(255) NOT NULL,
         salt VARCHAR(255),
         role VARCHAR(255) NOT NULL,
@@ -16,14 +36,9 @@ CREATE TABLE users(
 
 CREATE TABLE trainers(
 		entry_id Serial NOT NULL,
-		role VARCHAR(255) NOT NULL,
-		age int,
 		bio VARCHAR(255),
-		class VARCHAR(255),
 		philosophy VARCHAR(255),
-		success_stories VARCHAR(255),
 		experience VARCHAR(255),
-		rating int,
 		hourly_price DECIMAL,
 		trainer_id Serial NOT NULL,
 		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
@@ -32,8 +47,7 @@ CREATE TABLE trainers(
 
 CREATE TABLE clients(
 		entry_id Serial NOT NULL,
-		role VARCHAR(255) NOT NULL,
-		age int,
+		height int,
 		goal VARCHAR(255),
 		modality VARCHAR(255),
 		weight int NOT NULL,
@@ -86,3 +100,7 @@ CREATE TABLE notes_users(
 
 
 COMMIT;
+
+
+
+ROLLBACK;

@@ -20,7 +20,7 @@
       <div class="tab-content">
         <div id="signup">   
         <h1>Sign Up for Free</h1>
-	       <c:url var="registerAction" value="/users"/> 
+	       <c:url var="registerAction" value="/newUserRegistration"/> 
 	       <form action="${registerAction}" method="POST">
 	       		<input type="hidden" name="destination" value="${param.destination}"/>
 	 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
@@ -35,6 +35,9 @@
 	           		</div>
 	         	</div>
 	         	<div class="field-wrap">
+	          		<input type="text"required autocomplete="off" placeholder="Age" name="age"/>
+	         	</div>
+	         	<div class="field-wrap">
 	        		<input type="text"required autocomplete="off" placeholder="Username" name="username"/>
 	      		</div>
 	         	<div class="field-wrap">
@@ -45,13 +48,13 @@
 		        </div>
 	         
 		        <div class="field-wrap">
-		         	<input type="password"required autocomplete="off" placeholder="Confirm Password" name="password"/>
+		         	<input type="password"required autocomplete="off" placeholder="Confirm Password"/>
 		        </div>        
 		        <div class="field-wrap">
 		        	<select name="select" class="drop-box">
 			            <option value="(No Selection)" selected>(No Selection)</option>
-			            <option value="Client">Client</option>
-			            <option value="Trainer">Trainer</option>
+			            <option name="role" value="Client">Client</option>
+			            <option name="role" value="Trainer">Trainer</option>
 		       		</select>
 		        </div>
 	         	<button type="submit" class="button button-block">Get Started</button>  
