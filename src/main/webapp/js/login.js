@@ -1,3 +1,4 @@
+$(document).ready(function(){
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
     
     var $this = $(this),
@@ -24,6 +25,20 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
               label.addClass('highlight');
               }
       }
+        
+	$('#signup').on('click', function(event) {
+		$(this).addClass('active');
+		$(div).hide();
+	});
+	
+		$('div').on('click', function(){
+			$('div').hide();
+		});
+
+	$('#login').on('click', function(event) {
+		$(this).empty();
+		$('this').addClass('hey');
+	});
   
   });
   
@@ -41,3 +56,4 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
     $(target).fadeIn(600);
     
   });
+});
