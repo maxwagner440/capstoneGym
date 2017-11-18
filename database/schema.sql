@@ -41,6 +41,7 @@ CREATE TABLE trainers(
 		experience VARCHAR(255),
 		hourly_price DECIMAL,
 		trainer_id Serial NOT NULL,
+		visibility BOOLEAN NOT NULL DEFAULT false,
 		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
 		CONSTRAINT fk_users_trainers FOREIGN KEY (trainer_id) REFERENCES users (user_id)
 );

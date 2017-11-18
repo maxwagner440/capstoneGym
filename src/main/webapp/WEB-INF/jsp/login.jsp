@@ -23,36 +23,43 @@
         <h1>Sign Up for Free</h1>
 	       <c:url var="registerAction" value="/newUserRegistration"/> 
 	       <form:form action="${registerAction}" method="POST" modelAttribute="user">
-	       		<form:input type="hidden" path="destination" value="${param.destination}"/>
-	 			<form:input type="hidden" path="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-	 			<form:input type="hidden" path="${id}"/>
+	       		<input type="hidden" path="destination" value="${param.destination}"/>
+	 			<input type="hidden" path="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	 			<input type="hidden" path="${id}"/>  
 	        
 	         	<div class="top-row">
 	          		<div class="field-wrap">
-	            		 <form:input type="text" required autocomplete="off" placeholder="First Name" path="firstName"/>
+	            		 <form:input placeholder="First Name" path="firstName"/>
+	            		 <form:errors path="firstName" cssClass="error"/> 
 	           		</div>
 	          		<div class="field-wrap">
-	            		 <form:input type="text"required autocomplete="off" placeholder="Last Name" path="lastName"/>
+	            		 <form:input placeholder="Last Name" path="lastName"/>
+	            		 <form:errors path="lastName" cssClass="error"/> 
 	           		</div>
 	         	</div>
 	         	<div class="field-wrap">
-	          		<form:input type="text"required autocomplete="off" placeholder="Age" path="age"/>
+	          		<form:input type="text" placeholder="Age" path="age"/>
+	          		<form:errors path="age" cssClass="error"/> 
 	         	</div>
 	         	<div class="field-wrap">
-	        		<form:input type="text"required autocomplete="off" placeholder="Username" path="username"/>
+	        		<form:input placeholder="Username" path="username"/>
+	        		<form:errors path="username" cssClass="error"/> 
 	      		</div>
 	         	<div class="field-wrap">
-	          		<form:input type="email"required autocomplete="off" placeholder="Email Address" path="emailAddress"/>
+	          		<form:input type="email" placeholder="Email Address" path="email"/>
+	          		<form:errors path="email" cssClass="error"/> 
 	         	</div>
 		        <div class="field-wrap">
-		         	<form:input type="password"required autocomplete="off" placeholder="Set Password" path="password"/>
+		         	<input type="password" placeholder="Password" name="password"/>
+		         
 		        </div>
 	         
 		        <div class="field-wrap">
-		         	<form:input type="password"required autocomplete="off" placeholder="Confirm Password" path=""/>
+		         	<input type="password" placeholder="Confirm Password" name=""/>
+		         	
 		        </div>        
 		        <div class="field-wrap">
-		        	<form:select path="select" class="drop-box">
+		        	<form:select path="role" class="drop-box">
 			            <option value="(No Selection)" selected>(No Selection)</option>
 			            <form:option path="role" value="Client">Client</form:option>
 			            <form:option path="role" value="Trainer">Trainer</form:option>
@@ -62,16 +69,16 @@
 	       	 </form:form>
 	    </div>  
 
-        </div>
+        
         
         <div id="login">   
           <h1>Welcome Back!</h1>
           <c:url var="loginAction" value="/login"/>
           	<form action="${loginAction}" method="POST">
-	        <input type="hidden" name="destination" value="${param.destination}"/>
-	  		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+	      	 <input type="hidden" name="destination" value="${param.destination}"/>
+	  		 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> 
 	            <div class="field-wrap">
-	            	<input type="email"required autocomplete="off" placeholder="Email Address" name="emailAddress"/>
+	            	<input type="email"required autocomplete="off" placeholder="Email Address" name="email"/>
 	          	</div>
           
           		<div class="field-wrap">
@@ -110,7 +117,7 @@
           </form>
 
         </div>
-        
+        </div>
       </div> <!-- /form -->
 </body>
 </html>

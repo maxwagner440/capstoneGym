@@ -10,6 +10,7 @@ public class User {
 	
 	private long id;
 	
+	
 	@NotBlank(message="Please enter an email") 
 	@Email(message="Email must be a valid email address")
 	private String email;
@@ -78,5 +79,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	
 }

@@ -34,7 +34,7 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
 		jdbcTemplate.update("INSERT INTO users(email, username, password, first_name, last_name, age, salt, role) "
-				+ "VALUES (?, ?, ?, ?, ?)", user.getEmail(), user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", user.getEmail(), user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
 				user.getAge(), saltString, user.getRole());
 	}
 	
@@ -221,6 +221,20 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
 		jdbcTemplate.update("UPDATE users SET password = ?, salt = ? WHERE username = ?", hashedPassword, saltString, userName);
+	}
+
+	@Override
+	public boolean getTrainerPrivacySetting(String userName) {
+		String command = "SELECT visibillity FROM trainers WHERE username = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userName);
+		results.next();
+		return results.getBoolean("visibillity");
+	}
+
+	@Override
+	public void toggleTrainerPrivacySetting(String userName) {
+		String command = "UPDATE trainers SET visibillity=? WHERE username=?";
+		jdbcTemplate.update(command, !getTrainerPrivacySetting(userName), userName);
 	}
 }
 

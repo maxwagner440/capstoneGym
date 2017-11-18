@@ -32,54 +32,49 @@ public class UserController {
 	}
 
 	
-	@RequestMapping(path="/newUserRegistration", method=RequestMethod.GET)
-	public String displayNew() {
-		return "newUserRegistration";
-	}
+	
 	
 
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute User user, @RequestParam String password, RedirectAttributes attr) {
+	public String createUser(@Valid @ModelAttribute("user") User user, @RequestParam String password, RedirectAttributes attr) {
 		if(! userDAO.seeIfEmailExists(user.getEmail())){
 			userDAO.saveUser(user, password);
-			attr.addAttribute("user", user);
-			String injenction = user.getRole().substring(0,1).toUpperCase() + 
-					user.getRole().substring(1).toLowerCase() ;
-		return "redirect:/users" + injenction + "Attributes";
+			attr.addFlashAttribute("user", user);
+		return "redirect:/" + user.getRole().toLowerCase() + "Attributes";
 		}
 		else{
-			return "redirect:/newUserRegistration";
+			return "redirect:/login";
 		}
 	}
 	
 	
-	@RequestMapping(path="/usersClientAttributes", method=RequestMethod.GET)
+	@RequestMapping(path="/clientAttributes", method=RequestMethod.GET)
 	public String displayBioInputClient(ModelMap modelHolder){
 		if(! modelHolder.containsAttribute("user")){
-			return "redirect:/newUserRegistration";
+			return "redirect:/login";
 		}
 		
-		return "usersClientAttributes";
+		return "clientAttributes";
 	}
 
-	@RequestMapping(path="/usersClientAttributes", method=RequestMethod.POST)
+	@RequestMapping(path="/clientAttributes", method=RequestMethod.POST)
 	public String postWithClientAttributes(@Valid @ModelAttribute("client") Client client,
 											BindingResult result, RedirectAttributes attr){
 		userDAO.saveClient(client, client.getId());
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
-			return "redirect:/usersClientAttributes";
+			return "redirect:/clientAttributes";
 		}
 		return "redirect:/clientDashBoard/" + client.getUsername();
 		
 	}
 	
-	@RequestMapping(path="/usersTrainerAttritbutes", method=RequestMethod.GET)
+	@RequestMapping(path="/trainerAttritbutes", method=RequestMethod.GET)
 	public String displayBioInputTrainer(ModelMap modelHolder){
 		if(! modelHolder.containsAttribute("user")){
-			return "redirect:/newUserRegistration";
+			return "redirect:/login";
 		}
-		return "usersTrainerAttributes";
+	return "trainerAttributes";
 	}
 	
 	@RequestMapping(path="/usersTrainerAttributes", method=RequestMethod.POST)
@@ -88,7 +83,7 @@ public class UserController {
 		userDAO.saveTrainer(trainer, trainer.getId());
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
-			return "redirect:/usersClientAttributes";
+			return "redirect:/clientAttributes";
 		}
 		return "redirect:/trainerDashboard/" + trainer.getUsername();
 		
