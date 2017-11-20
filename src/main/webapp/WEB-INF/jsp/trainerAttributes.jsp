@@ -13,6 +13,42 @@
     <title>Raise The Bar</title>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		$("form").validate({		
+			rules : {
+				price : {
+					required : true
+				},			
+				philosophy : {
+					required : true
+				},
+				bio : {
+					required : true
+				},
+				experience : {
+					required: true
+				}
+			},
+			messages : {
+				price : {
+					required : "Please enter your going rate."
+				},
+				philosophy : {
+					required : "Please enter your personal philosophy."
+				},
+				bio : {
+					required : "Please enter some information about yourself."
+				},
+				experience : {
+					required : "Please enter training experience."
+				}
+			},
+			errorClass : "error"
+		});
+	});
+</script>
 	<div class="reg-whole">  
 	    <h2 class="reg-head">Fill In Your Bio</h2>
 	    <div class="reg-form">

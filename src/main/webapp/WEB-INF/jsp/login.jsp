@@ -5,7 +5,6 @@
 <html lang="en">
 <head>
     <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
-    <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,7 +14,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 	
-		$("signup").validate({		
+		$("#signup form").validate({		
 			rules : {
 				firstName : {
 					required : true
@@ -64,14 +63,14 @@
 					required : "Please enter a valid passowrd."
 				},
 				confirmPassword : {
-					required : "Please enter a matching password."
+					required : "Please enter a matching password.",
 					equalTo : "Passwords do not match"
 				}
 			},
-			errorClass : "error",			
+			errorClass : "error",
 		});	
 		
-		$("login").validate({
+		$("#login form").validate({
 			rules: {
 				email : {
 					required: true

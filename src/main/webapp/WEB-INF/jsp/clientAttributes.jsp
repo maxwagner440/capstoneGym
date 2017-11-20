@@ -15,49 +15,41 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 	
-		$("signup").validate({		
+		$("form").validate({		
 			rules : {
 				weight : {
-					required : true
+					required : true,
+					min : 0
 				},			
 				height : {
-					required : true
+					required : true,
+					min : 0
 				},
 				goals : {
-					required : true,
-					min: 13
+					required : true
 				},
 				modality : {
 					required: true
 				}
 			},
 			messages : {
-				firstName : {
-					required : "Please enter your first name."
+				weight : {
+					required : "Please enter your weight.",
+					min : "Please enter a positive weight value."
 				},
-				lastName : {
-					required : "Please enter your last name."
+				height : {
+					required : "Please enter your height.",
+					min : "Please enter a positive height value."
 				},
-				age : {
-					required : "Please enter your age.",
-					min: "You must be 13 years of age or older."
+				modality : {
+					required : "Please enter your training preferences."
 				},
-				username : {
-					required : "Please enter a username."
-				},
-				email : {
-					required : "Please enter an email.",
-					email: "Please enter a valid email"
-				},
-				password : {
-					required : "Please enter a valid passowrd."
-				},
-				confirmPassword : {
-					required : "Please enter a matching password.",
-					equalTo : "Passwords do not match"
+				goals : {
+					required : "Please enter your goals."
 				}
 			},
-			errorClass : "error",			
+			errorClass : "error"	
+		});
 	});
 </script>
 	<div class="form">  
@@ -66,26 +58,24 @@
 	    </ul>
 	    <div>
 	    	<c:url value="/clientAttributes" var="clientPathing"/> 
-	    	<form:form method="POST" action="${clientPathing}">
-	    		<%-- <div class="field-wrap">
-	    			<label name="age">Age: </label>
-	    			<form:input path="age" placeholder="Enter your age"/>
-	    		</div> --%>
-	    		<div class="field-wrap">
-	    			<label name="weight">Weight: </label>
-	    			<form:input path="weight" placeholder="Enter your weight"/>
-	    		</div>
-	    		<div class="field-box">
-	    			<label name="modality">Type of Exercise: </label>
-	    			<form:input path="classOffer" placeholder="What are you looking to train in?"/>    
-	    		</div>
-	    		<div class="field-box">
-	    			<label name="goal">Personal Goals: </label>
-	    			<form:input path="goal" placeholder="What are your goals?"/>
-	    		</div>
-	    		<div>
-	    			<input class="button button-block" type="submit" value="Submit"/>
-	    		</div>
+	    	<form:form method="POST" action="${clientPathing}" modelAttribute="client">
+	    		<div class="top-row">
+                	<div class="field-wrap">
+                        <input class="text-line" name="weight" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
+                    </div>
+                    <div class="field-wrap">
+                        <input class="text-line" name="height" path="heightInInches" placeholder="Enter your height (in.)"/>
+                    </div>
+                </div>
+                <div class="field-box">
+                    <textarea class="text-box" name="modality" path="modalityPreference" placeholder="What are you looking to train in?"></textarea>    
+                </div>
+                <div class="field-box">
+                    <textarea class="text-box" name="goals" path="goals" placeholder="What are your goals?"></textarea>
+                </div>
+                <div>
+                    <input class="button button-block" type="submit" value="Submit"/>
+                </div>
 	    	</form:form>
 	    </div>     
     </div>
