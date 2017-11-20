@@ -36,11 +36,15 @@ public class UserController {
 	
 
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute("user") User user, @RequestParam String password, RedirectAttributes attr) {
-		if(! userDAO.seeIfEmailExists(user.getEmail())){
+	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr, @RequestParam String password, HttpSession session, ModelMap modelHolder) {
+		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
+			if(results.hasErrors()){
+//				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
+//				return "redirect:/login";
+			}
 			userDAO.saveUser(user, password);
-			attr.addFlashAttribute("user", user);
-		return "redirect:/" + user.getRole().toLowerCase() + "Attributes";
+			session.setAttribute("user", user);
+			return "redirect:/" + user.getRole().toLowerCase() + "Attributes";
 		}
 		else{
 			return "redirect:/login";
@@ -49,17 +53,23 @@ public class UserController {
 	
 	
 	@RequestMapping(path="/clientAttributes", method=RequestMethod.GET)
-	public String displayBioInputClient(ModelMap modelHolder){
-		if(! modelHolder.containsAttribute("user")){
+	public String displayBioInputClient(ModelMap modelHolder, HttpSession session){
+		if(session.getAttribute("user") == null){
+			
 			return "redirect:/login";
 		}
-		
+		if(! modelHolder.containsAttribute("client")){
+			Client client = new Client();
+			modelHolder.addAttribute("client", client);
+			
+		}
+
 		return "clientAttributes";
 	}
 
 	@RequestMapping(path="/clientAttributes", method=RequestMethod.POST)
 	public String postWithClientAttributes(@Valid @ModelAttribute("client") Client client,
-											BindingResult result, RedirectAttributes attr){
+											 BindingResult result, RedirectAttributes attr){
 		userDAO.saveClient(client, client.getId());
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
@@ -69,15 +79,21 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(path="/trainerAttritbutes", method=RequestMethod.GET)
-	public String displayBioInputTrainer(ModelMap modelHolder){
-		if(! modelHolder.containsAttribute("user")){
+	@RequestMapping(path="/trainerAttributes", method=RequestMethod.GET)
+	public String displayBioInputTrainer(ModelMap modelHolder, HttpSession session){
+		if(session.getAttribute("user") == null){
+			
 			return "redirect:/login";
+		}
+		if(! modelHolder.containsAttribute("trainer")){
+			Trainer trainer = new Trainer();
+			modelHolder.addAttribute("trainer", trainer);
+			
 		}
 	return "trainerAttributes";
 	}
 	
-	@RequestMapping(path="/usersTrainerAttributes", method=RequestMethod.POST)
+	@RequestMapping(path="/trainerAttributes", method=RequestMethod.POST)
 	public String postWithTrainerAttributes(@Valid @ModelAttribute("trainer") Trainer trainer,
 											BindingResult result, RedirectAttributes attr){
 		userDAO.saveTrainer(trainer, trainer.getId());

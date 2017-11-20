@@ -128,7 +128,7 @@
 	      		</div>
 	         	<div class="field-wrap">
 	          		<form:input type="email" placeholder="Email Address" path="email"/>
-	          		<form:errors path="email" cssClass="error"/> 
+	          		<form:errors path="email" cssClass="error"/>  
 	         	</div>
 		        <div class="field-wrap">
 		         	<form:input type="password" placeholder="Password" path="password" id="password"/>
@@ -145,6 +145,7 @@
 			            <form:option path="role" value="Client">Client</form:option>
 			            <form:option path="role" value="Trainer">Trainer</form:option>
 		       		</form:select>
+		       		
 		        </div>
 	         	<button type="submit" class="button button-block">Get Started</button>  
 	       	 </form:form>

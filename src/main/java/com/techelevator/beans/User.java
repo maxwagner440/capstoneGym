@@ -30,11 +30,17 @@ public class User {
 	@NotBlank(message="Select A Box")
 	private String role;
 
-	private boolean isCorrectRole;
+	
+	private boolean roleMatching;
 	
 	@AssertTrue(message="Role Not Allowd")
-	public boolean isCorrectRole(){
-		return this.role.equalsIgnoreCase("trainer") || this.role.equalsIgnoreCase("client");
+	public boolean isRoleMatching(){
+		if(role==null){
+			return this.role.equalsIgnoreCase("trainer") || this.role.equalsIgnoreCase("client");
+		}
+		else{
+			return false;
+		}
 	}
 	public String getUsername() {
 		return username;
@@ -79,6 +85,4 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
 }

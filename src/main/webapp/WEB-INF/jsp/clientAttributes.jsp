@@ -12,6 +12,54 @@
     <title>Raise The Bar</title>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		$("signup").validate({		
+			rules : {
+				weight : {
+					required : true
+				},			
+				height : {
+					required : true
+				},
+				goals : {
+					required : true,
+					min: 13
+				},
+				modality : {
+					required: true
+				}
+			},
+			messages : {
+				firstName : {
+					required : "Please enter your first name."
+				},
+				lastName : {
+					required : "Please enter your last name."
+				},
+				age : {
+					required : "Please enter your age.",
+					min: "You must be 13 years of age or older."
+				},
+				username : {
+					required : "Please enter a username."
+				},
+				email : {
+					required : "Please enter an email.",
+					email: "Please enter a valid email"
+				},
+				password : {
+					required : "Please enter a valid passowrd."
+				},
+				confirmPassword : {
+					required : "Please enter a matching password.",
+					equalTo : "Passwords do not match"
+				}
+			},
+			errorClass : "error",			
+	});
+</script>
 	<div class="form">  
 	    <ul class="tab-group">
 	      <li class="tab active">Fill Out Your Bio</li>

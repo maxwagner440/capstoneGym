@@ -11,7 +11,7 @@ public interface UserDAO {
 	public void saveTrainer(Trainer trainer, long id);
 	public void saveClient(Client client, long id);
 	public boolean searchForEmailAndPassword(String email, String password);
-	//public boolean searchForUsernameAndPassword(String user, String password);
+	public boolean searchForUsernameAndPassword(String user, String password);
 	public void updatePassword(String user, String password);
 	public String getUserRole(String email);
 	public Trainer getTrainerByEmail(String email);
@@ -22,4 +22,5 @@ public interface UserDAO {
 	//public Trainer getTrainerByUsername(String username);
 	//public Client getClientByUsername(String username);
 	//public boolean seeIfUsernameExists(String username);
+
 }
