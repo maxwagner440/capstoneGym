@@ -17,12 +17,12 @@
 	      <li class="tab active">Fill Out Your Bio</li>
 	    </ul>
 	    <div>
-	    	<c:url value="/usersClientAttributes" var="clientPathing"/> 
+	    	<c:url value="/clientAttributes" var="clientPathing"/> 
 	    	<form:form method="POST" action="${clientPathing}">
-	    		<div class="field-wrap">
+	    		<%-- <div class="field-wrap">
 	    			<label name="age">Age: </label>
 	    			<form:input path="age" placeholder="Enter your age"/>
-	    		</div>
+	    		</div> --%>
 	    		<div class="field-wrap">
 	    			<label name="weight">Weight: </label>
 	    			<form:input path="weight" placeholder="Enter your weight"/>

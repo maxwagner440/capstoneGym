@@ -17,7 +17,7 @@
 	    <h2 class="reg-head">Fill In Your Bio</h2>
 	    <div class="reg-form">
 	    	<c:url value="/usersTrainerAttributes" var="trainerPathing"/> 
-	    	<form:form method="POST" action="${trainerPathing}">
+	    	<form:form method="POST" action="${trainerPathing}" modelAttribute="trainer">
 	    	
 	    		<div class="field-wrap">
 	    			<label name="trainerHourlyPrice">Set Your Hourly Rate: </label>
