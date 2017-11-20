@@ -17,23 +17,30 @@
 	      <li class="tab active">Fill Out Your Bio</li>
 	    </ul>
 	    <div>
-	    	<c:url value="/usersClientAttributes" var="clientPathing"/> 
-	    	<form:form method="POST" action="${clientPathing}">
+	    	<c:url value="/clientAttributes" var="clientPathing"/> 
+	    	<form:form method="POST" action="${clientPathing}" modelAttribute="client">
+	    	<input type="hidden" name="destination" value="${param.destination}"/>
+	  		 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> 
+	    		
 	    		<div class="field-wrap">
-	    			<label name="age">Age: </label>
-	    			<form:input path="age" placeholder="Enter your age"/>
-	    		</div>
-	    		<div class="field-wrap">
-	    			<label name="weight">Weight: </label>
-	    			<form:input path="weight" placeholder="Enter your weight"/>
+	    			
+	    			<form:input path="weightInPounds" placeholder="Enter your weight"/>
+	    			<form:errors path="weightInPounds" cssClass="error"/> 
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="modality">Type of Exercise: </label>
-	    			<form:input path="classOffer" placeholder="What are you looking to train in?"/>    
+	    			
+	    			<form:input path="heightInInches" placeholder="How Tall Are You?"/>   
+	    			<form:errors path="heightInInches" cssClass="error"/>  
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="goal">Personal Goals: </label>
-	    			<form:input path="goal" placeholder="What are your goals?"/>
+	    			
+	    			<form:input path="modalityPreference" placeholder="What are you looking to train in?"/>   
+	    			<form:errors path="modalityPreference" cssClass="error"/>  
+	    		</div>
+	    		<div class="field-box">
+	    		
+	    			<form:input path="goals" placeholder="What are your goals?"/>
+	    			<form:errors path="goals" cssClass="error"/> 
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>

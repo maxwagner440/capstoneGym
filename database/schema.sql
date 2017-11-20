@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS users;
 
 
 
-
 -- CREATE statements go here
 CREATE TABLE users(
         user_id Serial NOT NULL,
@@ -101,7 +100,5 @@ CREATE TABLE notes_users(
 
 
 COMMIT;
-
-
 
 ROLLBACK;
