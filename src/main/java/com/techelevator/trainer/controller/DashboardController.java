@@ -40,32 +40,34 @@ public class DashboardController {
 	
 	@RequestMapping(path="/trainerDashboard/{userName}", method=RequestMethod.GET)
 	public String displayTrainerDashboard(Map<String, Object> model, @PathVariable String userName, HttpSession session) {
-//		User currentUser=(User) session.getAttribute("user");
-//		if(!currentUser.getRole().equalsIgnoreCase("trainer")){
+		Trainer trainer = (Trainer) userDAO.getTrainerByUsername(userName);
+//		if(! currentUser.getRole().equalsIgnoreCase("trainer")){
 //			return "redirect:/clientDashboard/"+currentUser.getUsername();
 //		}
 //		
 //		model.put("user", (Trainer) currentUser);
 //		
-//		String privacy="public";
-//		if(userDAO.getTrainerPrivacySetting(currentUser.getId())){
-//			privacy="private";
-//		}
-//			
-//		model.put("privacy", privacy);
+		session.setAttribute("user", trainer);
+		String privacy="public";
+		if(userDAO.getTrainerPrivacySetting(trainer.getId())){
+			privacy="private";
+		}
+			
+		model.put("privacy", privacy);
 		return "trainerDashboard";
 	}
 
 	@RequestMapping(path="/trainerDashboard/{userName}", method=RequestMethod.POST)
-	public String setAccountPrivacy(@PathVariable String userName, @RequestParam boolean visibilityPrivate, HttpSession session, ModelMap modelHolder){
-		User currentUser=(User) session.getAttribute("user");
-		if(!currentUser.getRole().equalsIgnoreCase("trainer")){
-			return "redirect:/clientDashboard/"+currentUser.getUsername();
-		}
+	public String setAccountPrivacy(@PathVariable String userName, HttpSession session, ModelMap modelHolder){
+//		User currentUser=(User) session.getAttribute("user");
+//		if(!currentUser.getRole().equalsIgnoreCase("trainer")){
+//			return "redirect:/clientDashboard/"+currentUser.getUsername();
+//		}
 		
-		userDAO.toggleTrainerPrivacySetting(currentUser.getId());
-		Trainer trainer = userDAO.get
-		modelHolder.addAttribute("trainer", trainer)
-		return "redirect:/trainerDashboard/" + userName;
+		Trainer trainer = (Trainer) userDAO.getTrainerByUsername(userName);
+		userDAO.toggleTrainerPrivacySetting(trainer.getId());
+		modelHolder.addAttribute("user", trainer);
+		modelHolder.addAttribute("username", trainer.getUsername());
+		return "redirect:/trainerDashboard/" + trainer.getUsername();
 	}
 }

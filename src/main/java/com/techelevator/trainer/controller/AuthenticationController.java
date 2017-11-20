@@ -62,6 +62,7 @@ public class AuthenticationController {
 				page+="clientDashboard";
 			}
 			
+			
 			if(isValidRedirect(destination)) { //check to see if this works.
 				return "redirect:"+destination;
 			} else {

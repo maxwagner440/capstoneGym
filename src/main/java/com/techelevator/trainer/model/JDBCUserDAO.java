@@ -142,7 +142,7 @@ public class JDBCUserDAO implements UserDAO {
 	public Trainer getTrainerByUsername(String username) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForTrainer = "SELECT * "+
-			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
+			      "FROM users u JOIN trainers t ON u.user_id=t.user_id "+
 			      "WHERE username = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
