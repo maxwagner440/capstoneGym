@@ -16,25 +16,33 @@
 	<div class="reg-whole">  
 	    <h2 class="reg-head">Fill In Your Bio</h2>
 	    <div class="reg-form">
-	    	<c:url value="/usersTrainerAttributes" var="trainerPathing"/> 
 	    	<c:url value="/trainerAttributes" var="trainerPathing"/> 
 	    	<form:form method="POST" action="${trainerPathing}" modelAttribute="trainer">
-	    	
+	    		<input type="hidden" name="firstName" value="${user.firstName}"/>
+		    	<input type="hidden" name="lastName" value="${user.lastName}"/>
+		    	<input type="hidden" name="email" value="${user.email}"/>
+		    	<input type="hidden" name="username" value="${user.username}"/>
+		    	<input type="hidden" name="age" value="${user.age}"/>
+		    	<input type="hidden" name="role" value="${user.role}"/>
 	    		<div class="field-wrap">
-	    			<label name="trainerHourlyPrice">Set Your Hourly Rate: </label>
-	    			<form:input path="price" placeholder="Set your hourly rate"/>
+	    			
+	    			<form:input path="trainerHourlyPrice" placeholder="Set your hourly rate"/>
+	    			<form:errors path="trainerHourlyPrice" cssClass="error"/>
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="exercisePhilosophy">Training Philosophy: </label>
-	    			<form:input path="philosophy" placeholder="What motivates you?"/>
+	    			
+	    			<form:input path="exercisePhilosophy" placeholder="What motivates you?"/>
+	    			<form:errors path="exercisePhilosophy" cssClass="error"/>
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="bio">Personal Bio: </label>
+	    			
 	    			<form:input path="bio" placeholder="What would you like your clients to know about you?"/>
+	    			<form:errors path="bio" cssClass="error"/>
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="pastExperience">Personal Training Experience: </label>
-	    			<form:input path="experience" placeholder="What is your training experience?"/>
+	    			
+	    			<form:input path="pastExperience" placeholder="What is your training experience?"/>
+	    			<form:errors path="pastExperience" cssClass="error"/>
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>

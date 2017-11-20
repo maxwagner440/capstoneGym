@@ -16,4 +16,5 @@
 	<form action="${changePrivacy}" method="POST">
 		<input type="submit"/>
 	</form>
+	<c:out value="${ }"
 </div>

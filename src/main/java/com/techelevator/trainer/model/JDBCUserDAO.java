@@ -33,23 +33,25 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("INSERT INTO users(email, username, password, first_name, last_name, age, salt, role) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", user.getEmail(), user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
+		Long userId = jdbcTemplate.queryForObject("INSERT INTO users(email, username, password, first_name, last_name, age, salt, role) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?) returning user_id", Long.class, user.getEmail(), user.getUsername(), hashedPassword, user.getFirstName(), user.getLastName(),
 				user.getAge(), saltString, user.getRole());
+		user.setId(userId);
 	}
 	
 	@Override
 	public void saveTrainer(Trainer trainer, long id) { //need tests.
 		jdbcTemplate.update("INSERT INTO trainers (bio, philosophy, "
-				+ "success_stories, experience, hourly_price, trainer_id" 
+				+ "experience, hourly_price, user_id, visibility" 
 				+ ") VALUES (?, ?, ?, ?, ?, ?)",
 				trainer.getBio(), trainer.getExercisePhilosophy(),
-				trainer.getTrainerHourlyPrice(), id);
+				trainer.getPastExperience(),
+				trainer.getTrainerHourlyPrice(), id, true);
 	}
 	
 	@Override
 	public void saveClient(Client client, long id) {
-		jdbcTemplate.update("INSERT INTO clients (goal, height, modality, weight, client_id " 
+		jdbcTemplate.update("INSERT INTO clients (goal, height, modality, weight, user_id " 
 				+ ") VALUES (?, ?, ?, ?, ?)",
 				client.getGoals(), client.getHeightInInches(),
 				client.getModalityPreference(), client.getWeightInPounds(), id);
@@ -108,7 +110,7 @@ public class JDBCUserDAO implements UserDAO {
 	public Trainer getTrainerByEmail(String email) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForTrainer = "SELECT * "+
-			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
+			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.user_id "+
 			      "WHERE email = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, email);
@@ -124,7 +126,7 @@ public class JDBCUserDAO implements UserDAO {
 	public Client getClientByEmail(String email) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForClient = "SELECT * "+
-			      "FROM users u LEFT JOIN clients c ON u.user_id=c.client_id "+
+			      "FROM users u LEFT JOIN clients c ON u.user_id=c.user_id "+
 			      "WHERE email = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForClient, email);
@@ -136,21 +138,21 @@ public class JDBCUserDAO implements UserDAO {
 		}
 	}
 
-//	@Override
-//	public Trainer getTrainerByUsername(String username) { //need to test.
-//		// TODO Auto-generated method stub
-//		String sqlSearchForTrainer = "SELECT * "+
-//			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
-//			      "WHERE username = ?";
-//		
-//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
-//		
-//		if(results.next()){
-//			return mapRowToTrainer(results);
-//		} else{
-//			return null;
-//		}
-//	}
+	@Override
+	public Trainer getTrainerByUsername(String username) { //need to test.
+		// TODO Auto-generated method stub
+		String sqlSearchForTrainer = "SELECT * "+
+			      "FROM users u LEFT JOIN trainers t ON u.user_id=t.trainer_id "+
+			      "WHERE username = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForTrainer, username);
+		
+		if(results.next()){
+			return mapRowToTrainer(results);
+		} else{
+			return null;
+		}
+	}
 //
 //	@Override
 //	public Client getClientByUsername(String username) { //need to test.
@@ -224,17 +226,17 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean getTrainerPrivacySetting(String userName) {
-		String command = "SELECT visibillity FROM trainers WHERE username = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userName);
+	public boolean getTrainerPrivacySetting(long userId) {
+		String command = "SELECT visibility FROM trainers WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userId);
 		results.next();
-		return results.getBoolean("visibillity");
+		return results.getBoolean("visibility");
 	}
 
 	@Override
-	public void toggleTrainerPrivacySetting(String userName) {
-		String command = "UPDATE trainers SET visibillity=? WHERE username=?";
-		jdbcTemplate.update(command, !getTrainerPrivacySetting(userName), userName);
+	public void toggleTrainerPrivacySetting(long userId) {
+		String command = "UPDATE trainers SET visibility=? WHERE user_id=?";
+		jdbcTemplate.update(command, !getTrainerPrivacySetting(userId), userId);
 	}
 }
 

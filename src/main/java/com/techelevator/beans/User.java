@@ -31,17 +31,17 @@ public class User {
 	private String role;
 
 	
-	private boolean roleMatching;
+//	private boolean roleMatching;
 	
-	@AssertTrue(message="Role Not Allowd")
-	public boolean isRoleMatching(){
-		if(role==null){
-			return this.role.equalsIgnoreCase("trainer") || this.role.equalsIgnoreCase("client");
-		}
-		else{
-			return false;
-		}
-	}
+//	@AssertTrue(message="Role Not Allowd")
+//	public boolean isRoleMatching(){
+//		if(role==null){
+//			return this.role.equalsIgnoreCase("trainer") || this.role.equalsIgnoreCase("client");
+//		}
+//		else{
+//			return false;
+//		}
+//	}
 	public String getUsername() {
 		return username;
 	}

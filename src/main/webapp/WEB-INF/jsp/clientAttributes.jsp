@@ -66,22 +66,39 @@
 	    </ul>
 	    <div>
 	    	<c:url value="/clientAttributes" var="clientPathing"/> 
-	    	<form:form method="POST" action="${clientPathing}">
+	    	<form:form method="POST" action="${clientPathing}" modelAttribute="client">
+		    	<input type="hidden" name="firstName" value="${user.firstName}"/>
+		    	<input type="hidden" name="lastName" value="${user.lastName}"/>
+		    	<input type="hidden" name="email" value="${user.email}"/>
+		    	<input type="hidden" name="username" value="${user.username}"/>
+		    	<input type="hidden" name="age" value="${user.age}"/>
+		    	<input type="hidden" name="role" value="${user.role}"/>
+	    	
+	    		<form:errors path="*"/>
 	    		<%-- <div class="field-wrap">
 	    			<label name="age">Age: </label>
 	    			<form:input path="age" placeholder="Enter your age"/>
 	    		</div> --%>
 	    		<div class="field-wrap">
-	    			<label name="weight">Weight: </label>
-	    			<form:input path="weight" placeholder="Enter your weight"/>
+	    			
+	    			<form:input path="weightInPounds" placeholder="Enter your weight"/>
+	    			<form:errors path="weightInPounds" cssClass="error"/> 
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="modality">Type of Exercise: </label>
-	    			<form:input path="classOffer" placeholder="What are you looking to train in?"/>    
+	    			
+	    			<form:input path="modalityPreference" placeholder="What are you looking to train in?"/>  
+	    			<form:errors path="modalityPreference" cssClass="error"/> 
+	    			  
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="goal">Personal Goals: </label>
-	    			<form:input path="goal" placeholder="What are your goals?"/>
+	    		
+	    			<form:input path="goals" placeholder="What are your goals?"/>
+	    			<form:errors path="goals" cssClass="error"/> 
+	    		</div>
+	    		<div class="field-box">
+	    		
+	    			<form:input path="heightInInches" placeholder="What Is Your Height In Inches?"/>
+	    			<form:errors path="heightInInches" cssClass="error"/> 
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>
