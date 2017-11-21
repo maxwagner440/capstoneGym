@@ -21,6 +21,9 @@ public class Trainer extends User {
 	
 	private boolean visibility;
 	
+	public String getFullName(){
+		return super.getFirstName() + " " + super.getLastName();
+	}
 	public String getBio() {
 		return bio;
 	}
@@ -52,4 +55,5 @@ public class Trainer extends User {
 	public void setVisibility(boolean visibility) {
 		this.visibility = visibility;
 	}
+
 } 

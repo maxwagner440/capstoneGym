@@ -9,14 +9,20 @@
     <title>Raise The Bar</title>
 </head>
 <h1>All Trainers</h1>
-<c:forEach items="${trainers }" var="trainer">
+<c:forEach items="${trainers}" var="trainer">
 	<div class="trainer-info-summary-bar">
-		<h2><c:out value="${trainer.firstName + trainer.lastName}"/>NAME</h2>
+		<h2><c:out value="${trainer.getFullName()}"/></h2> 
 		<div class="trainer-prof-pic">
 			<img src="#"/>
 		</div>
-		<div class="small-info">
-			<h4><c:out value="${trainer.location}"/></h4>
+	 	<div class="small-info">
+			<h4><c:out value="${trainer.pastExperience}"/></h4>
+		</div> 
+		<div class="price-info">
+			<h4>$<c:out value="${trainer.trainerHourlyPrice}"/></h4>
+		</div>
+		<div class="philosophy-info">
+			<h4><c:out value="${trainer.exercisePhilosophy}"/></h4>
 		</div>
 		<div class="bio-info">
 			<h3>Bio: </h3>
@@ -25,7 +31,7 @@
 
 		<c:url var="trainerProfile" value="/trainerProfile"/>
 		<form action="${trainerProfile }" method="POST">
-			<input type="hidden"  name ="trainerId" value="${trainer.id }"/>
+			<input type="hidden"  name ="userID" value="${trainer.id }"/>
 			<input type="submit"/>
 		</form>
 	</div>

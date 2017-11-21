@@ -245,7 +245,7 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public List<Trainer> getAllTrainers(){
 		List<Trainer> trainers=new ArrayList<Trainer>();
-		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.trainer_id WHERE u.role=trainer";
+		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE u.role= 'Trainer'";
 		SqlRowSet rows=jdbcTemplate.queryForRowSet(command);
 		
 		while(rows.next()){
@@ -254,6 +254,23 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return trainers;
 		
+	}
+
+	@Override
+	public Trainer getTrainerById(long userID) {
+		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		Trainer trainer=null;
+		if(rows.next()){
+			trainer=mapRowToTrainer(rows);
+		}
+		return trainer;
+	}
+
+	@Override
+	public void saveClientTrainerRelsationship(long clientID, long trainerID) {
+		String command="INSERT INTO clients_trainers(client_id, trainer_id) VALUES (?, ?)";
+		jdbcTemplate.update(command, clientID, trainerID);
 	}
 	
 }

@@ -12,9 +12,11 @@
 
 <div id="signup-for-trainer">
 
+
 	<c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
 	<form action="${signupWithTrainer}" method="POST">
 		<input type="hidden" name="trainerId" value="${trainer.id }"/>
+
 		<input type="submit"/>
 	</form>
 </div>
