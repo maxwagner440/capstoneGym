@@ -11,9 +11,9 @@
 <h1>Trainer Profile Page</h1>
 
 <div id="signup-for-trainer">
-	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
-	<c:url var="changePrivacy" value="/trainerDashboard"/>
-	<form action="${changePrivacy}" method="POST">
+
+	<c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
+	<form action="${signupWithTrainer}" method="POST">
 		<input type="hidden" name="trainerId" value="${trainer.id }"/>
 		<input type="submit"/>
 	</form>

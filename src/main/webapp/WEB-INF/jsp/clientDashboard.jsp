@@ -12,7 +12,6 @@
 <h1>Client Dashboard Page</h1>
 
 <div id="go-to-see-all-trainers">
-	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
 	<c:url var="allTrainersPage" value="/findAllTrainers"/>
 	<a href="${allTrainersPage }"><button> See All Trainers</button></a>
 </div>
