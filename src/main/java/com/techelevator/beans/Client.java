@@ -6,10 +6,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class Client extends User{
 	@Min(value=0, message="Weight Must Be Positive")
-	private double weightInPounds ;
+	private Double weightInPounds ;
 	
 	@Min(value=0, message="Height Must Be Positive")
-	private double heightInInches ;
+	private Double heightInInches ;
 	
 	@NotBlank(message="Please Enter Your Goals")
 	private String goals;
@@ -18,16 +18,16 @@ public class Client extends User{
 	private String modalityPreference;
 	
 	
-	public double getWeightInPounds() {
+	public Double getWeightInPounds() {
 		return weightInPounds;
 	}
-	public void setWeightInPounds(double weightInPounds) {
+	public void setWeightInPounds(Double weightInPounds) {
 		this.weightInPounds = weightInPounds;
 	}
-	public double getHeightInInches() {
+	public Double getHeightInInches() {
 		return heightInInches;
 	}
-	public void setHeightInInches(double heightInInches) {
+	public void setHeightInInches(Double heightInInches) {
 		this.heightInInches = heightInInches;
 	}
 	public String getGoals() {

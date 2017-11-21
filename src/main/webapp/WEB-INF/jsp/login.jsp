@@ -1,15 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%-- <c:import url="/WEB-INF/jsp/common/header.jspf" /> --%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Raise The Bar</title>
-</head>
+<%@include file ="/WEB-INF/jsp/common/header.jspf" %>
+
 <body>
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -34,6 +26,8 @@
 					email: true
 				},
 				password : {
+					minlength: 15,
+					capitals: true,
 					required : true
 				},
 				confirmPassword : {
@@ -60,6 +54,8 @@
 					email: "Please enter a valid email"
 				},
 				password : {
+					minlength: "Must be 15 characters long",
+					capitals: "Must contain a capital letter",
 					required : "Please enter a valid passowrd."
 				},
 				confirmPassword : {
