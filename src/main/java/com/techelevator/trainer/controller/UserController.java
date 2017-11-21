@@ -2,6 +2,7 @@ package com.techelevator.trainer.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -31,16 +32,17 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 
-	
-	
-	
-
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute("user") User user, @RequestParam String password, RedirectAttributes attr) {
-		if(! userDAO.seeIfEmailExists(user.getEmail())){
+	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr,
+												@RequestParam String password, HttpSession session, ModelMap modelHolder) {
+		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
+			if(results.hasErrors()){
+				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
+				return "redirect:/login#signup";
+			}
 			userDAO.saveUser(user, password);
-			attr.addFlashAttribute("user", user);
-		return "redirect:/" + user.getRole().toLowerCase() + "Attributes";
+			session.setAttribute("user", user);
+			return "redirect:/" + user.getRole().toLowerCase() + "Attributes";
 		}
 		else{
 			return "redirect:/login";
@@ -49,9 +51,15 @@ public class UserController {
 	
 	
 	@RequestMapping(path="/clientAttributes", method=RequestMethod.GET)
-	public String displayBioInputClient(ModelMap modelHolder){
-		if(! modelHolder.containsAttribute("user")){
+	public String displayBioInputClient(ModelMap modelHolder, HttpSession session){
+		if(session.getAttribute("user") == null){
+			
 			return "redirect:/login";
+		}
+		if(! modelHolder.containsAttribute("client")){
+			Client client = new Client();
+			modelHolder.addAttribute("client", client);
+			
 		}
 		
 		return "clientAttributes";
@@ -59,32 +67,46 @@ public class UserController {
 
 	@RequestMapping(path="/clientAttributes", method=RequestMethod.POST)
 	public String postWithClientAttributes(@Valid @ModelAttribute("client") Client client,
-											BindingResult result, RedirectAttributes attr){
-		userDAO.saveClient(client, client.getId());
+											 BindingResult result, RedirectAttributes attr, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
+			attr.addFlashAttribute("client", client);
 			return "redirect:/clientAttributes";
 		}
-		return "redirect:/clientDashBoard/" + client.getUsername();
+		userDAO.saveClient(client, user.getId());
+		session.setAttribute("user", client);
+		return "redirect:/clientDashboard/" + client.getUsername();
 		
 	}
 	
-	@RequestMapping(path="/trainerAttritbutes", method=RequestMethod.GET)
-	public String displayBioInputTrainer(ModelMap modelHolder){
-		if(! modelHolder.containsAttribute("user")){
+	@RequestMapping(path="/trainerAttributes", method=RequestMethod.GET)
+	public String displayBioInputTrainer(ModelMap modelHolder, HttpSession session){
+		if(session.getAttribute("user") == null){
+			
 			return "redirect:/login";
+		}
+		if(! modelHolder.containsAttribute("trainer")){
+			Trainer trainer = new Trainer();
+			modelHolder.addAttribute("trainer", trainer);
+			
 		}
 	return "trainerAttributes";
 	}
 	
-	@RequestMapping(path="/usersTrainerAttributes", method=RequestMethod.POST)
+	@RequestMapping(path="/trainerAttributes", method=RequestMethod.POST)
 	public String postWithTrainerAttributes(@Valid @ModelAttribute("trainer") Trainer trainer,
-											BindingResult result, RedirectAttributes attr){
-		userDAO.saveTrainer(trainer, trainer.getId());
+											BindingResult result, RedirectAttributes attr, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
-			return "redirect:/clientAttributes";
+			attr.addFlashAttribute("trainer", trainer);
+			return "redirect:/trainerAttributes";
 		}
+		userDAO.saveTrainer(trainer, user.getId());
+		session.setAttribute("user", trainer);
 		return "redirect:/trainerDashboard/" + trainer.getUsername();
 		
 	}

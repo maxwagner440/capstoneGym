@@ -12,32 +12,103 @@
     <title>Raise The Bar</title>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		$("form").validate({		
+			rules : {
+				weight : {
+					required : true,
+					min : 0
+				},			
+				height : {
+					required : true,
+					min : 0
+				},
+				goals : {
+					required : true
+				},
+				modality : {
+					required: true
+				}
+			},
+			messages : {
+				weight : {
+					required : "Please enter your weight.",
+					min : "Please enter a positive weight value."
+				},
+				height : {
+					required : "Please enter your height.",
+					min : "Please enter a positive height value."
+				},
+				modality : {
+					required : "Please enter your training preferences."
+				},
+				goals : {
+					required : "Please enter your goals."
+				}
+			},
+			errorClass : "error"	
+		});
+	});
+</script>
 	<div class="form">  
 	    <ul class="tab-group">
 	      <li class="tab active">Fill Out Your Bio</li>
 	    </ul>
 	    <div>
-	    	<c:url value="/usersClientAttributes" var="clientPathing"/> 
-	    	<form:form method="POST" action="${clientPathing}">
+	    	<c:url value="/clientAttributes" var="clientPathing"/> 
+	    	<form:form method="POST" action="${clientPathing}" modelAttribute="client">
+	    		<div class="top-row">
+                	<div class="field-wrap">
+                        <input class="text-line" name="weight" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
+                    </div>
+                    <div class="field-wrap">
+                        <input class="text-line" name="height" path="heightInInches" placeholder="Enter your height (in.)"/>
+                    </div>
+                </div>
+                <div class="field-box">
+                    <textarea class="text-box" name="modality" path="modalityPreference" placeholder="What are you looking to train in?"></textarea>    
+                </div>
+                <div class="field-box">
+                    <textarea class="text-box" name="goals" path="goals" placeholder="What are your goals?"></textarea>
+                </div>
+                <div>
+                    <input class="button button-block" type="submit" value="Submit"/>
+                </div>
+		    	<input type="hidden" name="firstName" value="${user.firstName}"/>
+		    	<input type="hidden" name="lastName" value="${user.lastName}"/>
+		    	<input type="hidden" name="email" value="${user.email}"/>
+		    	<input type="hidden" name="username" value="${user.username}"/>
+		    	<input type="hidden" name="age" value="${user.age}"/>
+		    	<input type="hidden" name="role" value="${user.role}"/>
+	    	
+	    		<form:errors path="*"/>
 	    		<div class="field-wrap">
-	    			<label name="age">Age: </label>
-	    			<form:input path="age" placeholder="Enter your age"/>
-	    		</div>
-	    		<div class="field-wrap">
-	    			<label name="weight">Weight: </label>
-	    			<form:input path="weight" placeholder="Enter your weight"/>
+	    			
+	    			<form:input path="weightInPounds" placeholder="Enter your weight"/>
+	    			<form:errors path="weightInPounds" cssClass="error"/> 
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="modality">Type of Exercise: </label>
-	    			<form:input path="classOffer" placeholder="What are you looking to train in?"/>    
+	    			
+	    			<form:input path="modalityPreference" placeholder="What are you looking to train in?"/>  
+	    			<form:errors path="modalityPreference" cssClass="error"/> 
+	    			  
 	    		</div>
 	    		<div class="field-box">
-	    			<label name="goal">Personal Goals: </label>
-	    			<form:input path="goal" placeholder="What are your goals?"/>
+	    		
+	    			<form:input path="goals" placeholder="What are your goals?"/>
+	    			<form:errors path="goals" cssClass="error"/> 
+	    		</div>
+	    		<div class="field-box">
+	    		
+	    			<form:input path="heightInInches" placeholder="What Is Your Height In Inches?"/>
+	    			<form:errors path="heightInInches" cssClass="error"/> 
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>
 	    		</div>
+
 	    	</form:form>
 	    </div>     
     </div>

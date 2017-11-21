@@ -8,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Raise The Bar</title>
 </head>
-<h1>helloooo Bitch</h1>
+<h1>Trainer Dashboard Page</h1>
 
 <div id="trainer-privacy">
-	<c:out value="Your privacy is currently ${privacy }"/>
-	<c:url var="changePrivacy" value="/trainerDashboard/${userPath}"/>
+	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
+	<c:url var="changePrivacy" value="/trainerDashboard"/>
 	<form action="${changePrivacy}" method="POST">
 		<input type="submit"/>
 	</form>

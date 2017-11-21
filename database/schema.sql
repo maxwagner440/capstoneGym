@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS users;
 
 
 
-
 -- CREATE statements go here
 CREATE TABLE users(
         user_id Serial NOT NULL,
@@ -40,10 +39,10 @@ CREATE TABLE trainers(
 		philosophy VARCHAR(255),
 		experience VARCHAR(255),
 		hourly_price DECIMAL,
-		trainer_id Serial NOT NULL,
+		user_id int NOT NULL,
 		visibility BOOLEAN NOT NULL DEFAULT false,
 		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
-		CONSTRAINT fk_users_trainers FOREIGN KEY (trainer_id) REFERENCES users (user_id)
+		CONSTRAINT fk_users_trainers FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE clients(
@@ -52,9 +51,9 @@ CREATE TABLE clients(
 		goal VARCHAR(255),
 		modality VARCHAR(255),
 		weight int NOT NULL,
-		client_id Serial NOT NULL,
+		user_id int NOT NULL,
 		CONSTRAINT pk_clients_entry_id PRIMARY KEY (entry_id),
-		CONSTRAINT fk_users_clients FOREIGN KEY (client_id) REFERENCES users (user_id)
+		CONSTRAINT fk_users_clients FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE workouts(
@@ -101,7 +100,5 @@ CREATE TABLE notes_users(
 
 
 COMMIT;
-
-
 
 ROLLBACK;
