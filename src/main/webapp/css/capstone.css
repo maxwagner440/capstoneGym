@@ -22,7 +22,7 @@ a:hover {
 	color: #ccae51;
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
 	.form, .reg-form {
 		max-width: 700px;
 	}
@@ -33,7 +33,7 @@ a:hover {
 	.form, .reg-form {
 		max-width: 370px;
 	}
-}
+} */
 
 .form {
 	background: #1a232b;
