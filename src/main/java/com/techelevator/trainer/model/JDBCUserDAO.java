@@ -239,5 +239,7 @@ public class JDBCUserDAO implements UserDAO {
 		String command = "UPDATE trainers SET visibility=? WHERE user_id=?";
 		jdbcTemplate.update(command, !privacy, userId);
 	}
+	
+	
 }
 
