@@ -28,8 +28,8 @@ public class SearchController {
 	}
 	
 	@RequestMapping(path="/findAllTrainers", method=RequestMethod.POST)
-	public String getAllTrainersWhenLookedForByClients(Map<String, Object> model, @RequestParam long trainerId, HttpSession session){ //what if they aren't a client?
-		session.setAttribute("profileToView", userDAO.getTrainerById(id));
+	public String getAllTrainersWhenLookedForByClients(Map<String, Object> model, @RequestParam long userID, HttpSession session){ //what if they aren't a client?
+		session.setAttribute("profileToView", userDAO.getTrainerById(userID));
 		return "redirect:/trainerProfile";
 	}
 }

@@ -25,7 +25,7 @@
 
 		<c:url var="trainerProfile" value="/trainerProfile"/>
 		<form action="${trainerProfile }" method="POST">
-			<input type="hidden"  name ="trainerId" value="${trainer.id }"/>
+			<input type="hidden"  name ="userID" value="${trainer.id }"/>
 			<input type="submit"/>
 		</form>
 	</div>
