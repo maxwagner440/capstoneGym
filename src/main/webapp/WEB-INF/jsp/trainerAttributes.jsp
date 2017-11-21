@@ -61,16 +61,16 @@
 		    	<input type="hidden" name="age" value="${user.age}"/>
 		    	<input type="hidden" name="role" value="${user.role}"/>
 	    		<div class="field-wrap">
-	    			<input class="text-line" type="text" path="price" placeholder="Set your hourly rate"/>
+	    			<form:input class="text-line" type="text" path="price" placeholder="Set your hourly rate"/>
                 </div>
 	    		<div class="field-box">
-	    			<textarea class="text-box" type="text-area" path="philosophy" placeholder="What motivates you?"></textarea>
+	    			<form:textarea class="text-box" type="text-area" path="philosophy" placeholder="What motivates you?"></form:textarea>
 	    		</div>
 	    		<div class="field-box">
-	    			<textarea class="text-box" type="text-area" path="bio" placeholder="What would you like your clients to know about you?"></textarea>
+	    			<form:textarea class="text-box" type="text-area" path="bio" placeholder="What would you like your clients to know about you?"></form:textarea>
 	    		</div>
 	    		<div class="field-box">
-	    			<textarea class="text-box" type="text-area" path="experience" placeholder="What is your training experience?"></textarea>
+	    			<form:textarea class="text-box" type="text-area" path="experience" placeholder="What is your training experience?"></form:textarea>
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>

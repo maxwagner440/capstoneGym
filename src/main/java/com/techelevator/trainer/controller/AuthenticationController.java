@@ -49,8 +49,11 @@ public class AuthenticationController {
 		String userRole=userDAO.getUserRole(email);
 		String page="";
 		String userName="";
-		
+		if(session.getAttribute("message") != null){
+			session.setAttribute("message",	 null);
+		}
 		if(userDAO.searchForEmailAndPassword(email, password)) {
+			
 			request.changeSessionId();
 			if(userRole.equalsIgnoreCase("trainer")){
 				Trainer trainer=userDAO.getTrainerByEmail(email);
@@ -71,6 +74,7 @@ public class AuthenticationController {
 				return "redirect:/"+ page;
 			}
 		} else {
+			session.setAttribute("message", "Login Information is Invalid");
 			return "redirect:/login";
 		}
 	}

@@ -111,6 +111,13 @@ label {
 	pointer-events: none;
 	font-size: 1.1em;
 }
+
+.loginError{
+	color:white;
+	font-size: 1.1em;
+	padding-left: 150px;
+	
+}
 label .req {
 	margin: 2px;
 	color: #ccae51;

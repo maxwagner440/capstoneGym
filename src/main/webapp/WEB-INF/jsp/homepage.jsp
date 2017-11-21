@@ -1,9 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <title>Raise the Bar</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/homepage.css">
+<link rel="stylesheet" href="css/homepage.css">
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -17,14 +18,16 @@
       <a href="#projects" class="w3-bar-item w3-button">Training Specialties</a>
       <a href="#trainers" class="w3-bar-item w3-button">Trainers</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a>
-      <a href="#login" class="w3-bar-item w3-button">Login</a>
+      <c:url var="login" value="/login"/>
+      <a href="${login }" class="w3-bar-item w3-button">Login / Sign-Up</a>
     </div>
   </div>
 </div>
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/Users/annakurchak/workspace/exercises/untitled folder/greyGoldGym.jpg" alt="Architecture" width="1500" height="800">
+<c:url var="backImg" value="img/greyGoldGym.png"/>
+  <img class="w3-image" src="${backImg }" alt="Architecture" width="1500" height="800">
   <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Raise the Bar</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
   </div>

@@ -163,10 +163,12 @@
 	          	</div>
           
           		<div class="field-wrap">
-            		<input type="password"required autocomplete="off" placeholder="Password" name ="password"/>
+            		<input type="password"required autocomplete="off" placeholder="Password" name ="password"/><br>
+          		  <div class="loginError">${message}</div>
           		</div>
-          
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
+        
+          		
+          <br><p class="forgot"><a href="#">Forgot Password?</a></p>
           
           <script
 			src="https://code.jquery.com/jquery-3.2.1.min.js">

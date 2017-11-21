@@ -65,17 +65,17 @@
 		    	<input type="hidden" name="role" value="${user.role}"/>
 		    	<div class="top-row">
                 	<div class="field-wrap">
-                        <input class="text-line" name="weight" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
+                        <form:input class="text-line" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
                     </div>
                     <div class="field-wrap">
-                        <input class="text-line" name="height" path="heightInInches" placeholder="Enter your height (in.)"/>
+                        <form:input class="text-line" path="heightInInches" placeholder="Enter your height (in.)"/>
                     </div>
                 </div>
                 <div class="field-box">
-                    <textarea class="text-box" name="modality" path="modalityPreference" placeholder="What are you looking to train in?"></textarea>    
+                    <form:textarea class="text-box" path="modalityPreference" placeholder="What are you looking to train in?"></form:textarea>    
                 </div>
                 <div class="field-box">
-                    <textarea class="text-box" name="goals" path="goals" placeholder="What are your goals?"></textarea>
+                    <form:textarea class="text-box" path="goals" placeholder="What are your goals?"></form:textarea>
                 </div>
                 <div>
                     <input class="button button-block" type="submit" value="Submit"/>
