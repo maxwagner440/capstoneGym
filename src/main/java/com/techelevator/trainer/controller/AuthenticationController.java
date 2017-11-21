@@ -52,15 +52,16 @@ public class AuthenticationController {
 			session.invalidate();
 			if(userRole.equalsIgnoreCase("trainer")){
 				Trainer trainer=userDAO.getTrainerByEmail(email);
-				model.put("trainer", trainer);
+				model.put("user", trainer);
 				userName=trainer.getUsername();
 				page+="trainerDashboard";
 			} else if(userRole.equalsIgnoreCase("client")){
 				Client client=userDAO.getClientByEmail(email);
-				model.put("client", client);
+				model.put("user", client);
 				userName=client.getUsername();
 				page+="clientDashboard";
 			}
+			
 			
 			if(isValidRedirect(destination)) { //check to see if this works.
 				return "redirect:"+destination;

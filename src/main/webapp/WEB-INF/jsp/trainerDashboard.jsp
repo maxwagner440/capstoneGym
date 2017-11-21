@@ -12,7 +12,7 @@
 
 <div id="trainer-privacy">
 	<c:out value="Your privacy is currently ${privacy}"/>
-	<c:url var="changePrivacy" value="/trainerDashboard/${userPath}"/>
+	<c:url var="changePrivacy" value="/trainerDashboard/${username}"/>
 	<form action="${changePrivacy}" method="POST">
 		<input type="submit"/>
 	</form>

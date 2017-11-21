@@ -130,13 +130,13 @@
 	          		<form:errors path="email" cssClass="error"/>  
 	         	</div>
 		        <div class="field-wrap">
-		         	<form:input type="password" placeholder="Password" path="password" id="password"/>
-		         	<form:errors path="password" cssClass="error"/>
+		         	<input type="password" placeholder="Password" name="password"/>
+		         	
 		        </div>
 	         
 		        <div class="field-wrap">
-		         	<form:input type="password" placeholder="Confirm Password" path="password" />
-		         	<form:errors path="password" cssClass="error"/>
+		         	<input type="password" placeholder="Confirm Password" name="confirmPassword" />
+		         
 		        </div>        
 		        <div class="field-wrap">
 		        	<form:select path="role" class="drop-box">
@@ -146,7 +146,7 @@
 		       		</form:select>
 		       		
 		        </div>
-	         	<button type="submit" class="button button-block">Get Started</button>  
+	         	<button type="submit" class="button button-block" id="register">Get Started</button>  
 	       	 </form:form>
 	    </div>  
 
@@ -188,6 +188,11 @@
 	      		$('#login').show();
 	      		$('#login_tab').addClass('active');
 	      		$('#signup_tab').removeClass('active');
+	      	});
+	      	
+	      	$('#register').on('click', function(event){
+	      		$('#signup_tab').addClass('active');
+	      		$('#login_tab').removeClass('active');
 	      	});
       });
           

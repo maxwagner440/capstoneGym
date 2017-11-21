@@ -76,6 +76,39 @@
                 <div>
                     <input class="button button-block" type="submit" value="Submit"/>
                 </div>
+		    	<input type="hidden" name="firstName" value="${user.firstName}"/>
+		    	<input type="hidden" name="lastName" value="${user.lastName}"/>
+		    	<input type="hidden" name="email" value="${user.email}"/>
+		    	<input type="hidden" name="username" value="${user.username}"/>
+		    	<input type="hidden" name="age" value="${user.age}"/>
+		    	<input type="hidden" name="role" value="${user.role}"/>
+	    	
+	    		<form:errors path="*"/>
+	    		<div class="field-wrap">
+	    			
+	    			<form:input path="weightInPounds" placeholder="Enter your weight"/>
+	    			<form:errors path="weightInPounds" cssClass="error"/> 
+	    		</div>
+	    		<div class="field-box">
+	    			
+	    			<form:input path="modalityPreference" placeholder="What are you looking to train in?"/>  
+	    			<form:errors path="modalityPreference" cssClass="error"/> 
+	    			  
+	    		</div>
+	    		<div class="field-box">
+	    		
+	    			<form:input path="goals" placeholder="What are your goals?"/>
+	    			<form:errors path="goals" cssClass="error"/> 
+	    		</div>
+	    		<div class="field-box">
+	    		
+	    			<form:input path="heightInInches" placeholder="What Is Your Height In Inches?"/>
+	    			<form:errors path="heightInInches" cssClass="error"/> 
+	    		</div>
+	    		<div>
+	    			<input class="button button-block" type="submit" value="Submit"/>
+	    		</div>
+
 	    	</form:form>
 	    </div>     
     </div>

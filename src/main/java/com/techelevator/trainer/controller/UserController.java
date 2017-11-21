@@ -2,6 +2,7 @@ package com.techelevator.trainer.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -31,16 +32,13 @@ public class UserController {
 		this.userDAO = userDAO;
 	}
 
-	
-	
-	
-
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr, @RequestParam String password, HttpSession session, ModelMap modelHolder) {
+	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr,
+												@RequestParam String password, HttpSession session, ModelMap modelHolder) {
 		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
 			if(results.hasErrors()){
-//				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
-//				return "redirect:/login";
+				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
+				return "redirect:/login#signup";
 			}
 			userDAO.saveUser(user, password);
 			session.setAttribute("user", user);
@@ -63,19 +61,23 @@ public class UserController {
 			modelHolder.addAttribute("client", client);
 			
 		}
-
+		
 		return "clientAttributes";
 	}
 
 	@RequestMapping(path="/clientAttributes", method=RequestMethod.POST)
 	public String postWithClientAttributes(@Valid @ModelAttribute("client") Client client,
-											 BindingResult result, RedirectAttributes attr){
-		userDAO.saveClient(client, client.getId());
+											 BindingResult result, RedirectAttributes attr, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "client", result);
+			attr.addFlashAttribute("client", client);
 			return "redirect:/clientAttributes";
 		}
-		return "redirect:/clientDashBoard/" + client.getUsername();
+		userDAO.saveClient(client, user.getId());
+		session.setAttribute("user", client);
+		return "redirect:/clientDashboard/" + client.getUsername();
 		
 	}
 	
@@ -95,12 +97,16 @@ public class UserController {
 	
 	@RequestMapping(path="/trainerAttributes", method=RequestMethod.POST)
 	public String postWithTrainerAttributes(@Valid @ModelAttribute("trainer") Trainer trainer,
-											BindingResult result, RedirectAttributes attr){
-		userDAO.saveTrainer(trainer, trainer.getId());
+											BindingResult result, RedirectAttributes attr, HttpSession session){
+		User user = (User) session.getAttribute("user");
+		
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
-			return "redirect:/clientAttributes";
+			attr.addFlashAttribute("trainer", trainer);
+			return "redirect:/trainerAttributes";
 		}
+		userDAO.saveTrainer(trainer, user.getId());
+		session.setAttribute("user", trainer);
 		return "redirect:/trainerDashboard/" + trainer.getUsername();
 		
 	}
