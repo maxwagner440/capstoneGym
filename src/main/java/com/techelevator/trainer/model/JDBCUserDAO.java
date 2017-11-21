@@ -46,7 +46,7 @@ public class JDBCUserDAO implements UserDAO {
 				+ ") VALUES (?, ?, ?, ?, ?, ?)",
 				trainer.getBio(), trainer.getExercisePhilosophy(),
 				trainer.getPastExperience(),
-				trainer.getTrainerHourlyPrice(), id, true);
+				trainer.getTrainerHourlyPrice(), id, false);
 	}
 	
 	@Override
@@ -179,6 +179,7 @@ public class JDBCUserDAO implements UserDAO {
 		tBone.setExercisePhilosophy(results.getString("philosophy"));
 		tBone.setPastExperience(results.getString("experience"));
 		tBone.setTrainerHourlyPrice(results.getBigDecimal("hourly_price"));
+		tBone.setVisibility(results.getBoolean("visibility"));
 		
 		return tBone;
 	}

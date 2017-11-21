@@ -19,6 +19,7 @@ public class Trainer extends User {
 	@NotBlank(message="Please Let Us Know About Your Training Philosophy")
 	private String exercisePhilosophy;
 	
+	private boolean visibility;
 	
 	public String getBio() {
 		return bio;
@@ -44,5 +45,11 @@ public class Trainer extends User {
 	}
 	public void setExercisePhilosophy(String exercisePhilosophy) {
 		this.exercisePhilosophy = exercisePhilosophy;
+	}
+	public boolean isVisibility() {
+		return visibility;
+	}
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
 	}
 } 

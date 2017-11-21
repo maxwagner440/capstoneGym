@@ -2,6 +2,7 @@ package com.techelevator.trainer.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,21 +44,22 @@ public class AuthenticationController {
 						@RequestParam String email, 
 						@RequestParam String password,
 						@RequestParam(required=false) String destination,
+						HttpServletRequest request,
 						HttpSession session) {
 		String userRole=userDAO.getUserRole(email);
 		String page="";
 		String userName="";
 		
 		if(userDAO.searchForEmailAndPassword(email, password)) {
-			session.invalidate();
+			request.changeSessionId();
 			if(userRole.equalsIgnoreCase("trainer")){
 				Trainer trainer=userDAO.getTrainerByEmail(email);
-				model.put("user", trainer);
+				session.setAttribute("user", trainer);
 				userName=trainer.getUsername();
 				page+="trainerDashboard";
 			} else if(userRole.equalsIgnoreCase("client")){
 				Client client=userDAO.getClientByEmail(email);
-				model.put("user", client);
+				session.setAttribute("user", client);
 				userName=client.getUsername();
 				page+="clientDashboard";
 			}
@@ -66,7 +68,7 @@ public class AuthenticationController {
 			if(isValidRedirect(destination)) { //check to see if this works.
 				return "redirect:"+destination;
 			} else {
-				return "redirect:/"+ page + "/"+userName;
+				return "redirect:/"+ page;
 			}
 		} else {
 			return "redirect:/login";
@@ -81,6 +83,7 @@ public class AuthenticationController {
 	public String logout(Map<String, Object> model, HttpSession session) {
 		model.remove("currentUser");
 		session.removeAttribute("currentUser");
+		session.invalidate();
 		return "redirect:/";
 	}
 }
