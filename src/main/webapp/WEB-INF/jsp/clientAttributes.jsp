@@ -52,62 +52,36 @@
 		});
 	});
 </script>
-	<div class="form">  
-	    <ul class="tab-group">
-	      <li class="tab active">Fill Out Your Bio</li>
-	    </ul>
-	    <div>
-	    	<c:url value="/clientAttributes" var="clientPathing"/> 
-	    	<form:form method="POST" action="${clientPathing}" modelAttribute="client">
-	    		<div class="top-row">
-                	<div class="field-wrap">
-                        <input class="text-line" name="weight" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
-                    </div>
-                    <div class="field-wrap">
-                        <input class="text-line" name="height" path="heightInInches" placeholder="Enter your height (in.)"/>
-                    </div>
-                </div>
-                <div class="field-box">
-                    <textarea class="text-box" name="modality" path="modalityPreference" placeholder="What are you looking to train in?"></textarea>    
-                </div>
-                <div class="field-box">
-                    <textarea class="text-box" name="goals" path="goals" placeholder="What are your goals?"></textarea>
-                </div>
-                <div>
-                    <input class="button button-block" type="submit" value="Submit"/>
-                </div>
+	<div class="reg-whole">  
+        <div class="reg-form">
+            <h2 class="reg-head">Fill In Your Bio</h2>
+            <c:url value="/clientAttributes" var="clientPathing"/> 
+            <form:form method="POST" action="${clientPathing}" modelAttribute="client">
 		    	<input type="hidden" name="firstName" value="${user.firstName}"/>
 		    	<input type="hidden" name="lastName" value="${user.lastName}"/>
 		    	<input type="hidden" name="email" value="${user.email}"/>
 		    	<input type="hidden" name="username" value="${user.username}"/>
 		    	<input type="hidden" name="age" value="${user.age}"/>
 		    	<input type="hidden" name="role" value="${user.role}"/>
+		    	<div class="top-row">
+                	<div class="field-wrap">
+                        <form:input class="text-line" path="weightInPounds" placeholder="Enter your weight (lbs.)"/>
+                    </div>
+                    <div class="field-wrap">
+                        <form:input class="text-line" path="heightInInches" placeholder="Enter your height (in.)"/>
+                    </div>
+                </div>
+                <div class="field-box">
+                    <form:textarea class="text-box" path="modalityPreference" placeholder="What are you looking to train in?"></form:textarea>    
+                </div>
+                <div class="field-box">
+                    <form:textarea class="text-box" path="goals" placeholder="What are your goals?"></form:textarea>
+                </div>
+                <div>
+                    <input class="button button-block" type="submit" value="Submit"/>
+                </div>
 	    	
 	    		<form:errors path="*"/>
-	    		<div class="field-wrap">
-	    			
-	    			<form:input path="weightInPounds" placeholder="Enter your weight"/>
-	    			<form:errors path="weightInPounds" cssClass="error"/> 
-	    		</div>
-	    		<div class="field-box">
-	    			
-	    			<form:input path="modalityPreference" placeholder="What are you looking to train in?"/>  
-	    			<form:errors path="modalityPreference" cssClass="error"/> 
-	    			  
-	    		</div>
-	    		<div class="field-box">
-	    		
-	    			<form:input path="goals" placeholder="What are your goals?"/>
-	    			<form:errors path="goals" cssClass="error"/> 
-	    		</div>
-	    		<div class="field-box">
-	    		
-	    			<form:input path="heightInInches" placeholder="What Is Your Height In Inches?"/>
-	    			<form:errors path="heightInInches" cssClass="error"/> 
-	    		</div>
-	    		<div>
-	    			<input class="button button-block" type="submit" value="Submit"/>
-	    		</div>
 
 	    	</form:form>
 	    </div>     
