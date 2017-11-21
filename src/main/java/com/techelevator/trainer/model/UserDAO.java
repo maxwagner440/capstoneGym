@@ -15,12 +15,18 @@ public interface UserDAO {
 	public void updatePassword(String user, String password);
 	public String getUserRole(String email);
 	public Trainer getTrainerByEmail(String email);
+	public Trainer getTrainerById (long trainerId);
 	public Client getClientByEmail(String email);
 	public boolean seeIfEmailExists(String email);
-	public boolean getTrainerPrivacySetting(long userId);
+	//public boolean getTrainerPrivacySetting(long userId);
 	public void toggleTrainerPrivacySetting(long userId, boolean privacy);
 	public Trainer getTrainerByUsername(String username);
 	//public Client getClientByUsername(String username);
 	//public boolean seeIfUsernameExists(String username);
+	
+	//search
+	public List<Trainer> getAllTrainers();
+	public void saveClientTrainerRelsationship(long clientId, long trainerId);
+	
 
 }

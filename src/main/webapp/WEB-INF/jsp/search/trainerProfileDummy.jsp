@@ -8,11 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Raise The Bar</title>
 </head>
+<h1>Trainer Profile Page</h1>
 
-<h1>Client Dashboard Page</h1>
-
-<div id="go-to-see-all-trainers">
+<div id="signup-for-trainer">
 	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
-	<c:url var="allTrainersPage" value="/findAllTrainers"/>
-	<a href="${allTrainersPage }"><button> See All Trainers</button></a>
+	<c:url var="changePrivacy" value="/trainerDashboard"/>
+	<form action="${changePrivacy}" method="POST">
+		<input type="hidden" name="trainerId" value="${trainer.id }"/>
+		<input type="submit"/>
+	</form>
 </div>
+

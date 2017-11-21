@@ -226,18 +226,34 @@ public class JDBCUserDAO implements UserDAO {
 		jdbcTemplate.update("UPDATE users SET password = ?, salt = ? WHERE username = ?", hashedPassword, saltString, userName);
 	}
 
-	@Override
-	public boolean getTrainerPrivacySetting(long userId) {
-		String command = "SELECT visibility FROM trainers WHERE user_id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userId);
-		results.next();
-		return results.getBoolean("visibility");
-	}
+//	@Override
+//	public boolean getTrainerPrivacySetting(long userId) {
+//		String command = "SELECT visibility FROM trainers WHERE user_id = ?";
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userId);
+//		results.next();
+//		return results.getBoolean("visibility");
+//	}
 
 	@Override
 	public void toggleTrainerPrivacySetting(long userId, boolean privacy) {
 		String command = "UPDATE trainers SET visibility=? WHERE user_id=?";
 		jdbcTemplate.update(command, !privacy, userId);
 	}
+	
+	//Methods for searching for and getting different users
+	@Override
+	public List<Trainer> getAllTrainers(){
+		List<Trainer> trainers=new ArrayList<Trainer>();
+		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.trainer_id WHERE u.role=trainer";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command);
+		
+		while(rows.next()){
+			trainers.add(mapRowToTrainer(rows));
+		}
+		
+		return trainers;
+		
+	}
+	
 }
 
