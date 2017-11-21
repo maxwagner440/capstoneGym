@@ -235,9 +235,9 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public void toggleTrainerPrivacySetting(long userId) {
+	public void toggleTrainerPrivacySetting(long userId, boolean privacy) {
 		String command = "UPDATE trainers SET visibility=? WHERE user_id=?";
-		jdbcTemplate.update(command, !getTrainerPrivacySetting(userId), userId);
+		jdbcTemplate.update(command, !privacy, userId);
 	}
 }
 

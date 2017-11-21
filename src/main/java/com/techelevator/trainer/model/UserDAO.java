@@ -18,7 +18,7 @@ public interface UserDAO {
 	public Client getClientByEmail(String email);
 	public boolean seeIfEmailExists(String email);
 	public boolean getTrainerPrivacySetting(long userId);
-	public void toggleTrainerPrivacySetting(long userId);
+	public void toggleTrainerPrivacySetting(long userId, boolean privacy);
 	public Trainer getTrainerByUsername(String username);
 	//public Client getClientByUsername(String username);
 	//public boolean seeIfUsernameExists(String username);

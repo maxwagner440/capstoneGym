@@ -49,9 +49,9 @@
 		});
 	});
 </script>
-	<div class="reg-whole">  
-	    <h2 class="reg-head">Fill In Your Bio</h2>
+	<div class="reg-whole">     
 	    <div class="reg-form">
+	     	<h2 class="reg-head">Fill In Your Bio</h2>
 	    	<c:url value="/trainerAttributes" var="trainerPathing"/> 
 	    	<form:form method="POST" action="${trainerPathing}" modelAttribute="trainer">
 	    		<input type="hidden" name="firstName" value="${user.firstName}"/>
@@ -60,21 +60,23 @@
 		    	<input type="hidden" name="username" value="${user.username}"/>
 		    	<input type="hidden" name="age" value="${user.age}"/>
 		    	<input type="hidden" name="role" value="${user.role}"/>
+		    	
 	    		<div class="field-wrap">
-	    			<form:input class="text-line" type="text" path="price" placeholder="Set your hourly rate"/>
+	    			<form:input class="text-line" path="trainerHourlyPrice" placeholder="Set your hourly rate"/>
                 </div>
 	    		<div class="field-box">
-	    			<form:textarea class="text-box" type="text-area" path="philosophy" placeholder="What motivates you?"></form:textarea>
+	    			<form:textarea class="text-box" path="exercisePhilosophy" placeholder="What motivates you?"></form:textarea>
 	    		</div>
 	    		<div class="field-box">
-	    			<form:textarea class="text-box" type="text-area" path="bio" placeholder="What would you like your clients to know about you?"></form:textarea>
+	    			<form:textarea class="text-box" path="bio" placeholder="What would you like your clients to know about you?"></form:textarea>
 	    		</div>
 	    		<div class="field-box">
-	    			<form:textarea class="text-box" type="text-area" path="experience" placeholder="What is your training experience?"></form:textarea>
+	    			<form:textarea class="text-box" path="pastExperience" placeholder="What is your training experience?"></form:textarea>
 	    		</div>
 	    		<div>
 	    			<input class="button button-block" type="submit" value="Submit"/>
 	    		</div>
+	    		
 	    	</form:form>
 	    </div> 
     </div>

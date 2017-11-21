@@ -6,10 +6,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class Client extends User{
 	@Min(value=0, message="Weight Must Be Positive")
-	private double weightInPounds;
+	private double weightInPounds ;
 	
 	@Min(value=0, message="Height Must Be Positive")
-	private double heightInInches;
+	private double heightInInches ;
 	
 	@NotBlank(message="Please Enter Your Goals")
 	private String goals;

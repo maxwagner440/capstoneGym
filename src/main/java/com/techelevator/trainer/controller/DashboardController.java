@@ -27,14 +27,9 @@ public class DashboardController {
 		this.userDAO = userDAO;
 	}
 	
-	@RequestMapping(path="/clientDashboard/{userName}", method=RequestMethod.GET)
-	public String displayClientDashboard(Map<String, Object> model, @PathVariable String userName, HttpSession session) {
-		User currentUser=(User) session.getAttribute("user");
-		if(!currentUser.getRole().equalsIgnoreCase("client")){
-			return "redirect:/trainerDashboard/"+currentUser.getUsername();
-		}
-			
-		model.put("user", (Client) currentUser);
+	@RequestMapping(path="/clientDashboard", method=RequestMethod.GET)
+	public String displayClientDashboard(Map<String, Object> model,  HttpSession session) {
+	
 		return "clientDashboard";
 	}
 	
@@ -52,7 +47,7 @@ public class DashboardController {
 //		}
 		
 		Trainer trainer = (Trainer) session.getAttribute("user");
-		userDAO.toggleTrainerPrivacySetting(trainer.getId());
+		userDAO.toggleTrainerPrivacySetting(trainer.getId(), trainer.isVisibility());
 		trainer.setVisibility(! trainer.isVisibility());
 		return "redirect:/trainerDashboard";
 	}

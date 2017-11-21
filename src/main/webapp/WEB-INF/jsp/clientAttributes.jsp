@@ -19,11 +19,11 @@
 			rules : {
 				weight : {
 					required : true,
-					min : 0
+					
 				},			
 				height : {
 					required : true,
-					min : 0
+			
 				},
 				goals : {
 					required : true

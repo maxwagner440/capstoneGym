@@ -77,7 +77,7 @@ public class UserController {
 		}
 		userDAO.saveClient(client, user.getId());
 		session.setAttribute("user", client);
-		return "redirect:/clientDashboard/" + client.getUsername();
+		return "redirect:/clientDashboard/";
 		
 	}
 	
@@ -99,7 +99,6 @@ public class UserController {
 	public String postWithTrainerAttributes(@Valid @ModelAttribute("trainer") Trainer trainer,
 											BindingResult result, RedirectAttributes attr, HttpSession session){
 		User user = (User) session.getAttribute("user");
-		
 		if(result.hasErrors()){
 			attr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "trainer", result);
 			attr.addFlashAttribute("trainer", trainer);
@@ -107,7 +106,7 @@ public class UserController {
 		}
 		userDAO.saveTrainer(trainer, user.getId());
 		session.setAttribute("user", trainer);
-		return "redirect:/trainerDashboard/" + trainer.getUsername();
+		return "redirect:/trainerDashboard";
 		
 	}
 		
