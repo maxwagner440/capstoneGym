@@ -25,7 +25,7 @@ public class User {
 	private String lastName;
 	
 	@Min(value=13, message="Must Be At Least 13 Years Of Age")
-	private int age;
+	private Integer age;
 	
 	@NotBlank(message="Select A Box")
 	private String role;
@@ -60,10 +60,10 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getRole() {

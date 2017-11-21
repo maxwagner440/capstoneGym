@@ -240,6 +240,7 @@ public class JDBCUserDAO implements UserDAO {
 		jdbcTemplate.update(command, !privacy, userId);
 	}
 	
+
 	//Methods for searching for and getting different users
 	@Override
 	public List<Trainer> getAllTrainers(){

@@ -35,8 +35,10 @@ public class UserController {
 	@RequestMapping(path="/newUserRegistration", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr,
 												@RequestParam String password, HttpSession session, ModelMap modelHolder) {
+		
 		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
 			if(results.hasErrors()){
+				flashAttr.addFlashAttribute("user", user);
 				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
 				return "redirect:/login#signup";
 			}
