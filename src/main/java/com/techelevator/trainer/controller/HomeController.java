@@ -11,6 +11,6 @@
 
 	@RequestMapping(path="/", method=RequestMethod.GET)
 	public String displayHomePage() {
-		return "home";
+		return "homepage";
 		}
 }

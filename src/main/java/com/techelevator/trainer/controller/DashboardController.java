@@ -38,36 +38,22 @@ public class DashboardController {
 		return "clientDashboard";
 	}
 	
-	@RequestMapping(path="/trainerDashboard/{userName}", method=RequestMethod.GET)
-	public String displayTrainerDashboard(Map<String, Object> model, @PathVariable String userName, HttpSession session) {
-		Trainer trainer = (Trainer) userDAO.getTrainerByUsername(userName);
-//		if(! currentUser.getRole().equalsIgnoreCase("trainer")){
-//			return "redirect:/clientDashboard/"+currentUser.getUsername();
-//		}
-//		
-//		model.put("user", (Trainer) currentUser);
-//		
-		session.setAttribute("user", trainer);
-		String privacy="public";
-		if(userDAO.getTrainerPrivacySetting(trainer.getId())){
-			privacy="private";
-		}
-			
-		model.put("privacy", privacy);
+	@RequestMapping(path="/trainerDashboard", method=RequestMethod.GET)
+	public String displayTrainerDashboard(Map<String, Object> model, HttpSession session) {
+
 		return "trainerDashboard";
 	}
 
-	@RequestMapping(path="/trainerDashboard/{userName}", method=RequestMethod.POST)
-	public String setAccountPrivacy(@PathVariable String userName, HttpSession session, ModelMap modelHolder){
+	@RequestMapping(path="/trainerDashboard", method=RequestMethod.POST)
+	public String setAccountPrivacy(HttpSession session, ModelMap modelHolder){
 //		User currentUser=(User) session.getAttribute("user");
 //		if(!currentUser.getRole().equalsIgnoreCase("trainer")){
 //			return "redirect:/clientDashboard/"+currentUser.getUsername();
 //		}
 		
-		Trainer trainer = (Trainer) userDAO.getTrainerByUsername(userName);
+		Trainer trainer = (Trainer) session.getAttribute("user");
 		userDAO.toggleTrainerPrivacySetting(trainer.getId());
-		modelHolder.addAttribute("user", trainer);
-		modelHolder.addAttribute("username", trainer.getUsername());
-		return "redirect:/trainerDashboard/" + trainer.getUsername();
+		trainer.setVisibility(! trainer.isVisibility());
+		return "redirect:/trainerDashboard";
 	}
 }
