@@ -22,19 +22,6 @@ a:hover {
 	color: #ccae51;
 }
 
-/* @media screen and (max-width: 1024px) {
-	.form, .reg-form {
-		max-width: 700px;
-	}
-	
-}
-
-@media screen and (mx-width: 450px) {
-	.form, .reg-form {
-		max-width: 370px;
-	}
-} */
-
 .form {
 	background: #1a232b;
 	padding: 40px;
