@@ -222,19 +222,94 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       </div>
       <br>
       
-      <div class="w3-card w3-round w3-white w3-center">
+<div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
-          <p>Client Request You to Train Them</p>
-          <img src="/w3images/avatar6.png" alt="Client's Avatar" style="width:50%"><br>
-          <span>Client Name</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
+            <style>
+                /* The Modal (background) */
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                
+                /* Modal Content */
+                .modal-content {
+                    background-color: #7d97a5;
+                    margin: auto;
+                    padding: 20px;
+                    border: 1px solid #7d97a5;
+                    width: 80%;
+                }
+                
+                /* The Close Button */
+                .close {
+                    color: #fdfafa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                
+                .close:hover,
+                .close:focus {
+                    color: #222a2e;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                </style>
+                </head>
+                <body>
+                
+                <h2>Request a trainer to contact you</h2>
+                
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn">Request Trainer</button>
+                
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>You have sent a request to a trainer! The trainer will contact you shortly.</p>
+                  </div>
+                
+                </div>
+                
+                <script>
+                // Get the modal
+                var modal = document.getElementById('myModal');
+                
+                // Get the button that opens the modal
+                var btn = document.getElementById("myBtn");
+                
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                
+                // When the user clicks the button, open the modal 
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                </script>
         </div>
       </div>
       <br>
