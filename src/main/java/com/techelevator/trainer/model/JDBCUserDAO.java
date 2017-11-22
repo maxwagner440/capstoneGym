@@ -180,6 +180,7 @@ public class JDBCUserDAO implements UserDAO {
 		tBone.setPastExperience(results.getString("experience"));
 		tBone.setTrainerHourlyPrice(results.getBigDecimal("hourly_price"));
 		tBone.setVisibility(results.getBoolean("visibility"));
+		tBone.setTrainerId(results.getLong("trainer_id"));
 		
 		return tBone;
 	}
@@ -193,6 +194,7 @@ public class JDBCUserDAO implements UserDAO {
 		guy.setHeightInInches(results.getDouble("height"));
 		guy.setModalityPreference(results.getString("modality"));
 		guy.setWeightInPounds(results.getDouble("weight"));
+		guy.setClientId(results.getLong("client_id"));
 		
 		return guy;
 	}

@@ -5,6 +5,9 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Client extends User{
+	
+	private Long clientId;
+	
 	@Min(value=0, message="Weight Must Be Positive")
 	private Double weightInPounds ;
 	
@@ -17,7 +20,9 @@ public class Client extends User{
 	@NotBlank(message="What Do You Like?")
 	private String modalityPreference;
 	
-	
+	public String getFullName(){
+		return super.getFirstName() + " " + super.getLastName();
+	}
 	public Double getWeightInPounds() {
 		return weightInPounds;
 	}
@@ -41,6 +46,12 @@ public class Client extends User{
 	}
 	public void setModalityPreference(String modalityPreference) {
 		this.modalityPreference = modalityPreference;
+	}
+	public Long getClientId() {
+		return clientId;
+	}
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 	
 	

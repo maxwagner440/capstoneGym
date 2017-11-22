@@ -36,7 +36,7 @@ public class ProfileController {
 	public String signUpWithTrainer(Map<String, Object> model, RedirectAttributes attr, HttpSession session){ //what if they aren't a client?
 		Trainer machop=(Trainer) session.getAttribute("profileToView");
 		Client thisClient=(Client) session.getAttribute("user");
-		userDAO.saveClientTrainerRelsationship(thisClient.getId(), machop.getId());
+		userDAO.saveClientTrainerRelsationship(thisClient.getClientId(), machop.getTrainerId());
 		attr.addFlashAttribute("message", "Congratulations you've signed up with "+ machop.getUsername());
 		return "redirect:/success";
 	}
