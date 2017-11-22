@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,7 +15,7 @@ import com.techelevator.beans.Client;
 import com.techelevator.beans.Trainer;
 import com.techelevator.trainer.model.UserDAO;
 
-@Component
+@Controller
 public class ProfileController {
 	private UserDAO userDAO;
 
@@ -27,6 +28,7 @@ public class ProfileController {
 	public String getTrainerProfile(Map<String, Object> model, HttpSession session){ 
 		//flash attribute from search controller /finaAllTrainers POST adds in a trainer whose profile can be built. That's one option. Reconsidered with session.
 		model.put("trainer", (Trainer) session.getAttribute("profileToView"));
+	
 		return "trainerProfileDummy";
 	}
 	

@@ -29,7 +29,7 @@
 			<p><c:out value="${trainer.bio}"/></p>
 		</div>
 
-		<c:url var="trainerProfile" value="/trainerProfile"/>
+		<c:url var="trainerProfile" value="/findAllTrainers"/>
 		<form action="${trainerProfile }" method="POST">
 			<input type="hidden"  name ="userID" value="${trainer.id }"/>
 			<input type="submit"/>

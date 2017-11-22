@@ -258,7 +258,7 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public Trainer getTrainerById(long userID) {
-		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE user_id=? ";
+		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE u.user_id=? ";
 		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
 		Trainer trainer=null;
 		if(rows.next()){

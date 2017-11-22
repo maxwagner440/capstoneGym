@@ -12,6 +12,7 @@
 
 <div id="signup-for-trainer">
 
+<c:out value="${trainer.getFullName() }"/>
 
 	<c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
 	<form action="${signupWithTrainer}" method="POST">
