@@ -22,18 +22,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
       <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
       class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
-      <span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">New client request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-    </div>
-  </div>
+  
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
     class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
@@ -70,10 +61,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
+         
           <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
@@ -128,13 +116,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <!-- Alert Box -->
-      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-        <p><strong>Make this private! Useful to stalk new clients</strong></p>
-        <p>People are looking at your profile. Find out who.</p>
-      </div>
+     
     
     <!-- End Left Column -->
     </div>
@@ -148,9 +130,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Trainer Philosophy</h6>
               <p contenteditable="true" class="w3-border w3-padding">Trainer posts text here</p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>Post- make private</button> 
+            
               <p contenteditable="true" class="w3-border w3-padding">Trainer posts motivational goodies here</p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>Post- make private</button> 
+              
             </div>
           </div>
         </div>
@@ -379,4 +361,4 @@ function openNav() {
 </script>
 
 </body>
-</html>
+</html> 
