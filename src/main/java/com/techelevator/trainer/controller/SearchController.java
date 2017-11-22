@@ -27,11 +27,19 @@ public class SearchController {
 		return "findAllTrainersForClient";
 	}
 	
+	
 	@RequestMapping(path="/findAllTrainers", method=RequestMethod.POST)
 
 	public String getAllTrainersWhenLookedForByClients(Map<String, Object> model, @RequestParam long userID, HttpSession session){ //what if they aren't a client?
 		session.setAttribute("profileToView", userDAO.getTrainerById(userID));
 
-		return "redirect:/trainerProfile";
+		return "redirect:/clientViewTrainer";
+	}
+	
+	@RequestMapping(path="/clientViewTrainer", method=RequestMethod.GET)
+	public String viewSpecificTrainer(HttpSession session){
+		
+		return "clientViewTrainer";
+		
 	}
 }

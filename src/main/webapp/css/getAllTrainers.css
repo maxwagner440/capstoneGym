@@ -415,7 +415,7 @@ p {
 }
 
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
 	.profile {
 		color: #1a232b;
 		grid-template-columns: 1fr 3fr;
@@ -433,7 +433,6 @@ p {
 	img {
 		height: 300px;
 		width: 250px;
-		/* margin: 50px; */
 	}
 	.left-prof {
 		margin: 20px;
@@ -448,12 +447,13 @@ p {
 	}
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
 	.profile {
 		color: #1a232b;
 		grid-template-columns: 1fr 3fr 1fr;
 		grid-template-rows: auto;
-		grid-template-areas: "min-prof bio btn"; 
+		grid-template-areas: "min-prof bio btn";
+		margin: 20px 10px; 
 	}
 	h2, h3 {
 		border-bottom: 1px solid #ccae51;

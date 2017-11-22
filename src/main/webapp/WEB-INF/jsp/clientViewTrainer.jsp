@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <title>Trainer Profile</title>
@@ -22,12 +23,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
       <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
       class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+   <c:url var="clientHome" value="/clientDashboard"/>
+  <a href="${clientHome}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
-    class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
+    <c:url var="logo" value="img/RaiseTheBarLogo.png"/>
+    <img src="${logo }" class="w3-circle" style="height:50px;width:50px" alt="RaiseTheBarLogo"></a>
  </div> 
 </div>
 
@@ -48,7 +50,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">Trainer Name</h4>
+         <h4 class="w3-center"><c:out value="${profileToView.getFullName() }"/></h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
@@ -129,9 +131,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Trainer Philosophy</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Trainer posts text here</p>
-            
-              <p contenteditable="true" class="w3-border w3-padding">Trainer posts motivational goodies here</p>
+              <p><c:out value="${profileToView.exercisePhilosophy}"/></p>
+              <!-- <p contenteditable="true" class="w3-border w3-padding">Trainer posts text here</p> -->
+              <p><c:out value="${profileToView.pastExperience}"/></p>
+           <!--    <p contenteditable="true" class="w3-border w3-padding">Trainer posts motivational goodies here</p> -->
               
             </div>
           </div>
