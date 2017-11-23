@@ -2,21 +2,22 @@
 -- This script creates all of the database objects (tables, sequences, etc) for the database
 -- *************************************************************************************************
 
-
 BEGIN TRANSACTION;
 
 
 
 
 DROP TABLE IF EXISTS messages_users;
+DROP TABLE IF EXISTS clients_trainers;
 DROP TABLE IF EXISTS notes_users;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS notes;
+DROP TABLE IF EXISTS trainers_requests;
 DROP TABLE IF EXISTS workouts;
-DROP TABLE IF EXISTS clients_trainers;
 DROP TABLE IF EXISTS trainers;
 DROP TABLE IF EXISTS clients;
 DROP TABLE IF EXISTS users;
+
 
 
 
@@ -35,34 +36,49 @@ CREATE TABLE users(
 );
 
 CREATE TABLE trainers(
-		trainer_id Serial NOT NULL,
+		entry_id Serial NOT NULL,
 		bio VARCHAR(255),
 		philosophy VARCHAR(255),
 		experience VARCHAR(255),
 		hourly_price DECIMAL,
-		user_id int NOT NULL,
+		trainer_id Serial NOT NULL,
 		visibility BOOLEAN NOT NULL DEFAULT false,
-		CONSTRAINT pk_trainers_trainer_id PRIMARY KEY (trainer_id),
-		CONSTRAINT fk_users_trainers FOREIGN KEY (user_id) REFERENCES users (user_id)
+		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
+		CONSTRAINT fk_users_trainers FOREIGN KEY (trainer_id) REFERENCES users (user_id),
+		UNIQUE (trainer_id)
 );
 
 CREATE TABLE clients(
+		entry_id Serial NOT NULL,
 		client_id Serial NOT NULL,
 		height int,
 		goal VARCHAR(255),
 		modality VARCHAR(255),
 		weight int NOT NULL,
-		user_id int NOT NULL,
-		CONSTRAINT pk_clients_client_id PRIMARY KEY (client_id),
-		CONSTRAINT fk_users_clients FOREIGN KEY (user_id) REFERENCES users (user_id)
+		CONSTRAINT pk_clients_entry_id_client_id PRIMARY KEY (entry_id, client_id),
+		CONSTRAINT fk_users_clients FOREIGN KEY (client_id) REFERENCES users (user_id),
+		UNIQUE (client_id)
 );
 
 CREATE TABLE clients_trainers(
-                client_id int,
-                trainer_id int,
-                CONSTRAINT pk_clients_trainers_client_id_trainer_id PRIMARY KEY (client_id, trainer_id)  
+                client_id Serial,
+                trainer_id Serial,
+                CONSTRAINT pk_clients_trainers_trainer_id_client_id PRIMARY KEY (client_id, trainer_id),
+                CONSTRAINT fk_clients_trainers_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
+                CONSTRAINT fk_clients_trainers_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
+                UNIQUE (client_id)  
 );
-                
+
+CREATE TABLE trainers_requests(
+        client_id Serial,
+        trainer_id Serial,
+        accept boolean,
+        CONSTRAINT pk_trainers_requests_client_id_trainer_id PRIMARY KEY (client_id, trainer_id),
+        CONSTRAINT fk_trainers_requests_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
+        CONSTRAINT fk_trainers_requests_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
+        UNIQUE (trainer_id)
+);
+
 CREATE TABLE workouts(
         workout_id Serial NOT NULL,
         user_id Serial NOT NULL,
@@ -82,10 +98,11 @@ CREATE TABLE notes(
         note_id Serial NOT NULL,
         content VARCHAR(255),
         time_stamp TIMESTAMP NOT NULL DEFAULT now(),
-        CONSTRAINT pk_note_note_id PRIMARY KEY (note_id)
+        CONSTRAINT pk_notes_notes_id PRIMARY KEY (note_id)
 );
 
 CREATE TABLE messages_users(
+<<<<<<< HEAD
         message_id Serial NOT NULL, 
         message_creator_user_id int NOT NULL,
         message_receiver_user_id int NOT NULL,
@@ -95,18 +112,28 @@ CREATE TABLE messages_users(
         CONSTRAINT fk_message_receiver_user_id FOREIGN KEY (message_receiver_user_id) REFERENCES users (user_id),
         CONSTRAINT fk_messages_content_id FOREIGN KEY (message_content_id) REFERENCES message_content (message_content_id)
               
+=======
+        from_user_id Serial NOT NULL,
+        to_user_id Serial NOT NULL,
+        message_id Serial NOT NULL,
+        CONSTRAINT pk_messages_from_user_id PRIMARY KEY (from_user_id, to_user_id),
+        CONSTRAINT fk_messages_users_from_users FOREIGN KEY (from_user_id) REFERENCES users (user_id),
+        CONSTRAINT fk_messages_users_to_users FOREIGN KEY (to_user_id) REFERENCES users (user_id),
+        CONSTRAINT fk_messages_users_messages FOREIGN KEY (message_id) REFERENCES messages (message_id)        
+>>>>>>> b1df318e43d2fb933f36c065d9ca34c15d778d4d
 );
 
 CREATE TABLE notes_users(
-        user_id Serial NOT NULL,
+        client_id Serial NOT NULL,
+        trainer_id Serial NOT NULL,
         note_id Serial NOT NULL,
-        note_creator_id Serial NOT NULL,
-        note_receiver_id Serial NOT NULL,
-        CONSTRAINT pk_notes_note_creator_id PRIMARY KEY (note_creator_id),
-        CONSTRAINT fk_users_notes_users FOREIGN KEY (user_id) REFERENCES users (user_id),
+        CONSTRAINT pk_notes_client_id PRIMARY KEY (client_id, trainer_id),
+        CONSTRAINT fk_users_notes_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
+        CONSTRAINT fk_users_notes_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
         CONSTRAINT fk_notes_notes_users FOREIGN KEY (note_id) REFERENCES notes (note_id)
 );                               
 
+<<<<<<< HEAD
 ALTER TABLE clients_trainers
 ADD FOREIGN KEY(client_id)
 REFERENCES clients(client_id);
@@ -115,8 +142,10 @@ REFERENCES clients(client_id);
 ALTER TABLE clients_trainers
 ADD FOREIGN KEY(trainer_id)
 REFERENCES trainers(trainer_id);
-
-
+=======
 COMMIT;
+>>>>>>> b1df318e43d2fb933f36c065d9ca34c15d778d4d
+
+
 
 ROLLBACK;

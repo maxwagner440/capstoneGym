@@ -211,6 +211,7 @@ public class JDBCUserDAO implements UserDAO {
 		guy.setModalityPreference(results.getString("modality"));
 		guy.setWeightInPounds(results.getDouble("weight"));
 		guy.setClientId(results.getLong("client_id"));
+
 		return guy;
 	}
 	

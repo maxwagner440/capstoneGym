@@ -19,7 +19,9 @@ public class Client extends User{
 	@NotBlank(message="What Do You Like?")
 	private String modalityPreference;
 	
-	
+	public String getFullName(){
+		return super.getFirstName() + " " + super.getLastName();
+	}
 	public Double getWeightInPounds() {
 		return weightInPounds;
 	}
@@ -50,6 +52,5 @@ public class Client extends User{
 	public void setClientId(Long clientId) {
 		this.clientId = clientId;
 	}
-	
 	
 }

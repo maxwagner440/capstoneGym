@@ -29,7 +29,7 @@ public class DashboardController {
 	
 	@RequestMapping(path="/clientDashboard", method=RequestMethod.GET)
 	public String displayClientDashboard(Map<String, Object> model,  HttpSession session) {
-	
+		
 		return "clientDashboard";
 	}
 	
