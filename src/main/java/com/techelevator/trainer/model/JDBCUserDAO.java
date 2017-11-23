@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.beans.Client;
+import com.techelevator.beans.Message;
 import com.techelevator.beans.Trainer;
 import com.techelevator.beans.User;
 import com.techelevator.trainer.security.PasswordHasher;
@@ -106,6 +107,21 @@ public class JDBCUserDAO implements UserDAO {
 		}
 	}
 	
+	@Override //needs tests
+	public String getUserRole(long userId) { 
+		// TODO Auto-generated method stub
+		String sqlSearchForUser = "SELECT role "+
+			      "FROM users "+
+			      "WHERE user_id = ?";
+
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userId);
+		if(results.next()){
+			return results.getString("role");
+		} else{
+			return null;
+		}
+	}
+	
 	@Override
 	public Trainer getTrainerByEmail(String email) { //need to test.
 		// TODO Auto-generated method stub
@@ -180,6 +196,7 @@ public class JDBCUserDAO implements UserDAO {
 		tBone.setPastExperience(results.getString("experience"));
 		tBone.setTrainerHourlyPrice(results.getBigDecimal("hourly_price"));
 		tBone.setVisibility(results.getBoolean("visibility"));
+		tBone.setTrainerId(results.getLong("trainer_id"));
 		
 		return tBone;
 	}
@@ -193,7 +210,7 @@ public class JDBCUserDAO implements UserDAO {
 		guy.setHeightInInches(results.getDouble("height"));
 		guy.setModalityPreference(results.getString("modality"));
 		guy.setWeightInPounds(results.getDouble("weight"));
-		
+		guy.setClientId(results.getLong("client_id"));
 		return guy;
 	}
 	
@@ -272,6 +289,71 @@ public class JDBCUserDAO implements UserDAO {
 		String command="INSERT INTO clients_trainers(client_id, trainer_id) VALUES (?, ?)";
 		jdbcTemplate.update(command, clientID, trainerID);
 	}
+
+	//Messaging
+	@Override
+	public void saveMessage(Message msg) {
+		String saveToMsgContentTable="INSERT INTO message_content message_content (content, time_stamp) VALUES (?, ?) returning message_content_id";
+		Long msgContentId=jdbcTemplate.queryForObject(saveToMsgContentTable, Long.class, msg.getContent(), msg.getDateTime());
+		
+		String saveIntoFromUserToUserMsgTable="INSERT INTO messages_users (message_creator_id, message_reciever_id, message_content_id) VALUES (?, ?, ?)";
+		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, msg.getMessageCreatorUserId(), msg.getMessageRecieverUserId(), msgContentId);
+		
+	}
+
+	@Override
+	public List<Message> getMessagesRankedByTimeForUser(long userId) {
+		// TODO Auto-generated method stub
+		List<Message> messages=new ArrayList<>();
+		String getMessages="SELECT * FROM message_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE message_reciever_user_id=? ORDER BY time_stamp DESC";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(getMessages, userId);
+		while(rows.next()){
+			messages.add(mapRowToMessage(rows));
+		}
+		return messages;
+	}
+
+	@Override
+	public boolean trainerCanMessageClient(long trainerId, long clientId) { 
+		String command="SELECT  WHERE user_id IN "
+				+ "(SELECT user_id FROM clients c JOIN client_trainers ct ON c.client_id=ct.client_id WHERE client_Id IN "
+				+ "(SELECT client_id FROM client_trainers WHERE trainer_id=? " //AND relationship_established='1') "
+				+ "UNION "
+				+ "SELECT message_creator_user_id FROM message_users WHERE message_receiver_id=?) and user_id=?";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, trainerId, trainerId, clientId);
+		
+		return rows.next();
+		
+	}
+	
+	private Message mapRowToMessage(SqlRowSet rows){
+		Message msg=new Message();
+		msg.setContent(rows.getString("content"));
+		msg.setDateTime(rows.getTimestamp("time_stamp").toLocalDateTime());
+		msg.setMessageCreatorUserId(rows.getLong("message_creator_user_id"));
+		msg.setMessageRecieverUserId(rows.getLong("message_receiver_user_id"));
+		return msg;
+	}
+
+	//Notes
+	@Override
+	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAllNotesFromThatTrainerForThisClient(long clientId, long trainerId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAllNotesForThatClientFromThisTrainer(long trainerId, long clientId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 }
 

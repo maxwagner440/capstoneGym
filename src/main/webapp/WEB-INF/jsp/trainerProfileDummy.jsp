@@ -9,11 +9,9 @@
     <title>Raise The Bar</title>
 </head>
 <h1>Trainer Profile Page</h1>
-
-<div id="signup-for-trainer">
-
 <c:out value="${trainer.getFullName() }"/>
 
+<div id="signup-for-trainer">
 	<c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
 	<form action="${signupWithTrainer}" method="POST">
 		<input type="hidden" name="trainerId" value="${trainer.id }"/>
@@ -22,3 +20,8 @@
 	</form>
 </div>
 
+<div id="send-trainer-message">
+	<for
+
+
+</div>

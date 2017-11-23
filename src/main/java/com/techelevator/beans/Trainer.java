@@ -7,6 +7,8 @@ import javax.validation.constraints.DecimalMin;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Trainer extends User {	
+	private long trainerId;
+	
 	@NotBlank(message="Please Enter a Bio")
 	private String bio;
 	
@@ -54,6 +56,12 @@ public class Trainer extends User {
 	}
 	public void setVisibility(boolean visibility) {
 		this.visibility = visibility;
+	}
+	public long getTrainerId() {
+		return trainerId;
+	}
+	public void setTrainerId(long trainerId) {
+		this.trainerId = trainerId;
 	}
 
 } 

@@ -71,11 +71,11 @@ CREATE TABLE workouts(
         CONSTRAINT fk_workouts_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
-CREATE TABLE messages(
-        message_id Serial NOT NULL,
+CREATE TABLE message_content(
+        message_content_id Serial NOT NULL,
         content VARCHAR(255),
         time_stamp TIMESTAMP NOT NULL DEFAULT now(),
-        CONSTRAINT pk_message_message_id PRIMARY KEY (message_id)
+        CONSTRAINT pk_message_message_id PRIMARY KEY (message_content_id)
 );
 
 CREATE TABLE notes(
@@ -86,13 +86,15 @@ CREATE TABLE notes(
 );
 
 CREATE TABLE messages_users(
-        message_creator_id Serial NOT NULL,
-        message_receiver_id Serial NOT NULL,
-        user_id Serial NOT NULL,
-        message_id Serial NOT NULL,
-        CONSTRAINT pk_messages_message_creator_id PRIMARY KEY (message_creator_id),
-        CONSTRAINT fk_messages_users_users FOREIGN KEY (user_id) REFERENCES users (user_id),
-        CONSTRAINT fk_messages_users_messages FOREIGN KEY (message_id) REFERENCES messages (message_id)        
+        message_id Serial NOT NULL, 
+        message_creator_user_id int NOT NULL,
+        message_receiver_user_id int NOT NULL,
+        message_content_id int NOT NULL,
+        CONSTRAINT pk_messages_message_creator_id PRIMARY KEY (message_id),
+        CONSTRAINT fk_messages_creator_user_id FOREIGN KEY (message_creator_user_id) REFERENCES users (user_id),
+        CONSTRAINT fk_message_receiver_user_id FOREIGN KEY (message_receiver_user_id) REFERENCES users (user_id),
+        CONSTRAINT fk_messages_content_id FOREIGN KEY (message_content_id) REFERENCES message_content (message_content_id)
+              
 );
 
 CREATE TABLE notes_users(
