@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
+
+<%@include file ="/WEB-INF/jsp/common/header.jspf" %>
+
 <title>Trainer Profile</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/trainerProfile.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="fontawesome-stars.css">
+
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 </style>
@@ -20,7 +15,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <!-- <img class="logo" src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" alt="RaiseTheBarLogo" width="150" height="150"> -->
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-      <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
+      <img src="img/RaisetheBarLogo.png" 
       class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
@@ -57,12 +52,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">Trainer Name</h4>
+         <h4 class="w3-center"><c:out value="${user.getFullName()}"/></h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Specializing in X</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Cleveland, OH</p>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Your Bio: <c:out value="${user.bio}"/> </p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Your Location: Cleveland, OH</p>
         </div>
       </div>
       <br>

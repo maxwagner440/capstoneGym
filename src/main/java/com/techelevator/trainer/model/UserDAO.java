@@ -31,7 +31,7 @@ public interface UserDAO {
 	public void saveClientTrainerRelsationship(long clientId, long trainerId);
 	
 	//Messaging
-	public void saveMessage(Message msg);
+	public void saveMessage(String msg, Long loggedInId, Long receiverId);
 	public List<Message> getMessagesRankedByTimeForUser(long userId);
 	public boolean trainerCanMessageClient(long trainerId, long clientId); //for restricting to whom trainer can send message to
 	
@@ -42,5 +42,6 @@ public interface UserDAO {
 	public void viewAllNotesForThatClientFromThisTrainer(long trainerId, long clientId);
 	//public void viewAllNotesForThisTrainer(long trainerId);
 	//public void viewAllNotesForThisClient(long clientId);
+	User getUserByName(String first, String last);
 	
 }

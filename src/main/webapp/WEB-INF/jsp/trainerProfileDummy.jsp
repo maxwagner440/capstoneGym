@@ -21,7 +21,7 @@
 </div>
 
 <div id="send-trainer-message">
-	<for
+	
 
 
 </div>
