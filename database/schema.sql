@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS messages_users;
 DROP TABLE IF EXISTS clients_trainers;
 DROP TABLE IF EXISTS notes_users;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS message_content;
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS trainers_requests;
 DROP TABLE IF EXISTS workouts;
@@ -36,27 +37,27 @@ CREATE TABLE users(
 );
 
 CREATE TABLE trainers(
-		entry_id Serial NOT NULL,
+		trainer_id Serial NOT NULL,
 		bio VARCHAR(255),
 		philosophy VARCHAR(255),
 		experience VARCHAR(255),
 		hourly_price DECIMAL,
-		trainer_id Serial NOT NULL,
+		user_id int NOT NULL,
 		visibility BOOLEAN NOT NULL DEFAULT false,
-		CONSTRAINT pk_trainers_entry_id PRIMARY KEY (entry_id),
-		CONSTRAINT fk_users_trainers FOREIGN KEY (trainer_id) REFERENCES users (user_id),
+		CONSTRAINT pk_trainers_trainer_id PRIMARY KEY (trainer_id),
+		CONSTRAINT fk_users_trainers FOREIGN KEY (user_id) REFERENCES users (user_id),
 		UNIQUE (trainer_id)
 );
 
 CREATE TABLE clients(
-		entry_id Serial NOT NULL,
 		client_id Serial NOT NULL,
+		user_id int NOT NULL,
 		height int,
 		goal VARCHAR(255),
 		modality VARCHAR(255),
 		weight int NOT NULL,
-		CONSTRAINT pk_clients_entry_id_client_id PRIMARY KEY (entry_id, client_id),
-		CONSTRAINT fk_users_clients FOREIGN KEY (client_id) REFERENCES users (user_id),
+		CONSTRAINT pk_clients_client_id PRIMARY KEY (client_id),
+		CONSTRAINT fk_users_clients FOREIGN KEY (user_id) REFERENCES users (user_id),
 		UNIQUE (client_id)
 );
 
@@ -72,11 +73,11 @@ CREATE TABLE clients_trainers(
 CREATE TABLE trainers_requests(
         client_id Serial,
         trainer_id Serial,
-        accept boolean,
+        accept int NOT NULL,
         CONSTRAINT pk_trainers_requests_client_id_trainer_id PRIMARY KEY (client_id, trainer_id),
         CONSTRAINT fk_trainers_requests_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
         CONSTRAINT fk_trainers_requests_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
-        UNIQUE (trainer_id)
+        
 );
 
 CREATE TABLE workouts(
@@ -102,6 +103,7 @@ CREATE TABLE notes(
 );
 
 CREATE TABLE messages_users(
+
         message_id Serial NOT NULL, 
         message_creator_user_id int NOT NULL,
         message_receiver_user_id int NOT NULL,
@@ -112,7 +114,6 @@ CREATE TABLE messages_users(
         CONSTRAINT fk_messages_content_id FOREIGN KEY (message_content_id) REFERENCES message_content (message_content_id)
               
 );
-
 CREATE TABLE notes_users(
         client_id Serial NOT NULL,
         trainer_id Serial NOT NULL,
@@ -123,6 +124,7 @@ CREATE TABLE notes_users(
         CONSTRAINT fk_notes_notes_users FOREIGN KEY (note_id) REFERENCES notes (note_id)
 );                               
 
+
 ALTER TABLE clients_trainers
 ADD FOREIGN KEY(client_id)
 REFERENCES clients(client_id);
@@ -132,6 +134,12 @@ ALTER TABLE clients_trainers
 ADD FOREIGN KEY(trainer_id)
 REFERENCES trainers(trainer_id);
 
+COMMIT;
+
+
 
 
 ROLLBACK;
+
+
+

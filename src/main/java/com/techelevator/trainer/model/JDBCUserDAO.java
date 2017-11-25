@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Message;
+import com.techelevator.beans.Request;
 import com.techelevator.beans.Trainer;
 import com.techelevator.beans.User;
 import com.techelevator.trainer.security.PasswordHasher;
@@ -311,20 +312,16 @@ public class JDBCUserDAO implements UserDAO {
 		return trainer;
 	}
 
-	@Override
-	public void saveClientTrainerRelsationship(long clientID, long trainerID) {
-		String command="INSERT INTO clients_trainers(client_id, trainer_id) VALUES (?, ?)";
-		jdbcTemplate.update(command, clientID, trainerID);
-	}
+	
 
 	//Messaging
 	@Override
 	public void saveMessage(String msg, Long loggedInId, Long receiverId) {
-		String saveToMsgContentTable="INSERT INTO messages (content, time_stamp) VALUES (?, NOW()) returning message_id";
+		String saveToMsgContentTable="INSERT INTO message_content (content, time_stamp) VALUES (?, NOW()) returning message_content_id";
 		Long msgContentId=jdbcTemplate.queryForObject(saveToMsgContentTable, Long.class, msg);
 		
-		String saveIntoFromUserToUserMsgTable="INSERT INTO messages_users (message_creator_id, message_receiver_id, user_id, message_id) VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, loggedInId, receiverId, loggedInId, msgContentId);
+		String saveIntoFromUserToUserMsgTable="INSERT INTO messages_users (message_creator_user_id, message_receiver_user_id, message_content_id) VALUES (?, ?, ?)";
+		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, loggedInId, receiverId, msgContentId);
 		
 	}
 
@@ -332,7 +329,7 @@ public class JDBCUserDAO implements UserDAO {
 	public List<Message> getMessagesRankedByTimeForUser(long userId) {
 		// TODO Auto-generated method stub
 		List<Message> messages=new ArrayList<>();
-		String getMessages="SELECT * FROM message_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE message_reciever_user_id=? ORDER BY time_stamp DESC";
+		String getMessages="SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=? ORDER BY time_stamp DESC";
 		SqlRowSet rows=jdbcTemplate.queryForRowSet(getMessages, userId);
 		while(rows.next()){
 			messages.add(mapRowToMessage(rows));
@@ -342,7 +339,7 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public boolean trainerCanMessageClient(long trainerId, long clientId) { 
-		String command="SELECT  WHERE user_id IN "
+		String command="SELECT * WHERE user_id IN "
 				+ "(SELECT user_id FROM clients c JOIN client_trainers ct ON c.client_id=ct.client_id WHERE client_Id IN "
 				+ "(SELECT client_id FROM client_trainers WHERE trainer_id=? " //AND relationship_established='1') "
 				+ "UNION "
@@ -358,10 +355,60 @@ public class JDBCUserDAO implements UserDAO {
 		msg.setContent(rows.getString("content"));
 		msg.setDateTime(rows.getTimestamp("time_stamp").toLocalDateTime());
 		msg.setMessageCreatorUserId(rows.getLong("message_creator_user_id"));
-		msg.setMessageRecieverUserId(rows.getLong("message_receiver_user_id"));
+		msg.setMessageReceiverUserId(rows.getLong("message_receiver_user_id"));
+		msg.setUsername(getUsernameFromUserId(msg.getMessageCreatorUserId()));
 		return msg;
 	}
-
+	
+	private String getUsernameFromUserId(Long id){
+		String statement = "SELECT username FROM users WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(statement, id);
+		
+		results.next();
+		return results.getString("username");
+	}
+	
+	//Requests.
+	//0 means request has not been denied nor accepted yet.
+	//1 means request has been accepted by trainer.
+	//2 means request has been denied by trainer.
+	
+	@Override
+	public void saveClientTrainerRelsationship(long clientID, long trainerID) {
+		String command="INSERT INTO trainers_requests(client_id, trainer_id, accept) VALUES (?, ?, ?)";
+		jdbcTemplate.update(command, clientID, trainerID, 0);
+	}
+	
+	@Override
+	public void acceptRequest(long clientID, long trainerID){
+		String statement = "UPDATE trainers_requests SET accept = ? WHERE client_id = ? AND trainer_id = ?";
+		jdbcTemplate.update(statement, 1, clientID, trainerID);
+	}
+	
+	@Override
+	public void denyRequest(long clientID, long trainerID){
+		String statement = "UPDATE trainers_requests SET accept = ? WHERE client_id = ? AND trainer_id = ?";
+		jdbcTemplate.update(statement, 2, clientID, trainerID);
+	}
+	
+	@Override
+	public List<Request> getAllRequestsForTrainer(long trainerId){
+		List<Request> newList = new ArrayList<>();
+		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests WHERE trainer_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, trainerId);
+		while(results.next()){
+			newList.add(mapRowToRequest(results));
+		}
+		return newList;
+	}
+	
+	public Request mapRowToRequest(SqlRowSet results){
+		Request request = new Request();
+		request.setAccept(results.getInt("accept"));
+		request.setClientId(results.getLong("client_id"));
+		request.setTrianerId(results.getLong("trainer_id"));
+		return request;
+	}
 	//Notes
 	@Override
 	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId) {

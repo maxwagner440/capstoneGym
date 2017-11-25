@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Message;
+import com.techelevator.beans.Request;
 import com.techelevator.beans.Trainer;
 import com.techelevator.beans.User;
 
@@ -44,4 +45,8 @@ public interface UserDAO {
 	//public void viewAllNotesForThisClient(long clientId);
 	User getUserByName(String first, String last);
 	
+	//Request Trainer
+	public void acceptRequest(long clientID, long trainerID);
+	public void denyRequest(long clientID, long trainerID);
+	public List<Request> getAllRequestsForTrainer(long trainerId);
 }

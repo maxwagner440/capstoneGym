@@ -10,6 +10,7 @@
 	       <input type="text" placeholder="To Whom?" name="last"/>
 	       <input type="text" placeholder="Message" name="message"/>
 	       <input type="hidden" name="loggedInId" value="${user.id }"/>
+	       <input type="hidden" name="user" value="trainer"/>
 	       <input type="submit"/>
 		   </form>
 	            		

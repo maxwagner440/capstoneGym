@@ -183,32 +183,26 @@
                             </tr>
                             <tr>
                                 <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; text-align: center;">
-                                        <form>
-                                                <br>
-                                                <textarea class="toUser" name="toUser" placeholder="to First Name"></textarea>
-                                                <textarea class="toUser" name="toUser" placeholder="to Last Name"></textarea>
-                                                <br>
-                                                <textarea class="messagearea" name="UserComments" placeholder="Your Comments Here..."></textarea>
-                                           </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                                    <!-- Button : BEGIN -->
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+                                        <c:url var="sendMessage" value="/sendMessage"/>
+  										<form action="${sendMessage}" method="POST">
+                                               
+                                                <textarea class="messagearea" name="message" placeholder="Your Comments Here..."></textarea>
+                                                 <form action="${sendMessage}" method="POST">
+												<input type="hidden" name="receiverId" value="${trainer.id}"/>
+												<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                         <tr>
-                                            <td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
-                                                <a href="http://www.google.com" style="background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
-                                                    <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;Send- redir to db&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <br>
+                                            <br><td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
+												<input type="submit" value="Send" style="color:#ffffff; background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"/>
+                                            <span style="color:#ffffff;" class="button-link"></span>
                                                 </a>
                                             </td>
                                         </tr>
                                     </table>
-                                    <!-- Button : END -->
+                                           </form>
                                 </td>
                             </tr>
-
-                        </table>
+                            
                     </td>
                 </tr>
                 <!-- 1 Column Text + Button : END -->
