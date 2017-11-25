@@ -155,6 +155,18 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
+	public User getUserByName(String first, String last){
+		String sqlSearchForUser = "SELECT * FROM users WHERE first_name = ? AND last_name= ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, first, last);
+		
+		if(results.next()){
+			return mapToRowUser(results);
+		}else{
+			return null;
+		}
+				
+	}
+	@Override
 	public Trainer getTrainerByUsername(String username) { //need to test.
 		// TODO Auto-generated method stub
 		String sqlSearchForTrainer = "SELECT * "+
@@ -213,6 +225,20 @@ public class JDBCUserDAO implements UserDAO {
 		guy.setClientId(results.getLong("client_id"));
 
 		return guy;
+	}
+	
+	private User mapToRowUser(SqlRowSet results){
+		User user = new User();
+		user.setAge(results.getInt("age"));
+		user.setEmail(results.getString("email"));
+		user.setFirstName(results.getString("first_name"));
+		user.setLastName(results.getString("last_name"));
+		user.setId(results.getLong("user_id"));
+		user.setRole(results.getString("role"));
+		user.setUsername(results.getString("username"));
+		
+		return user;
+		
 	}
 	
 	private void mapGenericUserInfoFromRowToRoleType(User user, SqlRowSet results){ //need to test.
@@ -293,12 +319,12 @@ public class JDBCUserDAO implements UserDAO {
 
 	//Messaging
 	@Override
-	public void saveMessage(Message msg) {
-		String saveToMsgContentTable="INSERT INTO message_content message_content (content, time_stamp) VALUES (?, ?) returning message_content_id";
-		Long msgContentId=jdbcTemplate.queryForObject(saveToMsgContentTable, Long.class, msg.getContent(), msg.getDateTime());
+	public void saveMessage(String msg, Long loggedInId, Long receiverId) {
+		String saveToMsgContentTable="INSERT INTO messages (content, time_stamp) VALUES (?, NOW()) returning message_id";
+		Long msgContentId=jdbcTemplate.queryForObject(saveToMsgContentTable, Long.class, msg);
 		
-		String saveIntoFromUserToUserMsgTable="INSERT INTO messages_users (message_creator_id, message_reciever_id, message_content_id) VALUES (?, ?, ?)";
-		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, msg.getMessageCreatorUserId(), msg.getMessageRecieverUserId(), msgContentId);
+		String saveIntoFromUserToUserMsgTable="INSERT INTO messages_users (message_creator_id, message_receiver_id, user_id, message_id) VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, loggedInId, receiverId, loggedInId, msgContentId);
 		
 	}
 

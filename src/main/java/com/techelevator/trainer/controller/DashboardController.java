@@ -36,7 +36,7 @@ public class DashboardController {
 	@RequestMapping(path="/trainerDashboard", method=RequestMethod.GET)
 	public String displayTrainerDashboard(Map<String, Object> model, HttpSession session) {
 
-		return "trainerDashboard";
+		return "trainerProfile";
 	}
 
 	@RequestMapping(path="/trainerDashboard", method=RequestMethod.POST)

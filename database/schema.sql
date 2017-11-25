@@ -102,7 +102,6 @@ CREATE TABLE notes(
 );
 
 CREATE TABLE messages_users(
-<<<<<<< HEAD
         message_id Serial NOT NULL, 
         message_creator_user_id int NOT NULL,
         message_receiver_user_id int NOT NULL,
@@ -112,15 +111,6 @@ CREATE TABLE messages_users(
         CONSTRAINT fk_message_receiver_user_id FOREIGN KEY (message_receiver_user_id) REFERENCES users (user_id),
         CONSTRAINT fk_messages_content_id FOREIGN KEY (message_content_id) REFERENCES message_content (message_content_id)
               
-=======
-        from_user_id Serial NOT NULL,
-        to_user_id Serial NOT NULL,
-        message_id Serial NOT NULL,
-        CONSTRAINT pk_messages_from_user_id PRIMARY KEY (from_user_id, to_user_id),
-        CONSTRAINT fk_messages_users_from_users FOREIGN KEY (from_user_id) REFERENCES users (user_id),
-        CONSTRAINT fk_messages_users_to_users FOREIGN KEY (to_user_id) REFERENCES users (user_id),
-        CONSTRAINT fk_messages_users_messages FOREIGN KEY (message_id) REFERENCES messages (message_id)        
->>>>>>> b1df318e43d2fb933f36c065d9ca34c15d778d4d
 );
 
 CREATE TABLE notes_users(
@@ -133,7 +123,6 @@ CREATE TABLE notes_users(
         CONSTRAINT fk_notes_notes_users FOREIGN KEY (note_id) REFERENCES notes (note_id)
 );                               
 
-<<<<<<< HEAD
 ALTER TABLE clients_trainers
 ADD FOREIGN KEY(client_id)
 REFERENCES clients(client_id);
@@ -142,9 +131,6 @@ REFERENCES clients(client_id);
 ALTER TABLE clients_trainers
 ADD FOREIGN KEY(trainer_id)
 REFERENCES trainers(trainer_id);
-=======
-COMMIT;
->>>>>>> b1df318e43d2fb933f36c065d9ca34c15d778d4d
 
 
 
