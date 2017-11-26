@@ -6,10 +6,10 @@
 
 <c:url var="sendMessage" value="/sendMessage"/> 
 	       <form action="${sendMessage}" method="POST">
-	       <input type="text" placeholder="To Whom?" name="first"/>
-	       <input type="text" placeholder="To Whom?" name="last"/>
-	       <input type="text" placeholder="Message" name="message"/>
-	       <input type="hidden" name="loggedInId" value="${user.id }"/>
-	       <input type="submit"/>
+		       <input type="text" placeholder="To Whom?" name="first"/>
+		       <input type="text" placeholder="To Whom?" name="last"/>
+		       <input type="text" placeholder="Message" name="message"/>
+		       <input type="hidden" name="loggedInId" value="${user.id}"/>
+		       <input type="submit"/>
 		   </form>
 	            		
