@@ -1,14 +1,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<title>Raise the Bar</title>
-
-
-<%-- <%@include file ="/WEB-INF/jsp/common/header.jspf" %> --%>
-
 <!DOCTYPE html>
+<title>Raise the Bar</title>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/homePage.css">
+    <!-- <link href="css/capstone.css" rel="stylesheet" title="logincss"/> -->
+    <!-- <link rel="stylesheet" href="css/trainerProfile.css">
+    <link rel="stylesheet" href="css/clientProfile.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<link rel="stylesheet" href="fontawesome-stars.css"> -->
+    <script src="js/login.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <div class="w3-top">
+  	<div class="w3-bar w3-white w3-wide w3-padding w3-card">
+  	<c:url var="home" value="/"/>
+    <a href="${home }" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+
+	  
+      <a href="" class="w3-bar-item w3-button">About</a>
+      <a href="#projects" class="w3-bar-item w3-button">Training Specialties</a>
+      <a href="#trainers" class="w3-bar-item w3-button">Trainers</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <c:url var="login" value="/login"/>
+      <a href="${login }" class="w3-bar-item w3-button">Login / Sign-Up</a>
+    </div>
+  </div>
+</div>
 
 <head>
-    <link rel="stylesheet" href="/homepageCSS.css">
+    <link rel="stylesheet" href="/homePage.css">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

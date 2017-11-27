@@ -71,9 +71,10 @@ background-color:rgba(0,0,0,0.4)}
     background-color:#252c33;
     color: #9a9da0;  
 }
+/*links in navibar */
 .navBar:hover{
-    background-color:#252c33;
-    color: #9a9da0;  /*not working */
+    background-color:#3a6083;
+    color: #a7ac61;  
 }
 .w3-bar .navBar{
     padding:12px 16px;float:left;width:auto;border:none;outline:none;display:block
@@ -161,14 +162,23 @@ background-color:rgba(0,0,0,0.4)}
 .w3-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
 .w3-animate-input{transition:width 0.4s ease-in-out}.w3-animate-input:focus{width:100%!important}
 .w3-opacity,.w3-hover-opacity:hover{opacity:0.60}.w3-opacity-off,.w3-hover-opacity-off:hover{opacity:1}
-.w3-opacity-max{opacity:0.25}.w3-opacity-min{opacity:0.75}
+.w3-opacity-max{opacity:0.25}
+
+/* text on top of pic */
+.w3-opacity-min{opacity:0.60}
+
 .w3-greyscale-max,.w3-grayscale-max,.w3-hover-greyscale:hover,.w3-hover-grayscale:hover{filter:grayscale(100%)}
 .w3-greyscale,.w3-grayscale{filter:grayscale(75%)}.w3-greyscale-min,.w3-grayscale-min{filter:grayscale(50%)}
 .w3-sepia{filter:sepia(75%)}.w3-sepia-max,.w3-hover-sepia:hover{filter:sepia(100%)}.w3-sepia-min{filter:sepia(50%)}
 .w3-tiny{font-size:10px!important}.w3-small{font-size:12px!important}.w3-medium{font-size:15px!important}.w3-large{font-size:18px!important}
 
-.w3-xlarge{font-size:24px!important}.w3-xxlarge{font-size:80px!important}.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important}
+.w3-xlarge{font-size:24px!important}
 
+.w3-xxlarge{
+	font-size:80px!important;
+	color:#bfad35!important;background-color:#284668!important;
+}
+.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important}
 .w3-left-align{text-align:left!important}.w3-right-align{text-align:right!important}.w3-justify{text-align:justify!important}.w3-center{text-align:center!important}
 .w3-border-0{border:0!important}.w3-border{border:1px solid #ccc!important}
 .w3-border-top{border-top:1px solid #ccc!important}.w3-border-bottom{border-bottom:1px solid #ccc!important}
@@ -234,7 +244,7 @@ End extract */
 .w3-white,.w3-hover-white:hover{color:#a9bacb!important;background-color:rgb(23, 29, 44)!important}
 
 /* box in picture at top */
-.w3-black,.w3-hover-black:hover{color:#ccae51!important;background-color:#25425a!important}
+.w3-black,.w3-hover-black:hover{color:#bfad35!important;background-color:#284668!important}
 
 .w3-grey,.w3-hover-grey:hover,.w3-gray,.w3-hover-gray:hover{color:#000!important;background-color:#c9dae7!important}
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
