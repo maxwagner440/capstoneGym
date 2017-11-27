@@ -25,8 +25,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
    <c:url var="clientHome" value="/clientDashboard"/>
   <a href="${clientHome}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   
+    <c:url var="getToMessage" value="/getToMessages"/>
+  <form action="${getToMessage}" method="POST">
+<input type="hidden" name="trainerId" value="${profileToView.id }"/>
+<button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></button>
+</form>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <c:url var="logo" value="img/RaiseTheBarLogo.png"/>
     <img src="${logo }" class="w3-circle" style="height:50px;width:50px" alt="RaiseTheBarLogo"></a>
@@ -273,7 +277,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <h2>Request a trainer to contact you</h2>
                 
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn">Request Trainer</button>
+                <c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
+	<form action="${signupWithTrainer}" method="POST">
+		<input type="hidden" name="trainerId" value="${trainer.id }"/>
+
+		<input id="myBtn" type="submit" name="Request Trainer"/>
+	</form>
+                
                 
                 <!-- The Modal -->
                 <div id="myModal" class="modal">
