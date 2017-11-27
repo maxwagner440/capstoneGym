@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Message;
+import com.techelevator.beans.Note;
 import com.techelevator.beans.Request;
 import com.techelevator.beans.Trainer;
 import com.techelevator.beans.User;
@@ -30,6 +31,7 @@ public interface UserDAO {
 	//search
 	public List<Trainer> getAllTrainers();
 	public void saveClientTrainerRelsationship(long clientId, long trainerId);
+	public List<Trainer> searchForTrainer(String keyword);
 	
 	//Messaging
 	public void saveMessage(String msg, Long loggedInId, Long receiverId);
@@ -38,9 +40,10 @@ public interface UserDAO {
 	
 	//Notes
 	
-	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId);
-	public void viewAllNotesFromThatTrainerForThisClient(long clientId, long trainerId);
-	public void viewAllNotesForThatClientFromThisTrainer(long trainerId, long clientId);
+	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, Note note);
+	public List<Note> viewAllNotesBetweenATrainerAndAClient(long clientId, long trainerId);
+	public List<Note> trainerOptionViewAllMySentNotes(long trainerId);
+	public List<Note> clientOptionViewAllMyRecievedNotes(long clientId);
 	//public void viewAllNotesForThisTrainer(long trainerId);
 	//public void viewAllNotesForThisClient(long clientId);
 	User getUserByName(String first, String last);
@@ -49,4 +52,8 @@ public interface UserDAO {
 	public void acceptRequest(long clientID, long trainerID);
 	public void denyRequest(long clientID, long trainerID);
 	public List<Request> getAllRequestsForTrainer(long trainerId);
+	public List<Client> viewAllClientsRequestingForTrainer(long trainerId);
+	public List<Client> viewAllClientsForTrainerWithEstablishedRelationship(long trainerId);
+	public List<Trainer> viewAllTrainersForClient(long clientId);
+
 }

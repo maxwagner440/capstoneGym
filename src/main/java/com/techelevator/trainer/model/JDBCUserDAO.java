@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Message;
+import com.techelevator.beans.Note;
 import com.techelevator.beans.Request;
 import com.techelevator.beans.Trainer;
 import com.techelevator.beans.User;
@@ -411,22 +412,93 @@ public class JDBCUserDAO implements UserDAO {
 	}
 	//Notes
 	@Override
-	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId) {
+	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, Note note) {
 		// TODO Auto-generated method stub
+		String saveToNoteContentTable="INSERT INTO notes (content, time_stamp) VALUES (?, NOW()) returning note_id";
+		Long noteContentId=jdbcTemplate.queryForObject(saveToNoteContentTable, Long.class, note.getContent());
+		
+		String saveIntoFromUserToUserMsgTable="INSERT INTO notes_users (client_id, trainer_id, note_id) VALUES (?, ?, ?)";
+		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, note.getClient_id(), note.getTrainer_id(), noteContentId);
+		
 		
 	}
 
 	@Override
-	public void viewAllNotesFromThatTrainerForThisClient(long clientId, long trainerId) {
+	public List<Note> viewAllNotesBetweenATrainerAndAClient(long clientId, long trainerId) {
 		// TODO Auto-generated method stub
+		List<Note> notes=new ArrayList<>();
+		String getMessages="SELECT * FROM notes_users nu JOIN notes n ON nu.note_id=n.note_id WHERE nu.client_id=? AND nu.trainer_id=? ORDER BY time_stamp DESC";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(getMessages, clientId, trainerId);
+		while(rows.next()){
+			notes.add(mapRowToNote(rows));
+		}
+		return notes;
 		
 	}
 
-	@Override
-	public void viewAllNotesForThatClientFromThisTrainer(long trainerId, long clientId) {
-		// TODO Auto-generated method stub
-		
+	public List<Note> trainerOptionViewAllMySentNotes(long trainerId){
+		return genericGetNotes("SELECT * FROM notes_users nu JOIN notes n ON nu.note_id=n.note_id WHERE nu.trainer_id=? ORDER BY time_stamp DESC", trainerId);
+
 	}
+	public List<Note> clientOptionViewAllMyRecievedNotes(long clientId){
+		return genericGetNotes("SELECT * FROM notes_users nu JOIN notes n ON nu.note_id=n.note_id WHERE nu.client_id=? ORDER BY time_stamp DESC", clientId); 
+	}
+	
+	private List<Note> genericGetNotes(String command, long userId){
+		List<Note> notes=new ArrayList<>();
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userId);
+		while(rows.next()){
+			notes.add(mapRowToNote(rows));
+		}
+		return notes;
+	}
+	
+	private Note mapRowToNote(SqlRowSet rows){
+		Note note=new Note();
+		note.setContent(rows.getString("content"));
+		note.setTimeStamp(rows.getTimestamp("time_stamp").toLocalDateTime());
+		note.setClient_id(rows.getLong("client_id"));
+		note.setTrainer_id(rows.getLong("trainer_id"));
+		note.setClientUsername(getUsernameFromUserId(note.getClient_id()));
+		note.setTrainerUsername(getUsernameFromUserId(note.getTrainer_id()));
+		return note;
+	}
+
+	@Override
+	public List<Trainer> searchForTrainer(String keyword) {
+		// TODO Auto-generated method stub
+		List<Trainer> trainers=new ArrayList<>();
+		String searchForTrainers="SELECT * FROM user u JOIN trainer t ON t.user_id=u.user_id "
+				+ "WHERE username LIKE '%?%' OR first_name LIKE '%?%' OR last_name LIKE '%?%' "
+				+ "OR email LIKE '%?%' OR bio LIKE '%?%' OR philosophy LIKE '%?%' OR experience LIKE '%?%'"
+				+ "ORDER BY username, last_name, first_name, email, bio, philosophy, experience;";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(searchForTrainers, keyword, keyword, keyword, keyword, keyword, keyword, keyword);
+		while(rows.next()){
+			trainers.add(mapRowToTrainer(rows));
+		}
+		return trainers;
+	}
+
+	@Override
+	public List<Client> viewAllTrainersForClient(long clientId) {
+		// TODO Auto-generated method stub
+		List<Client> newList = new ArrayList<>();
+		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests WHERE client_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, clientId);
+		while(results.next()){
+			newList.add(mapRowToClient(results));
+		}
+		return newList;
+	}
+
+
+	@Override
+	public List<Client> viewAllClientsRequestingForTrainer(long trainerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	
 }

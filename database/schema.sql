@@ -140,6 +140,3 @@ COMMIT;
 
 
 ROLLBACK;
-
-
-
