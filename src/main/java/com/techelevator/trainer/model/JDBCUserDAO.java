@@ -312,7 +312,16 @@ public class JDBCUserDAO implements UserDAO {
 		return trainer;
 	}
 
-	
+	@Override
+	public User getUserByUsername(String Username){
+		String command = "SELECT * FROM users WHERE username = ?";
+		SqlRowSet rows = jdbcTemplate.queryForRowSet(command, Username);
+		User user = new User();
+		while(rows.next()){
+			user = mapToRowUser(rows);
+		}
+		return user;
+	}
 
 	//Messaging
 	@Override

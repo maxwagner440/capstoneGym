@@ -74,7 +74,7 @@ CREATE TABLE trainers_requests(
         client_id Serial,
         trainer_id Serial,
         accept int NOT NULL,
-        CONSTRAINT pk_trainers_requests_client_id_trainer_id PRIMARY KEY (client_id, trainer_id),
+       
         CONSTRAINT fk_trainers_requests_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
         CONSTRAINT fk_trainers_requests_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
         
