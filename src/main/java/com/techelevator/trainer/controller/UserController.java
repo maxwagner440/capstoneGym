@@ -112,46 +112,5 @@ public class UserController {
 		
 	}
 	
-	//controller
-<<<<<<< HEAD
-//	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-//	public String saveTrainerImage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
-=======
-//	@RequestMapping(path="/breweries", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-//	public String createBrewery(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
-//	flash.addFlashAttribute("newUser", newUser);
-//
-//	    if(result.hasErrors()) {
-//	        flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "newBrewery", result);
-//	        return "redirect:/breweries/new";
-//	    }
-<<<<<<< HEAD
-//	    if(!userDAO.getUserByName(newUser.getFirstName(), newUser.getLastName())) { 
-//	    
-//	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newUser.setUserImageUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
-//	        
-//	        
-//	        userDAO.saveUser(newUser.getUsername(), "password");
-=======
-//	    if(!breweryDAO.searchForBrewery(newBrewery.getName())) { 
-//	    
-//	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newBrewery.setBreweryLogoUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
-//	        
-//	        
-//	        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
-//	        return "redirect:/breweries";
-//	    } else {
-//	        flash.addFlashAttribute("message", "This brewery alreadys exists");
-//	        return "redirect:/breweries/new";
-//	    }
-//	}
-<<<<<<< HEAD
-		
-=======
-//		
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
+
 }

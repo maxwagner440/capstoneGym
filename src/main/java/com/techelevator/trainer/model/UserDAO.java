@@ -50,4 +50,5 @@ public interface UserDAO {
 	public void denyRequest(long clientID, long trainerID);
 	public List<Request> getAllRequestsForTrainer(long trainerId);
 	public User getUserByUsername(String Username);
+	public List<Client> getAllClientsFromTrainerId(Long trainerId);
 }

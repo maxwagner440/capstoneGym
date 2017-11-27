@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="css/test_css.css" rel="stylesheet" title="logincss"/>
+    <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
     <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
             </div>
             <div class="info">
                 <h3>Goal: </h3>
-                <p><c:out value="${client.goal}"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><c:out value="${client.goal}"/></p>
             </div>
             <div class="btns">    
             	<c:url var="viewClient" value="/viewAllClients"/>
