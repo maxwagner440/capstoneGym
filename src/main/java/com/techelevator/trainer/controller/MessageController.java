@@ -59,7 +59,7 @@ public class MessageController {
 		User user = (User) session.getAttribute("user");
 		List<Message> messages = userDAO.getMessagesRankedByTimeForUser(user.getId());
 		modelHolder.put("messages", messages);
-		return "/viewMessage";
+		return "messaging/viewMyMessages";
 	}
 
 }
