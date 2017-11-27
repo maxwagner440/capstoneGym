@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <link href="css/getAllTrainers.css" rel="stylesheet" title="logincss"/>
+    <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
     <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,14 +30,11 @@
                 <h3>Bio: </h3>
                 <p><c:out value="${trainer.bio}"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
-            <div class="btns">
-                <div class="view-btn-div">
-                    
-                </div>
-               <c:url var="signupWithTrainer" value="/findAllTrainers"/>
-		<form action="${signupWithTrainer}" method="POST">
-		<button type="submit" name ="userID" value="${trainer.id }" class="view-btn">View Trainer</button>
-		</form>
+            <div class="btns">    
+            	<c:url var="signupWithTrainer" value="/findAllTrainers"/>
+				<form action="${signupWithTrainer}" method="POST">
+				<button type="submit" name ="userID" value="${trainer.id }" class="view-btn">View Trainer</button>
+				</form>
             </div>
         </div>
     </c:forEach>
