@@ -54,6 +54,24 @@ public class MessageController {
 		return "redirect:/success";
 	}
 	
+	@RequestMapping(path="/replyMessage", method=RequestMethod.GET)
+	public String sendReplyMessagePage(HttpSession session, @RequestParam String receiverUsername){
+		User receiverUser = (User) userDAO.getUserByUsername(receiverUsername);
+		session.setAttribute("receiverUser", receiverUser);
+		
+		return "replyMessage";
+	}
+	
+	@RequestMapping(path="/replyMessage", method=RequestMethod.POST)
+	public String processReplyMessageRequest(HttpSession session, @RequestParam String message,  @RequestParam Long receiverId){
+
+			User fromUserTrainer = (User) session.getAttribute("user");
+			User toClientUser = (User) session.getAttribute("receiverUser");
+			userDAO.saveMessage(message, fromUserTrainer.getId(), toClientUser.getId());
+			String role = userDAO.getUserRole(fromUserTrainer.getId());
+		return "redirect:/" + role.toLowerCase() + "Dashboard";
+	}
+	
 	@RequestMapping(path="/viewMyMessages", method=RequestMethod.GET)
 	public String viewAllMessages(HttpSession session, ModelMap modelHolder){
 		User user = (User) session.getAttribute("user");
