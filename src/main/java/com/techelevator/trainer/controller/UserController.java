@@ -79,7 +79,7 @@ public class UserController {
 		}
 		userDAO.saveClient(client, user.getId());
 		session.setAttribute("user", client);
-		return "redirect:/clientDashboard/";
+		return "redirect:/clientDashboard";
 		
 	}
 	

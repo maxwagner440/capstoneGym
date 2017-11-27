@@ -42,7 +42,7 @@ public class MessageController {
 	@RequestMapping(path="/sendMessage", method=RequestMethod.GET)
 	public String sendMessagePage(HttpSession session, @ModelAttribute("trainer") Trainer trainer,  ModelMap modelHolder){
 		modelHolder.addAttribute("trainer", trainer);
-		return "message";
+		return "sendMessage";
 	}
 	
 	
@@ -59,7 +59,7 @@ public class MessageController {
 		User user = (User) session.getAttribute("user");
 		List<Message> messages = userDAO.getMessagesRankedByTimeForUser(user.getId());
 		modelHolder.put("messages", messages);
-		return "/messaging/viewMyMessages";
+		return "/viewMessage";
 	}
 
 }
