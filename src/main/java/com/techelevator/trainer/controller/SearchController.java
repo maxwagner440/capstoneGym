@@ -1,5 +1,6 @@
 package com.techelevator.trainer.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.beans.Client;
 import com.techelevator.beans.Trainer;
 import com.techelevator.trainer.model.UserDAO;
 
@@ -43,5 +45,13 @@ public class SearchController {
 		model.put("trainer", (Trainer) session.getAttribute("profileToView"));
 		return "clientViewTrainer";
 		
+	}
+	
+	@RequestMapping(path="/viewAllClients", method=RequestMethod.GET)
+	public String seeAllClients(HttpSession session, ModelMap modelHolder){
+		Trainer trainer = (Trainer) session.getAttribute("user");
+		List<Client> allClients = userDAO.getAllClientsFromTrainerId(trainer.getTrainerId());
+		modelHolder.addAttribute("clients", allClients);
+		return "viewAllClients";
 	}
 }

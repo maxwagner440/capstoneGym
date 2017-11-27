@@ -32,7 +32,11 @@
             </div>
             <div class="btns">
                 <div class="view-btn-div">
-                    <button class="view-btn">Reply</button>
+	                <c:url value="/replyMessage" var="replyMessage"/>
+	                <form action="${replyMessage}" method="GET">
+					<input type="hidden" name="receiverUsername" value="${message.username}"/>
+	                <button type="submit" class="view-btn">Reply</button>
+	                </form>
                 </div>
                 <div class="msg-btn-div">
                     <button class="msg-btn">Archive?</button>

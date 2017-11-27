@@ -25,8 +25,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <span class="w3-badge w3-right w3-small w3-green">3</span></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
       <a href="#" class="w3-bar-item w3-button">New client request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+      <c:url value="/viewMyMessages" var="viewMyMessages"/>
+      <a href="${viewMyMessages}" class="w3-bar-item w3-button">See all messages</a>
+      <c:url value="/viewAllClients" var="viewAllClients"/>
+      <a href="${viewAllClients}" class="w3-bar-item w3-button">See all clients</a>
     </div>
   </div>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">

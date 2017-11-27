@@ -112,27 +112,5 @@ public class UserController {
 		
 	}
 	
-	//controller
-//	@RequestMapping(path="/breweries", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-//	public String createBrewery(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
-//	flash.addFlashAttribute("newUser", newUser);
-//
-//	    if(result.hasErrors()) {
-//	        flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "newBrewery", result);
-//	        return "redirect:/breweries/new";
-//	    }
-//	    if(!breweryDAO.searchForBrewery(newBrewery.getName())) { 
-//	    
-//	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newBrewery.setBreweryLogoUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
-//	        
-//	        
-//	        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
-//	        return "redirect:/breweries";
-//	    } else {
-//	        flash.addFlashAttribute("message", "This brewery alreadys exists");
-//	        return "redirect:/breweries/new";
-//	    }
-//	}
-//		
+
 }

@@ -1,3 +1,6 @@
+<%-- import com.cloudinary
+<%@taglib uri="https://cloudinary.com/jsp/taglib" prefix="cl" %> --%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -52,7 +55,9 @@ flash.addFlashAttribute("newBrewery", newBrewery);
         newBrewery.setBreweryLogoUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
         
         
-        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
+        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), 
+        newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), 
+        newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
         return "redirect:/breweries";
     } else {
         flash.addFlashAttribute("message", "This brewery alreadys exists");

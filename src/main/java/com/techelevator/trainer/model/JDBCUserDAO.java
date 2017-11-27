@@ -56,7 +56,7 @@ public class JDBCUserDAO implements UserDAO {
 	public void saveClient(Client client, long id) {
 		jdbcTemplate.update("INSERT INTO clients (goal, height, modality, weight, user_id " 
 				+ ") VALUES (?, ?, ?, ?, ?)",
-				client.getGoals(), client.getHeightInInches(),
+				client.getGoal(), client.getHeightInInches(),
 				client.getModalityPreference(), client.getWeightInPounds(), id);
 	}
 	
@@ -220,7 +220,7 @@ public class JDBCUserDAO implements UserDAO {
 		
 		mapGenericUserInfoFromRowToRoleType(guy, results);
 		
-		guy.setGoals(results.getString("goal"));
+		guy.setGoal(results.getString("goal"));
 		guy.setHeightInInches(results.getDouble("height"));
 		guy.setModalityPreference(results.getString("modality"));
 		guy.setWeightInPounds(results.getDouble("weight"));
@@ -271,6 +271,18 @@ public class JDBCUserDAO implements UserDAO {
 		String saltString = new String(Base64.encode(salt));
 		jdbcTemplate.update("UPDATE users SET password = ?, salt = ? WHERE username = ?", hashedPassword, saltString, userName);
 	}
+	
+	@Override
+	public List<Client> getAllClientsFromTrainerId(Long trainerId){
+		List<Client> allClients = new ArrayList<>();
+		String getAllClients = "SELECT * FROM clients c LEFT JOIN clients_trainers ct ON c.client_id = ct.client_id"
+				+ " JOIN users u ON u.user_id = c.user_id WHERE trainer_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllClients, trainerId);
+		while(results.next()){
+			allClients.add(mapRowToClient(results));
+		}
+		return allClients;
+	}
 
 //	@Override
 //	public boolean getTrainerPrivacySetting(long userId) {
@@ -313,7 +325,16 @@ public class JDBCUserDAO implements UserDAO {
 		return trainer;
 	}
 
-	
+	@Override
+	public User getUserByUsername(String Username){
+		String command = "SELECT * FROM users WHERE username = ?";
+		SqlRowSet rows = jdbcTemplate.queryForRowSet(command, Username);
+		User user = new User();
+		while(rows.next()){
+			user = mapToRowUser(rows);
+		}
+		return user;
+	}
 
 	//Messaging
 	@Override
@@ -499,6 +520,8 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 
+	
+	
 	
 	
 }
