@@ -59,5 +59,6 @@ public interface UserDAO {
 
 	public User getUserByUsername(String Username);
 	public List<Client> getAllClientsFromTrainerId(Long trainerId);
+	public Client getClientByClientId(long id);
 
 }

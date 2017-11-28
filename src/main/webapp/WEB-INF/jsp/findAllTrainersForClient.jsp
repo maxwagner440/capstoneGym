@@ -26,8 +26,12 @@
 				
 				</div>
 				<c:out value="${message}"/>
-				
-    <c:forEach var="trainer" items="${trainers}">
+		<c:choose>
+		<c:when test="${trainers == null || trainers.size() == 0 }">
+			<p>No trainers found, try again.</p>
+		</c:when>
+		<c:otherwise>	
+   		 <c:forEach var="trainer" items="${trainers}">
         <div class="profile">
             <div class="left-prof">
                 <div class="head-two">
@@ -53,5 +57,7 @@
             </div>
         </div>
     </c:forEach>
+    </c:otherwise>
+    </c:choose>
 </div>
 </body>

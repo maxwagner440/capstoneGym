@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -183,11 +184,12 @@
                             </tr>
                             <tr>
                                 <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; text-align: center;">
-                                        <c:url var="sendMessage" value="/sendMessage"/>
-  										<form action="${sendMessage}" method="POST">
+                                        
+
                                                
-                                                <textarea class="messagearea" name="message" placeholder="Your Comments Here..."></textarea>
+                                                <c:url var="sendMessage" value="/replyMessage"/>
                                                  <form action="${sendMessage}" method="POST">
+                                                 <textarea class="messagearea" name="message" placeholder="Your Comments Here..."></textarea>
 												<input type="hidden" name="receiverId" value="${trainer.id}"/>
 												<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                         <tr>
@@ -198,13 +200,16 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        </form>
                                     </table>
-                                           </form>
+                                           
                                 </td>
                             </tr>
                             
                     </td>
                 </tr>
+                
+                
                 <!-- 1 Column Text + Button : END -->
 
             </table>

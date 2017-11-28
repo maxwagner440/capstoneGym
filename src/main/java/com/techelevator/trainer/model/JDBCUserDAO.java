@@ -61,6 +61,16 @@ public class JDBCUserDAO implements UserDAO {
 	}
 	
 	@Override
+	public Client getClientByClientId(long id){
+		String sqlStatement = "SELECT * FROM clients c JOIN users u ON u.user_id=c.user_id WHERE client_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlStatement, id);
+		Client client = new Client();
+		while(results.next()){
+			 client = mapRowToClient(results);
+		}
+		return client;
+	}
+	@Override
 	public boolean searchForEmailAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM users "+

@@ -69,15 +69,15 @@ public class SearchController {
 	}
 	
 	@RequestMapping(path="/viewAllClients", method=RequestMethod.POST)
-	public String viewClientsProfile(HttpSession session, @RequestParam long userID){
-		
-		
-		return "redirect:/trainerClientNotes";
+	public String viewClientsProfile(HttpSession session, RedirectAttributes attr, @RequestParam long userID){
+		Client client = userDAO.getClientByClientId(userID);
+		attr.addFlashAttribute("client", client);
+		return "redirect:/viewThisClientForTrainer";
 	}
 	
-	@RequestMapping(path="/trainerClientNotes", method=RequestMethod.GET)
-	public String viewClientNotesPage(HttpSession session, @ModelAttribute("client") Client client){
-		
-		return "trainerClientNotes";
+	@RequestMapping(path="/viewThisClientForTrainer", method=RequestMethod.GET)
+	public String viewClientNotesPage(HttpSession session, ModelMap modelHolder, @ModelAttribute("client") Client clientToView){
+		modelHolder.addAttribute("clientToView", clientToView);
+		return "messaging/viewThisClientForTrainer";
 	}
 }

@@ -10,7 +10,7 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
-<h1>All Clients</h1>
+<h1>All My Clients</h1>
 <div class="search-page">
     <c:forEach var="client" items="${clients}">
         <div class="profile">
@@ -31,11 +31,27 @@
                 <p><c:out value="${client.goals}"/></p>
             </div>
             <div class="btns">    
-            	<c:url var="viewClient" value="/viewAllClients"/>
-				<form action="${viewClient}" method="POST">
-				<button type="submit" name ="userID" value="${client.id}" class="view-btn">View Client</button>
+            	<c:url var="viewMyClient" value="/viewAllClients"/>
+				<form action="${viewMyClient}" method="POST">
+				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn">View Client</button>
 				</form>
             </div>
+            <div class="btns">    
+            	<c:url var="viewMyClient" value="/viewAllClients"/>
+				<form action="${viewMyClient}" method="POST">
+				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn"> Client</button>
+				</form>
+				
+           		<br>
+           		
+                <c:url value="/replyMessage" var="replyMessage"/>
+                <form action="${replyMessage}" method="GET">
+				<input type="hidden" name="receiverUsername" value="${client.username}"/>
+                <button type="submit" class="view-btn">Message</button>
+                </form>
+            </div>
+            
+         
         </div>
     </c:forEach>
 </div>
