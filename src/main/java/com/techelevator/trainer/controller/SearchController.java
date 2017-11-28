@@ -32,9 +32,7 @@ public class SearchController {
 	@RequestMapping(path="/findAllTrainers", method=RequestMethod.GET)
 	public String getAllTrainersWhenLookedForByClients(Map<String, Object> model){ //what if they aren't a client?
 		if(model.get("trainers") == "" || model.get("trainers") == null){
-			String message = "No trainers displayed, use the search to find a trainer";
-			model.put("message", message);
-			model.put("trainers", userDAO.getAllTrainers()); //this has both the user and trainer data in trainer
+			model.put("trainers", userDAO.getAllPublicTrainers()); //this has both the user and trainer data in trainer
 		}
 		
 		return "findAllTrainersForClient";

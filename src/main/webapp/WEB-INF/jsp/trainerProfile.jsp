@@ -129,8 +129,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
           <i class="fa fa-remove"></i>
         </span>
-        <p><strong>Make this private! Useful to stalk new clients</strong></p>
-        <p>People are looking at your profile. Find out who.</p>
+        <p><strong>
+        <div id="trainer-privacy">
+	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
+	<c:url var="changePrivacy" value="/trainerDashboard"/>
+	<form action="${changePrivacy}" method="POST">
+		<input type="submit" value="Change Privacy Status"/>
+	</form>
+</div> </strong></p>
+
       </div>
     
     <!-- End Left Column -->

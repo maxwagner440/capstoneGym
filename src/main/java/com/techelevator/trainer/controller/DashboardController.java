@@ -41,14 +41,9 @@ public class DashboardController {
 
 	@RequestMapping(path="/trainerDashboard", method=RequestMethod.POST)
 	public String setAccountPrivacy(HttpSession session, ModelMap modelHolder){
-//		User currentUser=(User) session.getAttribute("user");
-//		if(!currentUser.getRole().equalsIgnoreCase("trainer")){
-//			return "redirect:/clientDashboard/"+currentUser.getUsername();
-//		}
-		
 		Trainer trainer = (Trainer) session.getAttribute("user");
-		userDAO.toggleTrainerPrivacySetting(trainer.getId(), trainer.isVisibility());
-		trainer.setVisibility(! trainer.isVisibility());
+		userDAO.toggleTrainerPrivacySetting(trainer.getId());
+		trainer.setVisibility(userDAO.getTrainerPrivacySetting(trainer.getId()));
 		return "redirect:/trainerDashboard";
 	}
 }

@@ -22,8 +22,8 @@ public interface UserDAO {
 	public Trainer getTrainerById (long trainerId);
 	public Client getClientByEmail(String email);
 	public boolean seeIfEmailExists(String email);
-	//public boolean getTrainerPrivacySetting(long userId);
-	public void toggleTrainerPrivacySetting(long userId, boolean privacy);
+	public boolean getTrainerPrivacySetting(long userId);
+	public void toggleTrainerPrivacySetting(long userId);
 	public Trainer getTrainerByUsername(String username);
 	//public Client getClientByUsername(String username);
 	//public boolean seeIfUsernameExists(String username);
@@ -60,5 +60,7 @@ public interface UserDAO {
 	public User getUserByUsername(String Username);
 	public List<Client> getAllClientsFromTrainerId(Long trainerId);
 	public Client getClientByClientId(long id);
+	public List<Trainer> getAllPublicTrainers();
+
 
 }

@@ -49,7 +49,7 @@ public class JDBCUserDAO implements UserDAO {
 				+ ") VALUES (?, ?, ?, ?, ?, ?)",
 				trainer.getBio(), trainer.getExercisePhilosophy(),
 				trainer.getPastExperience(),
-				trainer.getTrainerHourlyPrice(), id, false);
+				trainer.getTrainerHourlyPrice(), id, true);
 	}
 	
 	@Override
@@ -303,7 +303,16 @@ public class JDBCUserDAO implements UserDAO {
 //	}
 
 	@Override
-	public void toggleTrainerPrivacySetting(long userId, boolean privacy) {
+	public boolean getTrainerPrivacySetting(long userId) {
+		String command = "SELECT visibility FROM trainers WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(command, userId);
+		results.next();
+		return results.getBoolean("visibility");
+	}
+	
+	@Override
+	public void toggleTrainerPrivacySetting(long userId) {
+		boolean privacy = getTrainerPrivacySetting(userId);
 		String command = "UPDATE trainers SET visibility=? WHERE user_id=?";
 		jdbcTemplate.update(command, !privacy, userId);
 	}
@@ -323,7 +332,19 @@ public class JDBCUserDAO implements UserDAO {
 		return trainers;
 		
 	}
-
+	
+	@Override
+	public List<Trainer> getAllPublicTrainers(){
+		List<Trainer> trainers=new ArrayList<Trainer>();
+		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE u.role= 'Trainer' AND visibility = true";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command);
+		
+		while(rows.next()){
+			trainers.add(mapRowToTrainer(rows));
+		}
+		
+		return trainers;
+	}
 	@Override
 	public Trainer getTrainerById(long userID) {
 		String command="SELECT * FROM users u JOIN trainers t ON u.user_id=t.user_id WHERE u.user_id=? ";
@@ -415,6 +436,8 @@ public class JDBCUserDAO implements UserDAO {
 	public void acceptRequest(long clientID, long trainerID){
 		String statement = "UPDATE trainers_requests SET accept = ? WHERE client_id = ? AND trainer_id = ?";
 		jdbcTemplate.update(statement, 1, clientID, trainerID);
+		String putThemIntoClientAndTrainerTable="INSERT INTO clients_trainers (client_id, trainer_id) VALUES (?, ?)";
+		jdbcTemplate.update(putThemIntoClientAndTrainerTable, clientID, trainerID);
 	}
 	
 	@Override
@@ -500,9 +523,9 @@ public class JDBCUserDAO implements UserDAO {
 		// TODO Auto-generated method stub
 		List<Trainer> trainers=new ArrayList<>();
 		String searchForTrainers="SELECT * FROM users u RIGHT JOIN trainers t ON t.user_id=u.user_id "
-				+ "WHERE username LIKE ? OR first_name LIKE ? OR last_name LIKE ? "
+				+ "WHERE (username LIKE ? OR first_name LIKE ? OR last_name LIKE ? "
 				+ "OR email LIKE ? OR bio LIKE ? OR philosophy LIKE ? OR experience LIKE "
-				+ "? ORDER BY username, last_name, first_name, email, bio, philosophy, experience";
+				+ "?) AND t.visibility = true ORDER BY username, last_name, first_name, email, bio, philosophy, experience";
 				keyword = "%" + keyword + "%";
 		SqlRowSet rows=jdbcTemplate.queryForRowSet(searchForTrainers, keyword, keyword, keyword, keyword, keyword, keyword, keyword);
 		while(rows.next()){

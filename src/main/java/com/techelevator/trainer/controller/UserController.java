@@ -5,7 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +39,7 @@ public class UserController {
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr,
 												@RequestParam String password, HttpSession session, ModelMap modelHolder) {
 		
-		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
+		if(! userDAO.seeIfEmailExists(user.getEmail())){
 			if(results.hasErrors()){
 				flashAttr.addFlashAttribute("user", user);
 				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
@@ -78,6 +81,7 @@ public class UserController {
 			return "redirect:/clientAttributes";
 		}
 		userDAO.saveClient(client, user.getId());
+		fillInUserVarsForClient(client, user);
 		session.setAttribute("user", client);
 		return "redirect:/clientDashboard";
 		
@@ -106,10 +110,34 @@ public class UserController {
 			attr.addFlashAttribute("trainer", trainer);
 			return "redirect:/trainerAttributes";
 		}
+		
 		userDAO.saveTrainer(trainer, user.getId());
+		fillInUserVarsForTrainer(trainer, user);
 		session.setAttribute("user", trainer);
+	
 		return "redirect:/trainerDashboard";
 		
+	}
+	
+	private void fillInUserVarsForTrainer(Trainer trainer, User user){
+		trainer.setAge(user.getAge());
+		trainer.setId(user.getId());
+		trainer.setEmail(trainer.getEmail());
+		trainer.setUsername(user.getUsername());
+		trainer.setFirstName(user.getFirstName());
+		trainer.setLastName(user.getLastName());
+		trainer.setRole(user.getRole());
+	}
+	
+
+	public void fillInUserVarsForClient(Client client, User user){
+		client.setAge(user.getAge());
+		client.setId(user.getId());
+		client.setEmail(client.getEmail());
+		client.setUsername(user.getUsername());
+		client.setFirstName(user.getFirstName());
+		client.setLastName(user.getLastName());
+		client.setRole(user.getRole());
 	}
 	
 
