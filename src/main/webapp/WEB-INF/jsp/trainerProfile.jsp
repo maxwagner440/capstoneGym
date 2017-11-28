@@ -60,6 +60,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Your Bio: <c:out value="${user.bio}"/> </p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Your Location: Cleveland, OH</p>
+	        <form:form method="POST" action="${formAction}" modelAttribute="newBrewery">
+				<div class="form-group">
+				<label for="breweryLogoUrl">Current Picture: </label>
+				<form:input path="breweryLogoUrl" class="form-control" />
+				<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
+				data-form-data= "{"upload_preset": "profile_images" }" ></input>
+				<form:errors path="breweryLogoUrl"></form:errors>
+			</div>
+			</form:form>
         </div>
       </div>
       <br>
@@ -129,8 +138,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
           <i class="fa fa-remove"></i>
         </span>
-        <p><strong>Make this private! Useful to stalk new clients</strong></p>
-        <p>People are looking at your profile. Find out who.</p>
+        <p><strong>
+        <div id="trainer-privacy">
+	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
+	<c:url var="changePrivacy" value="/trainerDashboard"/>
+	<form action="${changePrivacy}" method="POST">
+		<input type="submit" value="Change Privacy Status"/>
+	</form>
+</div> </strong></p>
+
       </div>
     
     <!-- End Left Column -->

@@ -1,0 +1,261 @@
+body {
+    background: #6a7fb9;
+}
+
+h2, h3 {
+    font-family: 'Righteous', sans-serif;
+}
+#full-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". content .";
+    background: #fff;
+}
+
+#space-one, #space-two {
+    grid-area: '.';
+    background: #6a7fb9;
+}
+
+#client-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "client-img client-info client-info client-info"
+                         "workout     workout     notes       notes";
+    grid-area: content;
+    height: 100%;
+}
+#client-prof, #client-info {
+    color: #1a232b;
+}
+#client-info h2, .client-name h2 {
+    text-decoration: underline #ccae51;
+}
+
+/***PORTRAIT SECTION***/
+
+#client-prof {
+    grid-area: client-img;
+    border-right: 1px #ccae51 solid;
+    border-bottom: 1px #ccae51 solid;
+    width: 100%;
+}
+
+.client-name h2 {
+    text-align: center;
+}
+
+.client-image {
+    background: #1a232b;
+    padding: 20px;
+    display: inline-block;
+    width: 150px;
+    height: 200px;
+    margin:  10px 30px 30px 30px;
+    box-shadow: #222 5px 5px 5px;
+    border-radius: 5px;
+}
+
+img {
+    height: 200px;
+    width: 150px;
+}
+
+/***INFO SECTION***/
+
+#client-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "height goal"
+                         "weight goal";
+    grid-area: client-info;
+    grid-column: span 3;
+    border-bottom: 1px #ccae51 solid;
+    padding: 20px;
+}
+
+#client-info p {
+    color: #fff;
+    background:rgba(124, 124, 124, 0.664);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px 0px 0px;
+    box-shadow: #888 5px 5px 5px;
+}
+
+.client-height {
+    display: inline-block;
+    grid-area: height;
+    grid-column: span 1;
+}
+.client-weight {
+    display: inline-block;
+    grid-area: weight;
+    grid-column: span 1;
+}
+.client-goal {
+    display: inline-block;
+    grid-area: goal;
+    grid-column: span 2;
+}
+
+/***WORKOUT SECTION***/
+
+#workout {
+    grid-area: workout;
+    grid-column: span 2;
+    border-right: 1px #ccae51 solid;
+    border-top: 1px #ccae51 solid;
+}
+
+.client-workout {
+    color: white;
+    background: rgb(84, 32, 133);
+    display: block;
+    border-bottom: 1px solid #ccae51;
+    text-align: center;
+}
+.client-workout:hover {
+    background: rgb(106, 50, 161);
+    border-bottom: 1px solid #ccae51;
+}
+.client-workout h2 {
+    margin: 20px;
+    display: inline-block;
+    text-align: center;
+}
+.add-workout {
+    background: rgb(126, 126, 126);
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+.add-workout:hover {
+    background: rgb(156, 156, 156);
+}
+.add-workout h2 {
+    color: #fff;
+    margin: 20px;
+    display: inline-block;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/***NOTES SECTION***/
+
+#notes {
+    grid-area: notes;
+    grid-column: span 2;
+    
+}
+
+/***GENERAL NOTE COLORS***/
+
+.general-notes {
+    background: #5f5fb4;
+}
+.general-notes:hover {
+    background: #7575d3;
+}
+
+/***SPECIFIC NOTE COLOR***/
+
+.specific-notes {
+    background: rgb(75, 141, 132);
+}
+.specific-notes:hover {
+    background: rgb(112, 163, 156);
+}
+
+/***NOTES CSS***/
+
+.general-notes, .specific-notes {
+    color: white;
+    border-top: 1px solid #ccae51;
+    transition: height 0.8s;
+}
+.extend-general, .extend-specific {  
+    display: inline;
+    font-size: 1.5em;
+}
+.general-notes h2, .specific-notes h2 {
+    text-align: center;
+    display: inline-block;
+    margin: 20px auto;    
+}
+.general-notes h3, .specific-notes h3 {
+    margin: 20px;
+    display: inline;    
+}
+.general-note-section p, .specific-note-section p {
+    background:rgba(124, 124, 124, 0.664);
+    box-shadow: #888 5px 5px 5px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+.general-panel, .specific-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "notes btns";
+    background: #fff;
+}
+
+/***NOTE BUTTONS***/
+
+input[type="file"] {
+    display: none;
+}
+.file-customize {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    background: rgb(75, 141, 132);
+    width: 100px;
+    height: 50px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 1em;
+}
+.file-customize:hover {
+    background:rgb(112, 163, 156);
+}
+.general-note-btns, .specific-note-btns {
+    border-left: 1px solid #ccae51;
+}
+.add-note-btn {
+    display: block;
+    background-color: #5f5fb4;
+    color: #fff;
+    border: none;
+    margin: 20px;
+    width: 100px;
+    height: 50px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 1em;
+}
+.add-note-btn:hover {
+    background: #7575d3;
+}
+.remove-note-btn {
+    display: block;
+    background-color: #af1f1f;
+    color: #fff;
+    border: none;
+    margin: 20px;
+    width: 100px;
+    height: 50px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 1em;
+}
+.remove-note-btn:hover {
+    background: #d42323;
+}
+
+/***JQUERY CSS***/
+
+.appear {
+    height: 300px;
+}

@@ -9,6 +9,6 @@
 	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
 	<c:url var="changePrivacy" value="/trainerDashboard"/>
 	<form action="${changePrivacy}" method="POST">
-		<input type="submit"/>
+		<input type="submit" value="Change Privacy Status"/>
 	</form>
 </div>

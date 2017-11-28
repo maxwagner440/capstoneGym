@@ -5,7 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,7 +39,7 @@ public class UserController {
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult results, RedirectAttributes flashAttr,
 												@RequestParam String password, HttpSession session, ModelMap modelHolder) {
 		
-		if(! userDAO.seeIfEmailExists(user.getEmail()) && ! userDAO.searchForUsernameAndPassword(user.getUsername(), password)){
+		if(! userDAO.seeIfEmailExists(user.getEmail())){
 			if(results.hasErrors()){
 				flashAttr.addFlashAttribute("user", user);
 				flashAttr.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", results);
@@ -78,6 +81,7 @@ public class UserController {
 			return "redirect:/clientAttributes";
 		}
 		userDAO.saveClient(client, user.getId());
+		fillInUserVarsForClient(client, user);
 		session.setAttribute("user", client);
 		return "redirect:/clientDashboard";
 		
@@ -106,45 +110,34 @@ public class UserController {
 			attr.addFlashAttribute("trainer", trainer);
 			return "redirect:/trainerAttributes";
 		}
+		
 		userDAO.saveTrainer(trainer, user.getId());
+		fillInUserVarsForTrainer(trainer, user);
 		session.setAttribute("user", trainer);
+	
 		return "redirect:/trainerDashboard";
 		
 	}
 	
-<<<<<<< HEAD
-	//controller
+	private void fillInUserVarsForTrainer(Trainer trainer, User user){
+		trainer.setAge(user.getAge());
+		trainer.setId(user.getId());
+		trainer.setEmail(trainer.getEmail());
+		trainer.setUsername(user.getUsername());
+		trainer.setFirstName(user.getFirstName());
+		trainer.setLastName(user.getLastName());
+		trainer.setRole(user.getRole());
+	}
+	
 
-//	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-//	public String saveTrainerImage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
-
-//	@RequestMapping(path="/breweries", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-//	public String createBrewery(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
-
-//	flash.addFlashAttribute("newUser", newUser);
-//
-//	    if(result.hasErrors()) {
-//	        flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "newBrewery", result);
-//	        return "redirect:/breweries/new";
-//	    }
-<<<<<<< HEAD
-//	    if(!userDAO.getUserByName(newUser.getFirstName(), newUser.getLastName())) { 
-//	    
-//	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newUser.setUserImageUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());      
-//	        userDAO.saveUser(newUser.getUsername(), "password");
-=======
-//	    if(!breweryDAO.searchForBrewery(newBrewery.getName())) { 
-//	    
-//	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newBrewery.setBreweryLogoUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
-//	        
-//	        
-//	        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
-//	        return "redirect:/breweries";
-//	    } else {
-//	        flash.addFlashAttribute("message", "This brewery alreadys exists");
-//	        return "redirect:/breweries/new";
-//	    }
-//	}
+	public void fillInUserVarsForClient(Client client, User user){
+		client.setAge(user.getAge());
+		client.setId(user.getId());
+		client.setEmail(client.getEmail());
+		client.setUsername(user.getUsername());
+		client.setFirstName(user.getFirstName());
+		client.setLastName(user.getLastName());
+		client.setRole(user.getRole());
+	}
+}
 

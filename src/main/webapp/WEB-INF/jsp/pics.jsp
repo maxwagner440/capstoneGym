@@ -29,13 +29,12 @@ $(document).ready(function() {
 </script>
 
 <form:form method="POST" action="${formAction}" modelAttribute="newBrewery">
-<div class="form-group">
-<label for="breweryLogoUrl">Current Picture: </label>
-<form:input path="breweryLogoUrl" class="form-control" />
-
-            <input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
-data-form-data= "{"upload_preset": "profile_images" }" ></input>
-<form:errors path="breweryLogoUrl"></form:errors>
+	<div class="form-group">
+	<label for="breweryLogoUrl">Current Picture: </label>
+	<form:input path="breweryLogoUrl" class="form-control" />
+	<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
+	data-form-data= "{"upload_preset": "profile_images" }" ></input>
+	<form:errors path="breweryLogoUrl"></form:errors>
 </div>
 </form:form>
 

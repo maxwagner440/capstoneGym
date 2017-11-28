@@ -1,8 +1,50 @@
 
 <%@include file ="/WEB-INF/jsp/common/header.jspf" %>
+
 <title>Client Profile</title>
 <meta charset="UTF-8">
-
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+          </script>
+                     <style>
+                /* The Modal (background) */
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                
+                /* Modal Content */
+                .modal-content {
+                    background-color: #7d97a5;
+                    margin: auto;
+                    padding: 20px;
+                    border: 1px solid #7d97a5;
+                    width: 80%;
+                }
+                
+                /* The Close Button */
+                .close {
+                    color: #fdfafa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                
+                .close:hover,
+                .close:focus {
+                    color: #222a2e;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                </style>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 </style>
@@ -189,7 +231,47 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!-- End Page Container -->
 </div>
 <br>
-
+ 
+			<div id="successful-request-modal" class="modal">
+                
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p><c:out value="${message}"/></p>
+                  </div>
+                
+                </div>
+                
+                 <script>
+                 $(function(){
+                	 
+               
+                // Get the modal
+                var modal = document.getElementById('successful-request-modal');
+                
+           
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                
+                // When the user clicks the button, open the modal 
+                 <c:if test="${!empty(message)}">
+                    modal.style.display = "block";
+                </c:if>
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                 });
+                </script>
+                
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
   <h5>Footer</h5>
