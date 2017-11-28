@@ -127,6 +127,7 @@ public class UserController {
 		trainer.setFirstName(user.getFirstName());
 		trainer.setLastName(user.getLastName());
 		trainer.setRole(user.getRole());
+		trainer.setVisibility(true);
 	}
 	
 

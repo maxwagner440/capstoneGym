@@ -54,7 +54,7 @@ public interface UserDAO {
 	public List<Request> getAllRequestsForTrainer(long trainerId);
 
 	public List<Client> viewAllClientsRequestingForTrainer(long trainerId);
-	public List<Client> viewAllClientsForTrainerWithEstablishedRelationship(long trainerId);
+
 	public List<Trainer> viewAllTrainersForClient(long clientId);
 
 	public User getUserByUsername(String Username);
