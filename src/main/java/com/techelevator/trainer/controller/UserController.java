@@ -113,13 +113,13 @@ public class UserController {
 	}
 	
 	//controller
-<<<<<<< HEAD
+
 //	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
 //	public String saveTrainerImage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
-=======
+
 //	@RequestMapping(path="/breweries", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
 //	public String createBrewery(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
+
 //	flash.addFlashAttribute("newUser", newUser);
 //
 //	    if(result.hasErrors()) {
