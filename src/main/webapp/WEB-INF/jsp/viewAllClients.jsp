@@ -28,12 +28,12 @@
             </div>
             <div class="info">
                 <h3>Goal: </h3>
-                <p><c:out value="${client.goal}"/></p>
+                <p><c:out value="${client.goals}"/></p>
             </div>
             <div class="btns">    
             	<c:url var="viewClient" value="/viewAllClients"/>
 				<form action="${viewClient}" method="POST">
-				<button type="submit" name ="userID" value="${client.id }" class="view-btn">View Client</button>
+				<button type="submit" name ="userID" value="${client.id}" class="view-btn">View Client</button>
 				</form>
             </div>
         </div>

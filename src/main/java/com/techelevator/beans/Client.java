@@ -14,7 +14,7 @@ public class Client extends User{
 	private Double heightInInches ;
 	
 	@NotBlank(message="Please Enter Your Goals")
-	private String goal;
+	private String goals;
 	
 	@NotBlank(message="What Do You Like?")
 	private String modalityPreference;
@@ -34,11 +34,11 @@ public class Client extends User{
 	public void setHeightInInches(Double heightInInches) {
 		this.heightInInches = heightInInches;
 	}
-	public String getGoal() {
-		return goal;
+	public String getGoals() {
+		return goals;
 	}
-	public void setGoal(String goal) {
-		this.goal = goal;
+	public void setGoals(String goals) {
+		this.goals = goals;
 	}
 	public String getModalityPreference() {
 		return modalityPreference;

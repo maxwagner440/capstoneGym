@@ -76,7 +76,7 @@ CREATE TABLE trainers_requests(
         accept int NOT NULL,
        
         CONSTRAINT fk_trainers_requests_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
-        CONSTRAINT fk_trainers_requests_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
+        CONSTRAINT fk_trainers_requests_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id)
         
 );
 
@@ -136,7 +136,11 @@ REFERENCES trainers(trainer_id);
 
 COMMIT;
 
+INSERT INTO clients_trainers (client_id, trainer_id) VALUES (1, 1);
 
-
+SELECT * FROM users u JOIN trainers t ON t.user_id=u.user_id WHERE username LIKE '%?%' OR first_name LIKE '%?%' OR last_name LIKE '%?%' OR email LIKE '%?%' OR bio LIKE '%?%' OR philosophy LIKE '%?%' OR experience LIKE '%?%' ORDER BY username, last_name, first_name, email, bio, philosophy, experience;
 
 ROLLBACK;
+
+
+

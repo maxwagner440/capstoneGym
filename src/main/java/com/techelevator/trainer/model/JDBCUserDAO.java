@@ -56,7 +56,7 @@ public class JDBCUserDAO implements UserDAO {
 	public void saveClient(Client client, long id) {
 		jdbcTemplate.update("INSERT INTO clients (goal, height, modality, weight, user_id " 
 				+ ") VALUES (?, ?, ?, ?, ?)",
-				client.getGoal(), client.getHeightInInches(),
+				client.getGoals(), client.getHeightInInches(),
 				client.getModalityPreference(), client.getWeightInPounds(), id);
 	}
 	
@@ -220,7 +220,7 @@ public class JDBCUserDAO implements UserDAO {
 		
 		mapGenericUserInfoFromRowToRoleType(guy, results);
 		
-		guy.setGoal(results.getString("goal"));
+		guy.setGoals(results.getString("goal"));
 		guy.setHeightInInches(results.getDouble("height"));
 		guy.setModalityPreference(results.getString("modality"));
 		guy.setWeightInPounds(results.getDouble("weight"));
@@ -489,10 +489,11 @@ public class JDBCUserDAO implements UserDAO {
 	public List<Trainer> searchForTrainer(String keyword) {
 		// TODO Auto-generated method stub
 		List<Trainer> trainers=new ArrayList<>();
-		String searchForTrainers="SELECT * FROM user u JOIN trainer t ON t.user_id=u.user_id "
-				+ "WHERE username LIKE '%?%' OR first_name LIKE '%?%' OR last_name LIKE '%?%' "
-				+ "OR email LIKE '%?%' OR bio LIKE '%?%' OR philosophy LIKE '%?%' OR experience LIKE '%?%'"
-				+ "ORDER BY username, last_name, first_name, email, bio, philosophy, experience;";
+		String searchForTrainers="SELECT * FROM users u RIGHT JOIN trainers t ON t.user_id=u.user_id "
+				+ "WHERE username LIKE ? OR first_name LIKE ? OR last_name LIKE ? "
+				+ "OR email LIKE ? OR bio LIKE ? OR philosophy LIKE ? OR experience LIKE "
+				+ "? ORDER BY username, last_name, first_name, email, bio, philosophy, experience";
+				keyword = "%" + keyword + "%";
 		SqlRowSet rows=jdbcTemplate.queryForRowSet(searchForTrainers, keyword, keyword, keyword, keyword, keyword, keyword, keyword);
 		while(rows.next()){
 			trainers.add(mapRowToTrainer(rows));
@@ -501,13 +502,13 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public List<Client> viewAllTrainersForClient(long clientId) {
+	public List<Trainer> viewAllTrainersForClient(long clientId) {
 		// TODO Auto-generated method stub
-		List<Client> newList = new ArrayList<>();
+		List<Trainer> newList = new ArrayList<>();
 		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests WHERE client_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, clientId);
 		while(results.next()){
-			newList.add(mapRowToClient(results));
+			newList.add(mapRowToTrainer(results));
 		}
 		return newList;
 	}
@@ -515,6 +516,12 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public List<Client> viewAllClientsRequestingForTrainer(long trainerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Client> viewAllClientsForTrainerWithEstablishedRelationship(long trainerId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

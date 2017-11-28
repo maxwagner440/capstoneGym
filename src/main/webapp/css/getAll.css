@@ -162,6 +162,10 @@ textarea {
 	margin: 0;
 }
 
+#searchBox { 
+	height:75em; !important
+	
+}
 .button {
 	border: 0;
 	outline: none;
@@ -479,4 +483,6 @@ p {
 	.small-info {
 		margin: 10px auto;
 	}
+	
+
 }

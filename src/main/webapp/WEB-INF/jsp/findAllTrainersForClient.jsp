@@ -11,7 +11,22 @@
 </head>
 <body class="color-back">
 <h1>All Trainers</h1>
+
+
+
 <div class="search-page">
+				<div >
+				<c:url var="searchTrainers" value="/searchTrainers"/>
+				
+				<form action="${searchTrainers}" method="POST" >
+			
+				<input id="searchBox"  type="search" name="keyword" placeholder="Search for a trainer" style="height:100px; width: 50%"/>
+				
+				</form>
+				
+				</div>
+				<c:out value="${message}"/>
+				
     <c:forEach var="trainer" items="${trainers}">
         <div class="profile">
             <div class="left-prof">
