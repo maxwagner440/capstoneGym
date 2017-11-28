@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="css/test_css.css" rel="stylesheet" title="logincss"/>
+    <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
     <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
-<h1>All Clients</h1>
+<h1>All My Clients</h1>
 <div class="search-page">
     <c:forEach var="client" items="${clients}">
         <div class="profile">
@@ -28,14 +28,30 @@
             </div>
             <div class="info">
                 <h3>Goal: </h3>
-                <p><c:out value="${client.goal}"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><c:out value="${client.goals}"/></p>
             </div>
             <div class="btns">    
-            	<c:url var="viewClient" value="/viewAllClients"/>
-				<form action="${viewClient}" method="POST">
-				<button type="submit" name ="userID" value="${client.id }" class="view-btn">View Client</button>
+            	<c:url var="viewMyClient" value="/viewAllClients"/>
+				<form action="${viewMyClient}" method="POST">
+				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn">View Client</button>
 				</form>
             </div>
+            <div class="btns">    
+            	<c:url var="viewMyClient" value="/viewAllClients"/>
+				<form action="${viewMyClient}" method="POST">
+				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn"> Client</button>
+				</form>
+				
+           		<br>
+           		
+                <c:url value="/replyMessage" var="replyMessage"/>
+                <form action="${replyMessage}" method="GET">
+				<input type="hidden" name="receiverUsername" value="${client.username}"/>
+                <button type="submit" class="view-btn">Message</button>
+                </form>
+            </div>
+            
+         
         </div>
     </c:forEach>
 </div>

@@ -193,7 +193,7 @@
                                         <tr>
                                             <br>
                                             <br><td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
-												<input type="submit" value="Send" style="color:#ffffff; background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"/>
+												<input type="submit" id="sendButton" value="Send" style="color:#ffffff; background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"/>
                                             <span style="color:#ffffff;" class="button-link"></span>
                                                 </a>
                                             </td>
@@ -209,7 +209,20 @@
 
             </table>
             <!-- Email Body : END -->
-
+<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js">
+          </script>
+          
+          
+          <script>
+          $(document).ready(function(){
+        	  $('#sendButton').on('click', function(e){
+        	
+        		  alert("You have successfully sent the message");
+        	  })
+          })
+          
+          </script>
             <!--[if mso]>
             </td>
             </tr>

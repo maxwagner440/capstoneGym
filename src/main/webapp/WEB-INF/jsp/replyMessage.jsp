@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -183,33 +184,50 @@
                             </tr>
                             <tr>
                                 <td style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555; text-align: center;">
-                                        <c:url var="sendMessage" value="/sendMessage"/>
-  										<form action="${sendMessage}" method="POST">
+                                        
+
                                                
-                                                <textarea class="messagearea" name="message" placeholder="Your Comments Here..."></textarea>
+                                                <c:url var="sendMessage" value="/replyMessage"/>
                                                  <form action="${sendMessage}" method="POST">
+                                                 <textarea class="messagearea" name="message" placeholder="Your Comments Here..."></textarea>
 												<input type="hidden" name="receiverId" value="${trainer.id}"/>
 												<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
                                         <tr>
                                             <br>
                                             <br><td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">
-												<input type="submit" value="Send" style="color:#ffffff; background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"/>
+												<input type="submit" id="sendButton" value="Send" style="color:#ffffff; background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"/>
                                             <span style="color:#ffffff;" class="button-link"></span>
                                                 </a>
                                             </td>
                                         </tr>
+                                        </form>
                                     </table>
-                                           </form>
+                                           
                                 </td>
                             </tr>
                             
                     </td>
                 </tr>
+                
+                
                 <!-- 1 Column Text + Button : END -->
 
             </table>
             <!-- Email Body : END -->
-
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js">
+          </script>
+          
+          
+          <script>
+          $(document).ready(function(){
+        	  $('#sendButton').on('click', function(e){
+        	
+        		  alert("You have successfully sent the message");
+        	  })
+          })
+          
+          </script>
             <!--[if mso]>
             </td>
             </tr>

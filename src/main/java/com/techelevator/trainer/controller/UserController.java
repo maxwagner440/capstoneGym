@@ -112,6 +112,7 @@ public class UserController {
 		
 	}
 	
+<<<<<<< HEAD
 	//controller
 
 //	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST) //MUST BE PUT IN THE POST, NOT THE GET!!! -->
@@ -130,9 +131,7 @@ public class UserController {
 //	    if(!userDAO.getUserByName(newUser.getFirstName(), newUser.getLastName())) { 
 //	    
 //	  //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-//	        newUser.setUserImageUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());  
-//	        
-//	        
+//	        newUser.setUserImageUrl("http://res.cloudinary.com/teclebrew/" + newBrewery.getBreweryLogoUrl());      
 //	        userDAO.saveUser(newUser.getUsername(), "password");
 =======
 //	    if(!breweryDAO.searchForBrewery(newBrewery.getName())) { 
@@ -142,16 +141,10 @@ public class UserController {
 //	        
 //	        
 //	        breweryDAO.saveBrewery(newBrewery.getName(), newBrewery.getAddress(), newBrewery.getCity(), newBrewery.getZipcode(), newBrewery.getPhoneNumber(), newBrewery.getDescription(), newBrewery.getBreweryLogoUrl(), newBrewery.getImgUrl(), newBrewery.getWebsiteUrl(), newBrewery.getBusinessHours());
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
 //	        return "redirect:/breweries";
 //	    } else {
 //	        flash.addFlashAttribute("message", "This brewery alreadys exists");
 //	        return "redirect:/breweries/new";
 //	    }
 //	}
-<<<<<<< HEAD
-		
-=======
-//		
->>>>>>> 95dfb4c36568613612771269d50008e939857e05
-}
+

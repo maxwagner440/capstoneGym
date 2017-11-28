@@ -11,8 +11,27 @@
 </head>
 <body class="color-back">
 <h1>All Trainers</h1>
+
+
+
 <div class="search-page">
-    <c:forEach var="trainer" items="${trainers}">
+				<div >
+				<c:url var="searchTrainers" value="/searchTrainers"/>
+				
+				<form action="${searchTrainers}" method="POST" >
+			
+				<input id="searchBox"  type="search" name="keyword" placeholder="Search for a trainer" style="height:100px; width: 50%"/>
+				
+				</form>
+				
+				</div>
+				<c:out value="${message}"/>
+		<c:choose>
+		<c:when test="${trainers == null || trainers.size() == 0 }">
+			<p>No trainers found, try again.</p>
+		</c:when>
+		<c:otherwise>	
+   		 <c:forEach var="trainer" items="${trainers}">
         <div class="profile">
             <div class="left-prof">
                 <div class="head-two">
@@ -38,5 +57,7 @@
             </div>
         </div>
     </c:forEach>
+    </c:otherwise>
+    </c:choose>
 </div>
 </body>
