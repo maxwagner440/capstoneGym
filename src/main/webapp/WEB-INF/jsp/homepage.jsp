@@ -232,7 +232,7 @@
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 41.503283, lng: -81.638861},
-      zoom: 8
+      zoom: 5
     });
     infoWindow = new google.maps.InfoWindow;
 
@@ -255,10 +255,10 @@
       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 }
 var locations = [
-  {lat: 41.503283, lng: -81.638861},
-  {lat: 41.503164, lng: -81.636025},
-  {lat: 41.658319, lng: -81.410384},
-  {lat: 41.577078, lng: -81.423197},
+  {lat: 41.499320, lng: -81.694361},
+  {lat: 38.907192, lng: -77.036871},
+  {lat: 39.739236, lng: -104.990251},
+  {lat: 30.267153, lng: -97.743061},
   
 ]
 </script>
@@ -297,3 +297,42 @@ marker.setMap(map);
 <footer class="w3-center w3-black w3-padding-16">
 <p>Raise the Bar 2017<a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green"></a></p>
 </footer>
+
+<%-- //this is Josh's way of linking the breweries to the map. The lat/long for each brewery were saved in the db- so each brewery (object) is in a
+list with the lat/long linked to them, so a for each loop can pull out the brewery name an apply the label to the map.
+ // Create an array of alphabetical characters used to label the markers.
+var labels = [
+<c:forEach items="${allBreweries}" var="brewery">
+'<c:out value="${brewery.name}" />',
+</c:forEach>
+];
+
+    // Add some markers to the map.
+    // Note: The code uses the JavaScript Array.prototype.map() method to
+    // create an array of markers based on a given "locations" array.
+    // The map() method here has nothing to do with the Google Maps API.
+    var markers = locations.map(function(location, i) {
+     var marker = new google.maps.Marker({
+        map: map,
+        position: location[1],
+        label: labels[i % labels.length],
+        url: location[0]
+      });
+      google.maps.event.addListener(marker, 'click', function(){
+          window.location.href = this.url;
+      });
+      return marker;
+    });
+
+    // Add a marker clusterer to manage the markers.
+    var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+  }
+  var locations = [
+      <c:forEach items="${allBreweries}" var="brewery">
+      <c:url var="mapUrl" value="/breweryDetails/${brewery.id}"/>   
+      ["<c:out value='${mapUrl}'/>",{lat: <c:out value="${brewery.lat}"/>, lng: <c:out value="${brewery.lng}"/>}],
+      
+      </c:forEach>
+
+  ]// --%>
