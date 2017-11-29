@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.beans.Client;
 import com.techelevator.beans.Trainer;
@@ -20,7 +21,8 @@ import com.techelevator.beans.User;
 import com.techelevator.trainer.model.UserDAO;
 
 @Controller
-@SessionAttributes("currentUser")
+@SessionAttributes("loginMessage")
+
 public class AuthenticationController {
 	private UserDAO userDAO;
 
@@ -30,28 +32,32 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(path="/login", method=RequestMethod.GET)
-	public String displayLoginForm(ModelMap modelHolder) {
+	public String displayLoginForm(ModelMap modelHolder, HttpSession session ) {
 		if(! modelHolder.containsAttribute("user")){
 			User user = new User(); 
+			if(user.getId()==-1){
+				user.setId(0);
+			} 
 			modelHolder.addAttribute("user", user);
+			
+			modelHolder.addAttribute("loginMessage", "Incorrect Username or Password"+ user.getId());
 			return "login";
 		}
+		
 		return "login";
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public String login(Map<String, Object> model, 
+	public String login(ModelMap model,
+						
 						@RequestParam String email, 
 						@RequestParam String password,
 						@RequestParam(required=false) String destination,
-						HttpServletRequest request,
+						HttpServletRequest request, RedirectAttributes attr,
 						HttpSession session) {
 		String userRole=userDAO.getUserRole(email);
 		String page="";
 		String userName="";
-		if(session.getAttribute("message") != null){
-			session.setAttribute("message",	 null);
-		}
 		if(userDAO.searchForEmailAndPassword(email, password)) {
 			
 			request.changeSessionId();
@@ -74,7 +80,7 @@ public class AuthenticationController {
 				return "redirect:/"+ page;
 			}
 		} else {
-			
+		
 			return "redirect:/login";
 		}
 	}

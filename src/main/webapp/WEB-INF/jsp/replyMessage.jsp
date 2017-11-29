@@ -175,6 +175,31 @@
             <!-- Email Body : BEGIN -->
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;" class="email-container">
                 <!-- 1 Column Text + Button : BEGIN -->
+   <div class="search-page">
+    <c:forEach var="message" items="${pastMessages}">
+        <div class="profile">
+            <div class="left-prof">
+                <div class="head-two">
+                    <h2>Username: <c:out value="${message.username}"/></h2>
+                </div>
+                <!-- <div class="prof-pic">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"/>
+                </div> -->
+                <div class="small-info">
+                    <h4>Date: <c:out value="${message.getDate()}"/></h4>
+                   
+                </div>
+            </div>
+            <div class="info">
+                <h3>Message: </h3>
+                <p><c:out value="${message.content}"/></p>
+            </div>
+            
+              
+          
+        </div>
+    </c:forEach>
+</div>
                 <tr>
                     <td bgcolor="#ffffff">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -215,31 +240,7 @@
 
             </table>
             
-            			<div class="search-page">
-    <c:forEach var="message" items="${pastMessages}">
-        <div class="profile">
-            <div class="left-prof">
-                <div class="head-two">
-                    <h2>Username: <c:out value="${message.username}"/></h2>
-                </div>
-                <!-- <div class="prof-pic">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"/>
-                </div> -->
-                <div class="small-info">
-                    <h4>Date: <c:out value="${message.getDate()}"/></h4>
-                   
-                </div>
-            </div>
-            <div class="info">
-                <h3>Message: </h3>
-                <p><c:out value="${message.content}"/></p>
-            </div>
-            
-              
-          
-        </div>
-    </c:forEach>
-</div>
+            	
             <!-- Email Body : END -->
 		<script
 			src="https://code.jquery.com/jquery-3.2.1.min.js">
