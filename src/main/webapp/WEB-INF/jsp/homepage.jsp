@@ -79,13 +79,16 @@
 <!-- About Section -->
 <div class="w3-container w3-padding-32" id="about">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
-    <p>We're going to make the unicorn matchup between clients and trainers.
-    </p>
+    <p>We're here to make the unicorn match-up between clients and trainers.</p>
+    <br>
+    <p>Use us to search for trainers and utilize their expertise to tailor a fitness plan to match your fitness goals.</p>
+    <p>Once you find and request a trainer, communicate via messages and work-out any time that fits with your lifestyle!</p>
   </div>
 
 <!-- Project Section -->
 <div class="w3-container w3-padding-32" id="projects">
-<h7 class="w3-border-bottom w3-border-light-grey w3-padding-16">Training Specialties</h3>
+<c:url value="allWorkouts" var="allWorkouts"/>
+<h7 class="w3-border-bottom w3-border-light-grey w3-padding-16"><a href="${allWorkouts}" class="navBar-home">Training Specialties</a></h3>
 </div>
 
 <div class="w3-row-padding">
@@ -154,28 +157,25 @@
   <h3>John Doe</h3>
   <p class="w3-opacity">Trainer</p>
   <p>Sports Perfomance and Conditioning</p>
-  <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+  <!-- <p><button class="w3-button w3-light-grey w3-block">Contact</button></p> -->
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
   <h3>Jane Doe</h3>
   <p class="w3-opacity">Trainer</p>
   <p>Power and Olympic Lifting</p>
-  <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
   <h3>Mike Ross</h3>
   <p class="w3-opacity">Trainer</p>
   <p>Weight loss and gain.</p>
-  <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team4.jpg" alt="Dan" style="width:100%">
   <h3>Dan Star</h3>
   <p class="w3-opacity">Trainer</p>
   <p>Running and Cross-Fit</p>
-  <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
 </div>
 </div>
 </div>
