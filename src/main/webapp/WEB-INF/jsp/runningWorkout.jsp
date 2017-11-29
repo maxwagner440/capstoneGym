@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -142,7 +143,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
         <div class="tenK-container">
             <h3>Training for a 10K</h3>
             <p>This race requires a bit of a strategy. Pace yourself significantly at the beginning, but still just run as fast as you can.</p>
-            <img class="tenk-training" src="/img/10k.jpg" alt="10K training program" width="50%" height="60%">
+            <c:url value="webapp/img/10k.jpg" var="tenkPic"/>
+            <img class="tenk-training" src="${tenkPic }" alt="10K training program" width="50%" height="60%">
         </div>
     </section>
 

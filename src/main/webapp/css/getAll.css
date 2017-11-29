@@ -313,9 +313,10 @@ textarea {
     color: #1a232b;
     font-size: 1.3em;
     font-family: 'Righteous', sans-serif;
+    text-shadow: #888 5px 5px 5px;
 }
 .nav-bar a:hover {
-    color: #927c38;
+    color: #c9a437;
 }
 /***SEARCH FOR CLIENT***/
 

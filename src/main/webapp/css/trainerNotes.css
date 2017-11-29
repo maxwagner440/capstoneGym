@@ -1,11 +1,12 @@
 body {
-    background: #6a7fb9;
+    background: #1a232b;
 }
 
 h2, h3 {
     font-family: 'Righteous', sans-serif;
 }
 #full-container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: auto;
@@ -15,7 +16,7 @@ h2, h3 {
 
 #space-one, #space-two {
     grid-area: '.';
-    background: #6a7fb9;
+    background: #1a232b;
 }
 
 #client-container {
@@ -32,6 +33,50 @@ h2, h3 {
 }
 #client-info h2, .client-name h2 {
     text-decoration: underline #ccae51;
+}
+
+/***NAV BAR***/
+
+#top-nav {
+    background: rgba(243, 243, 243, 0.973);
+    height: 100px;
+    
+}
+.nav-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "raise links";
+    text-decoration: none;
+    
+}
+.nav-raise-logo {
+    grid-area: raise;
+    margin: 35px 30px 0px 20px;
+    color: #1a232b;
+}
+.nav-bar-links {
+    grid-area: links;
+    margin: 35px 10px 0px 40px;
+    color: #1a232b;
+}
+
+.nav-bar-links p {
+    display: inline;
+    margin: 0px;
+    border: none;
+}
+
+.nav-bar a {
+    color: #1a232b;
+    margin: 0px 25px;
+    font-size: 1.3em;
+    font-family: 'Righteous', sans-serif;
+    text-decoration: none;
+    text-shadow: #888 5px 5px 5px;
+}
+.nav-bar a:hover {
+    color: #c9a437;
+    transition: text-shadow #555 5px 5px 5px 0.8s;
 }
 
 /***PORTRAIT SECTION***/

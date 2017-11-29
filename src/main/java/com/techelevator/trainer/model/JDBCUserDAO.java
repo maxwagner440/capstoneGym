@@ -70,6 +70,8 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return client;
 	}
+	
+	
 	@Override
 	public boolean searchForEmailAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * "+
@@ -358,6 +360,28 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return trainer;
 	}
+	
+	@Override
+	public Client getClientById(long userID) {
+		String command="SELECT * FROM users u JOIN clients c ON u.user_id=c.user_id WHERE u.user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		Client client=null;
+		if(rows.next()){
+			client=mapRowToClient(rows);
+		}
+		return client;
+	}
+	
+	@Override
+	public User getUserById(long userID) {
+		String command="SELECT * FROM users WHERE user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		User user=null;
+		if(rows.next()){
+			user=mapToRowUser(rows);
+		}
+		return user;
+	}
 
 	@Override
 	public User getUserByUsername(String Username){
@@ -404,6 +428,17 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return rows.next();
 		
+	}
+	
+	public List<Message> getRecentConversationBetweenTrainerAndClient(long receiverId, long senderId, int numOfRecentMessagesInThePast){
+		List<Message> recentMessages=new ArrayList<>();
+		String command="SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE "
+				+ "mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT ?";
+		SqlRowSet results=jdbcTemplate.queryForRowSet(command, receiverId, senderId, numOfRecentMessagesInThePast);
+		while(results.next()){
+			recentMessages.add(mapRowToMessage(results));
+		}
+		return recentMessages;
 	}
 	
 	private Message mapRowToMessage(SqlRowSet rows){

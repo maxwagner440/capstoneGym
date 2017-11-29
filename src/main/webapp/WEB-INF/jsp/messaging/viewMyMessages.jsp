@@ -34,7 +34,7 @@
                 <div class="view-btn-div">
 	                <c:url value="/replyMessage" var="replyMessage"/>
 	                <form action="${replyMessage}" method="GET">
-					<input type="hidden" name="receiverUsername" value="${message.username}"/>
+					<input type="hidden" name="receiverId" value="${message.messageCreatorUserId}"/>
 	                <button type="submit" class="view-btn">Reply</button>
 	                </form>
                 </div>

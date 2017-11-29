@@ -27,9 +27,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
    <c:url var="clientHome" value="/clientDashboard"/>
   <a href="${clientHome}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   
-    <c:url var="getToMessage" value="/getToMessages"/>
-  <form action="${getToMessage}" method="POST">
-<input type="hidden" name="trainerId" value="${profileToView.id }"/>
+    <c:url var="getToMessage" value="/replyMessage"/>
+  <form action="${getToMessage}" method="GET">
+<input type="hidden" name="receiverId" value="${profileToView.id }"/>
 <button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></button>
 </form>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">

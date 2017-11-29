@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="css/trainerNotes.css" rel="stylesheet" title="uploadcss"/>
     
     <script
@@ -27,25 +27,29 @@
             });
         });     
     </script>
-    <!-- <header>
-        <nav class="w3-top">
-            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+   <header>
+    <nav id="top-nav">
+        <div class="nav-bar">
+            <div class="nav-raise-logo">
                 <c:url var="home" value="/"/>
                 <a href="${home}" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
-                //Float links to the right. Hide them on small screens
-                <div class="w3-right w3-hide-small">
-            
-                
-                <a href="" class="w3-bar-item w3-button">About</a>
-                <a href="#projects" class="w3-bar-item w3-button">Training Specialties</a>
-                <a href="#trainers" class="w3-bar-item w3-button">Trainers</a>
-                <a href="#contact" class="w3-bar-item w3-button">Contact</a>
-                <c:url var="login" value="/login"/>
-                <a href="${login}" class="w3-bar-item w3-button">Login / Sign-Up</a>
-                </div>
+                <!-- Float links to the right. Hide them on small screens -->
             </div>
-        </nav>
-    </header> -->
+            <div class="nav-bar-links"> 
+                <a href="" class="about">About</a>
+                <p>|</p>
+                <a href="#projects" class="training">Training Specialties</a>
+                <p>|</p>
+                <a href="#trainers" class="trainers">Trainers</a>
+                <p>|</p>
+                <a href="#contact" class="contacts">Contact</a>
+                <p>|</p>
+                <c:url var="login" value="/login"/>
+                <a href="${login}" class="login">Login / Sign-Up</a>
+            </div>
+        </div>
+    </nav>
+</header>
     <scetion id="full-container">
         <div id="space-one"></div>
         <section id="client-container">

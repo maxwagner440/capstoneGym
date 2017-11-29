@@ -14,12 +14,14 @@ public interface UserDAO {
 	public void saveTrainer(Trainer trainer, long id);
 	public void saveClient(Client client, long id);
 	public boolean searchForEmailAndPassword(String email, String password);
+	public Client getClientById(long userID);
 	public boolean searchForUsernameAndPassword(String user, String password);
 	public void updatePassword(String user, String password);
 	public String getUserRole(String email);
 	public String getUserRole(long userId);
 	public Trainer getTrainerByEmail(String email);
 	public Trainer getTrainerById (long trainerId);
+	public User getUserById(long userID);
 	public Client getClientByEmail(String email);
 	public boolean seeIfEmailExists(String email);
 	public boolean getTrainerPrivacySetting(long userId);
@@ -37,7 +39,7 @@ public interface UserDAO {
 	public void saveMessage(String msg, Long loggedInId, Long receiverId);
 	public List<Message> getMessagesRankedByTimeForUser(long userId);
 	public boolean trainerCanMessageClient(long trainerId, long clientId); //for restricting to whom trainer can send message to
-	
+	public List<Message> getRecentConversationBetweenTrainerAndClient(long receiverId, long senderId, int numOfRecentMessagesInThePast);
 	//Notes
 	
 	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, Note note);
