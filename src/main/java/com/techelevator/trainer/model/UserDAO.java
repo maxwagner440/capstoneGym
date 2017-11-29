@@ -42,7 +42,7 @@ public interface UserDAO {
 	public List<Message> getRecentConversationBetweenTrainerAndClient(long receiverId, long senderId, int numOfRecentMessagesInThePast);
 	//Notes
 	
-	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, Note note);
+	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, String note);
 	public List<Note> viewAllNotesBetweenATrainerAndAClient(long clientId, long trainerId);
 	public List<Note> trainerOptionViewAllMySentNotes(long trainerId);
 	public List<Note> clientOptionViewAllMyRecievedNotes(long clientId);
@@ -68,4 +68,5 @@ public interface UserDAO {
 	public User getImageById(Long imageId);
 	public User getImageByUrl(String imageUrl);
 	public void saveImageByUrl(String imageUrl);
+	public int getAcceptState(long clientId, long trainerId);
 }

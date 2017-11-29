@@ -33,8 +33,6 @@ CREATE TABLE users(
         password VARCHAR(255) NOT NULL,
         salt VARCHAR(255),
         role VARCHAR(255) NOT NULL,
-        image_id int,
-        image_url VARCHAR(255),
         CONSTRAINT pk_user_user_id PRIMARY KEY (user_id)
 );
 
@@ -117,10 +115,9 @@ CREATE TABLE messages_users(
               
 );
 CREATE TABLE notes_users(
-        client_id Serial NOT NULL,
-        trainer_id Serial NOT NULL,
-        note_id Serial NOT NULL,
-        CONSTRAINT pk_notes_client_id PRIMARY KEY (client_id, trainer_id),
+        client_id int NOT NULL,
+        trainer_id int NOT NULL,
+        note_id int NOT NULL,
         CONSTRAINT fk_users_notes_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
         CONSTRAINT fk_users_notes_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
         CONSTRAINT fk_notes_notes_users FOREIGN KEY (note_id) REFERENCES notes (note_id)
@@ -141,7 +138,7 @@ COMMIT;
 INSERT INTO clients_trainers (client_id, trainer_id) VALUES (1, 1);
 
 SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.client_id JOIN users u ON u.user_id=c.user_id WHERE tr.trainer_id = 3 AND tr.accept=0;
-SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT 5;
+SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=1 AND mu.message_creator_user_id=3 ORDER BY time_stamp DESC LIMIT 5;
 ROLLBACK;
 
 

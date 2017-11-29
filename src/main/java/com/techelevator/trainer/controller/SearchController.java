@@ -68,9 +68,8 @@ public class SearchController {
 	
 	@RequestMapping(path="/viewAllClients", method=RequestMethod.POST)
 	public String viewClientsProfile(HttpSession session, RedirectAttributes attr, @RequestParam long userID){
-		Client client = userDAO.getClientByClientId(userID);
-		attr.addFlashAttribute("client", client);
-		return "redirect:/viewThisClientForTrainer";
+		attr.addFlashAttribute("clientID", userID);
+		return "redirect:/trainerNotes";
 	}
 	
 	@RequestMapping(path="/viewThisClientForTrainer", method=RequestMethod.GET)
