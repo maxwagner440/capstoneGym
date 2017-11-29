@@ -123,8 +123,12 @@
                     
                     <c:forEach items="${notes}" var="note">
                			<div class="general-note-section">
-               			<c:out value="${note.content }"/>
-               			<c:out value="${note.getDate()} ${note.getTime() }"/>
+               			<div class="note-content">
+               				<c:out value="${note.content }"/>
+               			</div>
+               			<div class="note-timestamp">
+               				<c:out value="${note.getDate()} ${note.getTime() }"/>
+               			</div>
                			</div>
                			<br>
                		</c:forEach>
