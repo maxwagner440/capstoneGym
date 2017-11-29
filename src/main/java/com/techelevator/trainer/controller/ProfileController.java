@@ -48,7 +48,7 @@ public class ProfileController {
 	public String viewRequests(HttpSession session, ModelMap model){
 		List<Client> clientsWithRequest=userDAO.viewAllClientsRequestingForTrainer(((Trainer)session.getAttribute("user")).getTrainerId());
 		model.put("clients", clientsWithRequest);
-		return "messaging/viewMyRequestsDummy";
+		return "messaging/viewMyRequests";
 	}
 	
 	@RequestMapping(path="/acceptRequest", method=RequestMethod.POST)
