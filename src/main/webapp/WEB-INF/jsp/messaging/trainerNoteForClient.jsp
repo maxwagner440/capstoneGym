@@ -4,7 +4,48 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="css/trainerNotes.css" rel="stylesheet" title="uploadcss"/>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+          </script>
+                     <style>
+                /* The Modal (background) */
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    padding-top: 100px; /* Location of the box */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                
+                /* Modal Content */
+                .modal-content {
+                    background-color: #7d97a5;
+                    margin: auto;
+                    padding: 20px;
+                    border: 1px solid #7d97a5;
+                    width: 80%;
+                }
+                
+                /* The Close Button */
+                .close {
+                    color: #fdfafa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                
+                .close:hover,
+                .close:focus {
+                    color: #222a2e;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                </style>
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -27,6 +68,102 @@
             });
         });     
     </script>
+    <!-- Modal for creating notes -->
+    <div id="notesButton" class="modal">
+                
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <c:url var="makeNote" value="/trainerNotes"/>
+                    <form action="${makeNote }" method="POST">
+                    	<input type="text" name="note">
+                    	<input type="hidden" name="clientId" value="${client.clientId}"/>
+   						<input type="submit" />
+                    </form>
+                  </div>
+                
+                </div>
+                
+                 <script>
+                 $(function(){
+                	 
+               
+                // Get the modal
+                var modal = document.getElementById('notesButton');
+                
+           
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                
+                // When the user clicks the button, open the modal 
+             	$(".add-note-btn").on("click", function(){
+                    modal.style.display = "block";
+             	})
+                
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                 });
+                 </script>
+                 <!-- Model for looking at ALL NOTES -->
+                 <div id="viewNotesButton" class="modal">
+                
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    
+                    <c:forEach items="${notes}" var="note">
+               			<div class="general-note-section">
+               			<c:out value="${note.content }"/>
+               			<c:out value="${note.getDate()} ${note.getTime() }"/>
+               			</div>
+               			<br>
+               		</c:forEach>
+                    </form>
+                  </div>
+                
+                </div>
+                
+                 <script>
+                 $(function(){
+                	 
+               
+                // Get the modal
+                var modal = document.getElementById('viewNotesButton');
+                
+           
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[1];
+                
+                // When the user clicks the button, open the modal 
+             	$(".view-note-btn").on("click", function(){
+                    modal.style.display = "block";
+             	})
+                
+                
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+                 });
+                 </script>
+                 
    <header>
     <nav id="top-nav">
         <div class="nav-bar">
@@ -55,7 +192,7 @@
         <section id="client-container">
             <section id="client-prof">
                 <div class="client-name">
-                    <h2><c:out value="${client.getFullName()}"/>NAME</h2>
+                    <h2><c:out value="${client.getFullName()}"/></h2>
                 </div>
                 <div class="client-image">
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
@@ -64,19 +201,19 @@
             <section id="client-info">
                 <div class="client-height">
                     <h2>Height:</h2>
-                    <p><c:out value="${client.height}"/>42</p>
+                    <p><c:out value="${client.heightInInches}"/> inches</p>
                 </div>
                 <div class="client-weight">
                     <h2>Weight:</h2>
-                    <p><c:out value="${client.weight}"/>42</p>    
+                    <p><c:out value="${client.weightInPounds}"/> pounds</p>    
                 </div>
                 <div class="client-goal">
                     <h2>Goal:</h2>
-                    <p><c:out value="${client.goal}"/>Lorem ipsum dolor sit amet, ei noster melius laboramus mea, ipsum tempor eu quo. Quo choro diceret delicata cu, dolorem facilisi mei ea. At eos summo admodum, reque iudicabit qui ne. Facer recteque nam an. Cu facer corpora vix. Mei tale voluptatibus ut.</p>        
+                    <p><c:out value="${client.goals}"/></p>        
                 </div>
             </section>
             <section id="workout">
-				<c:url var=""/>
+				<%-- <c:url var=""/> --%>
                 <div class="client-workout">
                     <h2><c:out value="${workout.id}"/>I Workout</h2>
 				</div>
@@ -91,16 +228,17 @@
                     </div>
 					<h2>General Notes</h2>
 					<div class="general-panel" style="display: none;">
-						<c:forEach var="note" items="${notes}">
+						<%-- <c:forEach var="note" items="${notes}">
 							<div class="general-note-section">
-								<p><c:out value="${client.note.content}"/>Lorem ipsum dolor sit amet, ei noster melius laboramus mea, ipsum tempor eu quo. Quo choro diceret delicata cu, dolorem facilisi mei ea. At eos summo admodum, reque iudicabit qui ne. Facer recteque nam an. Cu facer corpora vix. Mei tale voluptatibus ut.
+								<p><c:out value="${note.content}"/>
 									
-									Ornatus platonem id pro, ridens aliquam veritus sit cu. Ludus laudem legimus est an. Imperdiet consetetur vel et, te stet mucius quodsi sit, blandit consequat id pri. His ad dicant essent deterruisset, ex pri viris exerci. Stet fabulas constituam duo ea, errem petentium ex eum.</p>
+									</p>
 							</div>
-						</c:forEach>
+						</c:forEach> --%>
 						<div class="general-note-btns">
 							<button class="add-note-btn" type="input">+ New Note</button>
 							<button class="remove-note-btn" type="input">Remove Note</button>
+							<button class="view-note-btn" type="input">View All Notes</button>
 						</div> 
 					</div>
                 </div>
@@ -112,7 +250,7 @@
 					<div class="specific-panel" style="display:none;">
 						<c:forEach var="note" items="${notes}">
 							<div class="specific-note-section">
-								<p><c:out value="${workout.note.content}"/>There is content here.</p>
+								<%-- <p><c:out value="${workout.note.content}"/> --%>There is content here.</p>
 							</div>	
 						</c:forEach>
 						<div class="specific-note-btns">

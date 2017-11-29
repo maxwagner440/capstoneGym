@@ -30,25 +30,17 @@
                 <c:url var="login" value="/login"/>
                 <a href="${login}" class="login">Login / Sign-Up</a>
             </div>
+
+           
+            
+
         </div>
     </nav>
 </header>
 <h1>All My Clients</h1>
 <div class="search-page">
-	<div>
-		<c:url var="searchClients" value="/searchClients"/>
-		<form action="${searchClients}" method="POST" >
-			<input id="searchBox"  type="search" name="keyword" placeholder="Search for a client">
-		</form>
-	</div>
-	<c:out value="${message}"/>
-	<c:choose>
-	<c:when test="${clients == null || clients.size() == 0 }">
-	<div class="no-trainer-div">
-	        <p class="no-trainer">No clients by that name, please try again.</p>
-	    </div>
-        </c:when>
-        <c:otherwise>
+	
+
 	    <c:forEach var="client" items="${clients}">
 	        <div class="profile">
 	            <div class="left-prof">
@@ -68,7 +60,7 @@
 	                <p><c:out value="${client.goals}"/></p>
 	            </div>
 	            <div class="btns">    
-	            	<c:url var="viewMyClient" value="/viewAllClients"/>
+	            	<c:url var="viewMyClient" value="/trainerNotes"/>
 					<form action="${viewMyClient}" method="POST">
 					<button type="submit" name ="userID" value="${client.clientId}" class="view-btn">View Client</button>
 					</form>
@@ -76,14 +68,14 @@
 	            <div class="btns">    
 	            	<c:url var="viewMyClient" value="/viewAllClients"/>
 					<form action="${viewMyClient}" method="POST">
-					<button type="submit" name ="userID" value="${client.clientId}" class="view-btn"> Client</button>
+					<button type="submit" name ="userID" value="${client.clientId}" class="view-btn">View Client</button>
 					</form>
 					
 	           		<br>
 	           		
 	                <c:url value="/replyMessage" var="replyMessage"/>
 	                <form action="${replyMessage}" method="GET">
-					<input type="hidden" name="receiverUsername" value="${client.username}"/>
+					<input type="hidden" name="receiverId" value="${client.id}"/>
 	                <button type="submit" class="view-btn">Message</button>
 	                </form>
 	            </div>
@@ -91,8 +83,7 @@
 	         
 	        </div>
 	    </c:forEach>
-	 </c:otherwise>
-    </c:choose>
+	
 </div>
 </body>
 </html>

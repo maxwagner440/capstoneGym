@@ -10,6 +10,13 @@ public class Note {
 	private long trainer_id;
 	private String trainerUsername;
 	
+	
+	public String getDate(){
+		return timeStamp.getMonthValue() + "-" + timeStamp.getDayOfMonth() + "-" + timeStamp.getYear();
+	}
+	public String getTime(){
+		return timeStamp.getHour() + ":" + timeStamp.getMinute();
+	}
 	public String getContent() {
 		return content;
 	}

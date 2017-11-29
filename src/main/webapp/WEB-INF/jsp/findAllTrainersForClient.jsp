@@ -11,6 +11,14 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
+
+
+<h1>All Trainers</h1>
+
+
+
+
+
 <header>
     <nav id="top-nav">
         <div class="nav-bar">
@@ -18,6 +26,7 @@
                 <c:url var="home" value="/"/>
                 <a href="${home}" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
                 <!-- Float links to the right. Hide them on small screens -->
+
             </div>
             <div class="nav-bar-links"> 
                 <a href="" class="about">About</a>

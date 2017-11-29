@@ -37,11 +37,17 @@ public class ProfileController {
 	
 	@RequestMapping(path="/signUpWithTrainer", method=RequestMethod.POST)
 	public String signUpWithTrainer(Map<String, Object> model, RedirectAttributes attr, HttpSession session){ //what if they aren't a client?
+		
 		Trainer machop=(Trainer) session.getAttribute("profileToView");
 		Client thisClient=(Client) session.getAttribute("user");
+		int result = userDAO.getAcceptState(thisClient.getClientId(), machop.getTrainerId());
+		if(result != 1 || result != 2){
 		userDAO.saveClientTrainerRelsationship(thisClient.getClientId(), machop.getTrainerId());
 		attr.addFlashAttribute("message", "You have requested to sign up with "+ machop.getUsername() + ". They will get back to you as soon as possible.");
-		
+		}
+		else{
+			attr.addFlashAttribute("message", "You are already signed up with "+ machop.getUsername() + ".");
+		}
 		return "redirect:/clientDashboard";
 	}
 	

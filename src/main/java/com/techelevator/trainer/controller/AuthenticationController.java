@@ -74,7 +74,7 @@ public class AuthenticationController {
 				return "redirect:/"+ page;
 			}
 		} else {
-			session.setAttribute("message", "Login Information is Invalid");
+			
 			return "redirect:/login";
 		}
 	}

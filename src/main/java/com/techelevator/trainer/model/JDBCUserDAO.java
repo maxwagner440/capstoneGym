@@ -250,10 +250,10 @@ public class JDBCUserDAO implements UserDAO {
 		user.setId(results.getLong("user_id"));
 		user.setRole(results.getString("role"));
 		user.setUsername(results.getString("username"));
-		//Added image Url
-		user.setImageId(results.getLong("image_id"));
-		user.setImageUrl(results.getString("image_url"));
-		
+//		//Added image Url
+//		user.setImageId(results.getLong("image_id"));
+//		user.setImageUrl(results.getString("image_url"));
+//		
 		return user;
 		
 	}
@@ -434,7 +434,7 @@ public class JDBCUserDAO implements UserDAO {
 		List<Message> recentMessages=new ArrayList<>();
 		String command="SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE "
 				+ "mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT ?";
-		SqlRowSet results=jdbcTemplate.queryForRowSet(command, receiverId, senderId, numOfRecentMessagesInThePast);
+		SqlRowSet results=jdbcTemplate.queryForRowSet(command, senderId, receiverId, numOfRecentMessagesInThePast);
 		while(results.next()){
 			recentMessages.add(mapRowToMessage(results));
 		}
@@ -504,13 +504,13 @@ public class JDBCUserDAO implements UserDAO {
 	}
 	//Notes
 	@Override
-	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, Note note) {
+	public void saveThisTrainersNoteForThatClient(long trainerId, long clientId, String note) {
 		// TODO Auto-generated method stub
 		String saveToNoteContentTable="INSERT INTO notes (content, time_stamp) VALUES (?, NOW()) returning note_id";
-		Long noteContentId=jdbcTemplate.queryForObject(saveToNoteContentTable, Long.class, note.getContent());
+		Long noteContentId=jdbcTemplate.queryForObject(saveToNoteContentTable, Long.class, note);
 		
 		String saveIntoFromUserToUserMsgTable="INSERT INTO notes_users (client_id, trainer_id, note_id) VALUES (?, ?, ?)";
-		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, note.getClient_id(), note.getTrainer_id(), noteContentId);
+		jdbcTemplate.update(saveIntoFromUserToUserMsgTable, clientId, trainerId, noteContentId);
 		
 		
 	}
@@ -598,7 +598,12 @@ public class JDBCUserDAO implements UserDAO {
 		
 	}
 
-
+	@Override
+	public int getAcceptState(long clientId, long trainerId){
+		String search = "SELECT accept FROM trainers_requests WHERE client_id = ? AND trainer_id = ? LIMIT 1";
+		int result = jdbcTemplate.queryForObject(search, int.class, clientId, trainerId);
+		return result;
+	}
 
 	@Override
 	public User getImageById(Long imageId) {
