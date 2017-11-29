@@ -45,7 +45,7 @@
            		
                 <c:url value="/replyMessage" var="replyMessage"/>
                 <form action="${replyMessage}" method="GET">
-				<input type="hidden" name="receiverUsername" value="${client.username}"/>
+				<input type="hidden" name="receiverId" value="${client.id}"/>
                 <button type="submit" class="view-btn">Message</button>
                 </form>
             </div>

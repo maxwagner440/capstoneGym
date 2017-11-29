@@ -10,6 +10,8 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
+
+
 <h1>All Trainers</h1>
 
 
