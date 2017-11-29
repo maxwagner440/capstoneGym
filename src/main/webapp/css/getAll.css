@@ -347,8 +347,18 @@ img {
 	margin: 0 auto;
 }
 
-.view-btn-div, .msg-btn-div, .rqst-btn-div {
+.view-btn-div, .msg-btn-div, .rqst-btn-div, deny-btn {
 	margin: 10px;
+}
+
+.deny-btn {
+	width: 225px;
+	height: 75px;
+	font-size: 1.3em;
+	color: white;
+	background: rgb(216, 44, 51); 
+	border: none;
+	border-radius: 5px;
 }
 
 .view-btn {
@@ -361,10 +371,17 @@ img {
 	border-radius: 5px;
 }
 
+
+.deny-btn:hover {
+	background: rgb(236, 64, 71);
+	transition: 0.8s;
+}
+
 .view-btn:hover {
 	background: rgb(79, 143, 79);
 	transition: 0.8s;
 }
+
 
 .msg-btn-div, .rqst-btn-div {
 	display: inline-block;

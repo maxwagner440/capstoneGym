@@ -1,14 +1,16 @@
 package com.techelevator.trainer.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.beans.Client;
@@ -40,6 +42,28 @@ public class ProfileController {
 		attr.addFlashAttribute("message", "You have requested to sign up with "+ machop.getUsername() + ". They will get back to you as soon as possible.");
 		
 		return "redirect:/clientDashboard";
+	}
+	
+	@RequestMapping(path="/viewMyRequests", method=RequestMethod.GET)
+	public String viewRequests(HttpSession session, ModelMap model){
+		List<Client> clientsWithRequest=userDAO.viewAllClientsRequestingForTrainer(((Trainer)session.getAttribute("user")).getTrainerId());
+		model.put("clients", clientsWithRequest);
+		return "messaging/viewMyRequestsDummy";
+	}
+	
+	@RequestMapping(path="/acceptRequest", method=RequestMethod.POST)
+	public String acceptRequest(HttpSession session, @RequestParam long clientId){
+		Trainer trainerLoggedIn=(Trainer) session.getAttribute("user");
+		
+		userDAO.acceptRequest(clientId, trainerLoggedIn.getTrainerId());
+		return "redirect:/viewMyRequests";
+	}
+	
+	@RequestMapping(path="/denyRequest", method=RequestMethod.POST)
+	public String denyRequest(HttpSession session, @RequestParam long clientId){
+		Trainer trainerLoggedIn=(Trainer) session.getAttribute("user");
+		userDAO.denyRequest(clientId, trainerLoggedIn.getTrainerId());
+		return "redirect:/viewMyRequests";
 	}
 	
 	@RequestMapping(path="/success", method=RequestMethod.GET)

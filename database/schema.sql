@@ -64,10 +64,10 @@ CREATE TABLE clients(
 CREATE TABLE clients_trainers(
                 client_id Serial,
                 trainer_id Serial,
-                CONSTRAINT pk_clients_trainers_trainer_id_client_id PRIMARY KEY (client_id, trainer_id),
+                CONSTRAINT pk_clients_trainers_client_id PRIMARY KEY (client_id, trainer_id),
                 CONSTRAINT fk_clients_trainers_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
-                CONSTRAINT fk_clients_trainers_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id),
-                UNIQUE (client_id)  
+                CONSTRAINT fk_clients_trainers_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id)
+                
 );
 
 CREATE TABLE trainers_requests(
@@ -138,8 +138,8 @@ COMMIT;
 
 INSERT INTO clients_trainers (client_id, trainer_id) VALUES (1, 1);
 
-SELECT * FROM users u JOIN trainers t ON t.user_id=u.user_id WHERE username LIKE '%?%' OR first_name LIKE '%?%' OR last_name LIKE '%?%' OR email LIKE '%?%' OR bio LIKE '%?%' OR philosophy LIKE '%?%' OR experience LIKE '%?%' ORDER BY username, last_name, first_name, email, bio, philosophy, experience;
-
+SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.client_id JOIN users u ON u.user_id=c.user_id WHERE tr.trainer_id = 3 AND tr.accept=0;
+SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT 5;
 ROLLBACK;
 
 

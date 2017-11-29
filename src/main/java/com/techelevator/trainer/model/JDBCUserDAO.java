@@ -70,6 +70,8 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return client;
 	}
+	
+	
 	@Override
 	public boolean searchForEmailAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * "+
@@ -355,6 +357,28 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return trainer;
 	}
+	
+	@Override
+	public Client getClientById(long userID) {
+		String command="SELECT * FROM users u JOIN clients c ON u.user_id=c.user_id WHERE u.user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		Client client=null;
+		if(rows.next()){
+			client=mapRowToClient(rows);
+		}
+		return client;
+	}
+	
+	@Override
+	public User getUserById(long userID) {
+		String command="SELECT * FROM users WHERE user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		User user=null;
+		if(rows.next()){
+			user=mapToRowUser(rows);
+		}
+		return user;
+	}
 
 	@Override
 	public User getUserByUsername(String Username){
@@ -401,6 +425,17 @@ public class JDBCUserDAO implements UserDAO {
 		
 		return rows.next();
 		
+	}
+	
+	public List<Message> getRecentConversationBetweenTrainerAndClient(long receiverId, long senderId, int numOfRecentMessagesInThePast){
+		List<Message> recentMessages=new ArrayList<>();
+		String command="SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE "
+				+ "mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT ?";
+		SqlRowSet results=jdbcTemplate.queryForRowSet(command, receiverId, senderId, numOfRecentMessagesInThePast);
+		while(results.next()){
+			recentMessages.add(mapRowToMessage(results));
+		}
+		return recentMessages;
 	}
 	
 	private Message mapRowToMessage(SqlRowSet rows){
@@ -538,7 +573,7 @@ public class JDBCUserDAO implements UserDAO {
 	public List<Trainer> viewAllTrainersForClient(long clientId) {
 		// TODO Auto-generated method stub
 		List<Trainer> newList = new ArrayList<>();
-		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests WHERE client_id = ?";
+		String getAllRequests = "SELECT * FROM clients_trainers WHERE client_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, clientId);
 		while(results.next()){
 			newList.add(mapRowToTrainer(results));
@@ -550,14 +585,17 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public List<Client> viewAllClientsRequestingForTrainer(long trainerId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Client> newList = new ArrayList<>();
+		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.client_id JOIN users u ON u.user_id=c.user_id WHERE tr.trainer_id = ? AND tr.accept=0";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, trainerId);
+		while(results.next()){
+			newList.add(mapRowToClient(results));
+		}
+		return newList;
+		
 	}
 
-	@Override
-	public List<Client> viewAllClientsForTrainerWithEstablishedRelationship(long trainerId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 	

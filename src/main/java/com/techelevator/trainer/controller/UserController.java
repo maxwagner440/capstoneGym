@@ -81,8 +81,8 @@ public class UserController {
 			return "redirect:/clientAttributes";
 		}
 		userDAO.saveClient(client, user.getId());
-		fillInUserVarsForClient(client, user);
-		session.setAttribute("user", client);
+		
+		session.setAttribute("user", userDAO.getClientById(user.getId()));
 		return "redirect:/clientDashboard";
 		
 	}
@@ -112,33 +112,13 @@ public class UserController {
 		}
 		
 		userDAO.saveTrainer(trainer, user.getId());
-		fillInUserVarsForTrainer(trainer, user);
-		session.setAttribute("user", trainer);
+		
+		session.setAttribute("user", userDAO.getTrainerById(user.getId()));
 	
 		return "redirect:/trainerDashboard";
 		
 	}
 	
-	private void fillInUserVarsForTrainer(Trainer trainer, User user){
-		trainer.setAge(user.getAge());
-		trainer.setId(user.getId());
-		trainer.setEmail(trainer.getEmail());
-		trainer.setUsername(user.getUsername());
-		trainer.setFirstName(user.getFirstName());
-		trainer.setLastName(user.getLastName());
-		trainer.setRole(user.getRole());
-	}
-	
 
-	public void fillInUserVarsForClient(Client client, User user){
-		client.setAge(user.getAge());
-		client.setId(user.getId());
-		client.setEmail(client.getEmail());
-		client.setUsername(user.getUsername());
-		client.setFirstName(user.getFirstName());
-		client.setLastName(user.getLastName());
-		client.setRole(user.getRole());
-	}
-	
 
 }

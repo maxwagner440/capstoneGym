@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
@@ -9,7 +10,7 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
-<h1>All My Clients</h1>
+<h1>Clients Making A Request</h1>
 <div class="search-page">
     <c:forEach var="client" items="${clients}">
         <div class="profile">
@@ -29,24 +30,19 @@
                 <h3>Goal: </h3>
                 <p><c:out value="${client.goals}"/></p>
             </div>
+            
             <div class="btns">    
-            	<c:url var="viewMyClient" value="/viewAllClients"/>
-				<form action="${viewMyClient}" method="POST">
-				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn">View Client</button>
-				</form>
-            </div>
-            <div class="btns">    
-            	<c:url var="viewMyClient" value="/viewAllClients"/>
-				<form action="${viewMyClient}" method="POST">
-				<button type="submit" name ="userID" value="${client.clientId}" class="view-btn"> Client</button>
+            	<c:url var="acceptReq" value="/acceptRequest"/>
+				<form action="${acceptReq}" method="POST">
+				<button type="submit" name ="clientId" value="${client.clientId}" class="view-btn"> Accceot</button>
 				</form>
 				
            		<br>
            		
-                <c:url value="/replyMessage" var="replyMessage"/>
-                <form action="${replyMessage}" method="GET">
-				<input type="hidden" name="receiverUsername" value="${client.username}"/>
-                <button type="submit" class="view-btn">Message</button>
+                <c:url value="/denyRequest" var="denyReq"/>
+                <form action="${denyReq}" method="POST">
+
+                <button type="submit" class="deny-btn" name ="clientId" value="${client.clientId}">Deny</button>
                 </form>
             </div>
             
