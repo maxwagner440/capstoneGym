@@ -15,6 +15,7 @@
         <div class="header-container">
             <img class="lift-image" src="/Users/annakurchak/workspace/exercises/untitled folder/frontsquat.jpg" alt="Shirtless man front squatting" width="80%" height="30%">
                 <div class="textOnPic"><b>My Current Workouts</b></div>
+                <c:url value="/" var="home"/>
                 <div class="homeOnPic"><a href="${home }" class="navBar-home"><b>Raise the Bar- Home</b></a></div>
         </div>
 
