@@ -29,25 +29,24 @@ $(document).ready(function() {
 </script>
 
 <form:form method="POST" action="${formAction}" modelAttribute="newBrewery">
-<div class="form-group">
-<label for="breweryLogoUrl">Current Picture: </label>
-<form:input path="breweryLogoUrl" class="form-control" />
-
-            <input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
-data-form-data= "{"upload_preset": "brewery_images" }" ></input>
-<form:errors path="breweryLogoUrl"></form:errors>
+	<div class="form-group">
+	<label for="breweryLogoUrl">Current Picture: </label>
+	<form:input path="breweryLogoUrl" class="form-control" />
+	<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
+	data-form-data= "{"upload_preset": "profile_images" }" ></input>
+	<form:errors path="breweryLogoUrl"></form:errors>
 </div>
 </form:form>
 
 
 <!-- //controller -->
-@RequestMapping(path="/breweries", method=RequestMethod.POST) <!-- //MUST BE PUT IN THE POST, NOT THE GET!!! -->
-public String createBrewery(@Valid @ModelAttribute("newBrewery") Brewery newBrewery, BindingResult result, RedirectAttributes flash) {
-flash.addFlashAttribute("newBrewery", newBrewery);
+@RequestMapping(path="/trainerProfile", method=RequestMethod.POST) <!-- //MUST BE PUT IN THE POST, NOT THE GET!!! -->
+public String createTrainer(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, RedirectAttributes flash) {
+flash.addFlashAttribute("newUser", newUser);
 
     if(result.hasErrors()) {
-        flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "newBrewery", result);
-        return "redirect:/breweries/new";
+        flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "newUser", result);
+        return "redirect:/trainerProfile";
     }
     if(!breweryDAO.searchForBrewery(newBrewery.getName())) { 
     

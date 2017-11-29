@@ -119,6 +119,14 @@ public class UserController {
 		
 	}
 	
-
-
+	public void fillInUserVarsForClient(Client client, User user){
+		client.setAge(user.getAge());
+		client.setId(user.getId());
+		client.setEmail(client.getEmail());
+		client.setUsername(user.getUsername());
+		client.setFirstName(user.getFirstName());
+		client.setLastName(user.getLastName());
+		client.setRole(user.getRole());
+	}
 }
+

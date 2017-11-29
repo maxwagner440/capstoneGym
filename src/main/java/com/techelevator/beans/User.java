@@ -29,6 +29,9 @@ public class User {
 	
 	@NotBlank(message="Select A Box")
 	private String role;
+	
+	private Long imageId;
+	private String imageUrl;
 
 	
 //	private boolean roleMatching;
@@ -85,4 +88,18 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	//Added image Id and Url
+	public Long getImageId() {
+		return imageId;
+	}
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
 }

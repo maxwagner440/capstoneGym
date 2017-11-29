@@ -250,6 +250,9 @@ public class JDBCUserDAO implements UserDAO {
 		user.setId(results.getLong("user_id"));
 		user.setRole(results.getString("role"));
 		user.setUsername(results.getString("username"));
+		//Added image Url
+		user.setImageId(results.getLong("image_id"));
+		user.setImageUrl(results.getString("image_url"));
 		
 		return user;
 		
@@ -596,6 +599,39 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 
+
+	@Override
+	public User getImageById(Long imageId) {
+		String sqlGetImageById = "SELECT * FROM users WHERE image_id = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageId);
+		
+		if(results.next()){
+			return mapToRowUser(results);
+		} else{
+			return null;
+		}
+	}
+	
+	@Override
+	public User getImageByUrl(String imageUrl) {
+		String sqlGetImageById = "SELECT * FROM users WHERE image_url = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageUrl);
+		
+		if(results.next()){
+			return mapToRowUser(results);
+		} else{
+			return null;
+		}
+	}
+
+	@Override
+	public void saveImageByUrl(String imageUrl) {
+		String saveImageToUser="INSERT INTO users (image_url) VALUES (?)";
+		jdbcTemplate.update(saveImageToUser, imageUrl);
+		
+	}
 
 
 	
