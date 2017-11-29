@@ -13,7 +13,7 @@
 <div class="flex-container">
 
         <div class="header-container">
-        	<c:url value="/img/frontsquat.jpg" var="frontSquat"/>
+        	<c:url value="img/frontSquat.jpg" var="frontSquat"/>
             <img class="lift-image" src="${frontSquat}" alt="Shirtless man front squatting" width="80%" height="30%">
                 <div class="textOnPic"><b>My Current Workouts</b></div>
                 <c:url value="/" var="home"/>
@@ -21,7 +21,8 @@
         </div>
 
     <div class="flex-container-goals">
-        <img class="goal-motivation" src="/Users/annakurchak/workspace/exercises/untitled folder/motivationForYou.jpg" alt="Self Motivation" width="15%" height="15%">
+    <c:url value="motivationForYou.jpg" var="motivationForYou"/>
+        <img class="goal-motivation" src="${ motivationForYou}" alt="Self Motivation" width="15%" height="15%">
    
         <article class="article-goals">
             <h1>My Long-term Goals:</h1>

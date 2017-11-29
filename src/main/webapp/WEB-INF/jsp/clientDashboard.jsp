@@ -61,6 +61,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a href="" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
    <c:url var="clientHome" value="/clientDashboard"/>
   <a href="${clientHome }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+  <c:url value="/currentWorkoutPlan" var="currentWorkoutPlan"/>
+      <a href="${currentWorkoutPlan}" class="w3-bar-item w3-button">See Your Workout</a>
   <c:url value="/viewMyMessages" var="viewMessages"/>
   <a href="${viewMessages }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   <c:url var="allTrainers" value="/findAllTrainers"/>
