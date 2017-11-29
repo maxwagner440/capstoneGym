@@ -139,6 +139,7 @@ COMMIT;
 INSERT INTO clients_trainers (client_id, trainer_id) VALUES (1, 1);
 
 SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.client_id JOIN users u ON u.user_id=c.user_id WHERE tr.trainer_id = 3 AND tr.accept=0;
+SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT 5;
 ROLLBACK;
 
 
