@@ -64,5 +64,8 @@ public interface UserDAO {
 	public Client getClientByClientId(long id);
 	public List<Trainer> getAllPublicTrainers();
 
-
+	//Upload Image and Store to DB
+	public User getImageById(Long imageId);
+	public User getImageByUrl(String imageUrl);
+	public void saveImageByUrl(String imageUrl);
 }

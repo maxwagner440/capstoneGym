@@ -61,6 +61,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Your Bio: <c:out value="${user.bio}"/> </p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Your Location: Cleveland, OH</p>
+	        <form:form method="POST" action="${formAction}" modelAttribute="newBrewery">
+				<div class="form-group">
+				<label for="breweryLogoUrl">Current Picture: </label>
+				<form:input path="breweryLogoUrl" class="form-control" />
+				<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
+				data-form-data= "{"upload_preset": "profile_images" }" ></input>
+				<form:errors path="breweryLogoUrl"></form:errors>
+			</div>
+			</form:form>
         </div>
       </div>
       <br>

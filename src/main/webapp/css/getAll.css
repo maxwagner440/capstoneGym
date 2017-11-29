@@ -162,10 +162,6 @@ textarea {
 	margin: 0;
 }
 
-#searchBox { 
-	height:75em; !important
-	
-}
 .button {
 	border: 0;
 	outline: none;
@@ -283,6 +279,45 @@ textarea {
 	background: #888;
 }
 
+/***NAV BAR***/
+
+#top-nav {
+    background: rgba(243, 243, 243, 0.973);
+    height: 100px;
+    
+}
+.nav-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "raise links";
+    
+}
+.nav-raise-logo {
+    grid-area: raise;
+    margin: 35px 30px 0px 20px;
+    color: #1a232b;
+}
+.nav-bar-links {
+    grid-area: links;
+    margin: 35px 10px 0px 40px;
+    color: #1a232b;
+}
+
+.nav-bar-links p {
+    display: inline;
+    margin: 0px;
+    border: none;
+}
+
+.nav-bar a {
+    color: #1a232b;
+    font-size: 1.3em;
+    font-family: 'Righteous', sans-serif;
+    text-shadow: #888 5px 5px 5px;
+}
+.nav-bar a:hover {
+    color: #c9a437;
+}
 /***SEARCH FOR CLIENT***/
 
 
@@ -298,10 +333,16 @@ textarea {
 	border-radius: 5px;
 }
 
-h2, h3 {
-	border-bottom: 1px solid #ccae51;
-	width: 75px;
-	font-size: 1.3em;
+.h1-tag h1 {
+    margin: 50px auto;
+    text-align:center;
+}
+
+h1, h2, h3 {
+    font-family: 'Righteous', sans-serif;
+    text-decoration: underline #ccae51;
+    width: 200px;
+	font-size: 1.8em;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -347,18 +388,8 @@ img {
 	margin: 0 auto;
 }
 
-.view-btn-div, .msg-btn-div, .rqst-btn-div, deny-btn {
+.view-btn-div, .msg-btn-div, .rqst-btn-div {
 	margin: 10px;
-}
-
-.deny-btn {
-	width: 225px;
-	height: 75px;
-	font-size: 1.3em;
-	color: white;
-	background: rgb(216, 44, 51); 
-	border: none;
-	border-radius: 5px;
 }
 
 .view-btn {
@@ -371,17 +402,10 @@ img {
 	border-radius: 5px;
 }
 
-
-.deny-btn:hover {
-	background: rgb(236, 64, 71);
-	transition: 0.8s;
-}
-
 .view-btn:hover {
 	background: rgb(79, 143, 79);
 	transition: 0.8s;
 }
-
 
 .msg-btn-div, .rqst-btn-div {
 	display: inline-block;
@@ -435,6 +459,31 @@ p {
 	width: auto;
 }
 
+#searchBox {
+    margin: 10px;
+	width: 200px;
+	height: 50px;
+    background: #fff;
+    color: #1a232b;
+    font-size: 1em;
+    border: 1px solid #ccae51; 
+}
+.no-trainer-div {
+    display: inline-block;
+    margin: 10px;
+    width: 50%;
+}
+.no-trainer {
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #ccae51; 
+    width: 50%;
+    background: white;
+    color: #1a232b;
+}
+
 
 @media (min-width:768px) {
 	.profile {
@@ -445,7 +494,7 @@ p {
 							"btn btn"; 
 	}
 	h2, h3 {
-		border-bottom: 1px solid #ccae51;
+		text-decoration: underline #ccae51;
 		width: 50px;
 		font-size: 1em;
 		margin: 10px auto;
@@ -477,7 +526,7 @@ p {
 		margin: 20px 10px; 
 	}
 	h2, h3 {
-		border-bottom: 1px solid #ccae51;
+		text-decoration: underline #ccae51;
 		width: 50px;
 		font-size: 1em;
 		margin: 10px auto;
@@ -500,6 +549,4 @@ p {
 	.small-info {
 		margin: 10px auto;
 	}
-	
-
 }

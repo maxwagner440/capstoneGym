@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,7 +72,23 @@ public class ProfileController {
 		//message gets different depending on page you come from. Handled by flash attribute.
 		return "success";
 	}
-	
-	
 
+	//Cloudinary Controller
+//	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST)
+//	public String updateTrainerPicture(@ModelAttribute ("trainerProf") Trainer trainerProf, RedirectAttributes attr, HttpSession session, @RequestParam ){
+//	attr.addFlashAttribute("trainerProf", trainerProf);	
+//		
+//		if(!userDAO.getTrainerById()) { 
+//		    
+//			  <!--   //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT -->
+//			        trainerProf.setImageUrl("http://res.cloudinary.com/annaKonchak/" + trainerProf.getImageUrl());
+//			
+//			
+//			return "redirect:/trainerProfile";
+//		}
+//	}
+//	
+//	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
+//	public String updateClientPicture()
+//}
 }
