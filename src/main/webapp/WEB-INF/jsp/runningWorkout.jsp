@@ -116,9 +116,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 <div class="flex-container">
 
     <div class="header-container">
-        <img class="run-image" src="/img/runnerMtns.jpg" alt="Runner in Mountains" width="80%" height="30%">
+    	<c:url value="/img/runnerMtns.jpg" var="runnerMtns"/>
+        <img class="run-image" src="${runnerMtns}" alt="Runner in Mountains" width="80%" height="30%">
             <div class="textOnPic"><b>Raise the Bar Running Workouts</b></div>
-            <div class="homeOnPic"><a href="${home }" class="navBar-home"><b>Raise the Bar- Home</b></a></div>
+            <c:url value="/" var="home"/>
+            <div class="homeOnPic"><a href="${home}" class="navBar-home"><b>Raise the Bar- Home</b></a></div>
             <div class="trainersOnPic"><li><a href="trainers" class="navBar-trainers">Trainers</a></li></div>
                 </div>
                 </header>
@@ -135,7 +137,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
                 <div class="fiveK-container">
                     <h3>Training for a 5K</h3>
                         <p>It is a super short race. Barley pace yourself, and just run as fast as you can.</p>
-                <img class="5k-training" src="/img/5k-8wk-training.jpg" alt="5K training program" width="50%" height="60%">
+                <c:url value="/img/5k.jpg" var="fivekPic"/>
+                <img class="5k-training" src="${fivekPic}" alt="5K training program" width="50%" height="60%">
                 </div>
     </section>
         
@@ -143,7 +146,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
         <div class="tenK-container">
             <h3>Training for a 10K</h3>
             <p>This race requires a bit of a strategy. Pace yourself significantly at the beginning, but still just run as fast as you can.</p>
-            <c:url value="webapp/img/10k.jpg" var="tenkPic"/>
+            <c:url value="/img/10k.jpg" var="tenkPic"/>
             <img class="tenk-training" src="${tenkPic }" alt="10K training program" width="50%" height="60%">
         </div>
     </section>
@@ -152,14 +155,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
             <div class="halfMara-container">
                 <h3>Training for a half-marathon</h3>
                 <p>This race requires more strategy. Pace yourself significantly at the beginning, but still just run as fast as you can.</p>
-                <img class="halfMara-training" src="/img/half-mara-interm.jpg" alt="half-marathon training program" width="60%" height="70%">
+                <c:url value="/img/half-mara.jpg" var="halfMaraPic"/>
+                <img class="halfMara-training" src="${halfMaraPic}" alt="half-marathon training program" width="60%" height="70%">
             </div>
     </section>
     <section id="five">
             <div class="Mara-container">
                 <h3>Training for a marathon</h3>
                 <p>This race requires a lot of a strategy all revolving around not dying. Pace yourself significantly and don't die.</p>
-                <img class="Mara-training" src="/img/marathon.jpg" alt="marathon training program" width="60%" height="70%">
+                <c:url value="/img/marathon.jpg" var="marathonPic"/>
+                <img class="Mara-training" src="${marathonPic }" alt="marathon training program" width="60%" height="70%">
             </div>
     </section>
  
