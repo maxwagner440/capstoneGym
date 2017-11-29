@@ -633,10 +633,10 @@ public class JDBCUserDAO implements UserDAO {
 		
 	}
 
-
-	
-	
-	
-	
+	@Override
+	public void updateUser(Long userId, String imageUrl) {
+		String updateTrainerImage="UPDATE users SET image_url (?) WHERE user_id =?";
+		jdbcTemplate.update(updateTrainerImage, imageUrl);
+	}	
 }
 
