@@ -117,7 +117,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     <div class="header-container">
         <img class="run-image" src="/img/runnerMtns.jpg" alt="Runner in Mountains" width="80%" height="30%">
             <div class="textOnPic"><b>Raise the Bar Running Workouts</b></div>
-            <div class="homeOnPic"><li><a href="${home }" class="navBar-home"><b>Raise the Bar- Home</b></a></li></div>
+            <div class="homeOnPic"><a href="${home }" class="navBar-home"><b>Raise the Bar- Home</b></a></div>
             <div class="trainersOnPic"><li><a href="trainers" class="navBar-trainers">Trainers</a></li></div>
                 </div>
                 </header>
