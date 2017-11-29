@@ -541,7 +541,7 @@ public class JDBCUserDAO implements UserDAO {
 	public List<Trainer> viewAllTrainersForClient(long clientId) {
 		// TODO Auto-generated method stub
 		List<Trainer> newList = new ArrayList<>();
-		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests WHERE client_id = ?";
+		String getAllRequests = "SELECT * FROM clients_trainers WHERE client_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, clientId);
 		while(results.next()){
 			newList.add(mapRowToTrainer(results));
@@ -553,14 +553,17 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public List<Client> viewAllClientsRequestingForTrainer(long trainerId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Client> newList = new ArrayList<>();
+		String getAllRequests = "SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.client_id JOIN users u ON u.user_id=c.user_id WHERE tr.trainer_id = ? AND tr.accept=0";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllRequests, trainerId);
+		while(results.next()){
+			newList.add(mapRowToClient(results));
+		}
+		return newList;
+		
 	}
 
-	@Override
-	public List<Client> viewAllClientsForTrainerWithEstablishedRelationship(long trainerId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public User getImageById(Long imageId) {

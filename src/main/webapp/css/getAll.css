@@ -279,6 +279,44 @@ textarea {
 	background: #888;
 }
 
+/***NAV BAR***/
+
+#top-nav {
+    background: rgba(243, 243, 243, 0.973);
+    height: 100px;
+    
+}
+.nav-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "raise links";
+    
+}
+.nav-raise-logo {
+    grid-area: raise;
+    margin: 35px 30px 0px 20px;
+    color: #1a232b;
+}
+.nav-bar-links {
+    grid-area: links;
+    margin: 35px 10px 0px 40px;
+    color: #1a232b;
+}
+
+.nav-bar-links p {
+    display: inline;
+    margin: 0px;
+    border: none;
+}
+
+.nav-bar a {
+    color: #1a232b;
+    font-size: 1.3em;
+    font-family: 'Righteous', sans-serif;
+}
+.nav-bar a:hover {
+    color: #927c38;
+}
 /***SEARCH FOR CLIENT***/
 
 
@@ -294,10 +332,16 @@ textarea {
 	border-radius: 5px;
 }
 
-h2, h3 {
-	text-decoration: underline #ccae51;
-	width: 75px;
-	font-size: 1.3em;
+.h1-tag h1 {
+    margin: 50px auto;
+    text-align:center;
+}
+
+h1, h2, h3 {
+    font-family: 'Righteous', sans-serif;
+    text-decoration: underline #ccae51;
+    width: 200px;
+	font-size: 1.8em;
 	margin: 0 auto;
 	text-align: center;
 }

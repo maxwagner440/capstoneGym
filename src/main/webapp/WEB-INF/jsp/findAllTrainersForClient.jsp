@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
     <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
@@ -10,6 +11,29 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
+<header>
+    <nav id="top-nav">
+        <div class="nav-bar">
+            <div class="nav-raise-logo">
+                <c:url var="home" value="/"/>
+                <a href="${home}" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
+                <!-- Float links to the right. Hide them on small screens -->
+            </div>
+            <div class="nav-bar-links"> 
+                <a href="" class="about">About</a>
+                <p>|</p>
+                <a href="#projects" class="training">Training Specialties</a>
+                <p>|</p>
+                <a href="#trainers" class="trainers">Trainers</a>
+                <p>|</p>
+                <a href="#contact" class="contacts">Contact</a>
+                <p>|</p>
+                <c:url var="login" value="/login"/>
+                <a href="${login}" class="login">Login / Sign-Up</a>
+            </div>
+        </div>
+    </nav>
+</header>
 <h1>All Trainers</h1>
 <div class="search-page">
 	<div>
