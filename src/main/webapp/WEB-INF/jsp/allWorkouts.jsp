@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <style> 
@@ -78,7 +79,9 @@ footer {background: rgb(46, 45, 58);color:white;}
                 </header>
             <div class="box1">
                 <article class="article">
-                  <h1><a href="">Running</a></h1>
+                <c:url var="running" value="/runningWorkout"/>
+                
+                  <h1><a href="${running }">Running</a></h1>
                   <p>Running is second only to rowing for calories burned per hour.</p>
                   <p>Running outside is far superior to working out in a gym!!!</p>
                   <p><strong>It's the best!</strong></p>

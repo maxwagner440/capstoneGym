@@ -70,6 +70,8 @@ public class JDBCUserDAO implements UserDAO {
 		}
 		return client;
 	}
+	
+	
 	@Override
 	public boolean searchForEmailAndPassword(String email, String password) {
 		String sqlSearchForUser = "SELECT * "+
@@ -354,6 +356,17 @@ public class JDBCUserDAO implements UserDAO {
 			trainer=mapRowToTrainer(rows);
 		}
 		return trainer;
+	}
+	
+	@Override
+	public Client getClientById(long userID) {
+		String command="SELECT * FROM users u JOIN clients c ON u.user_id=c.user_id WHERE u.user_id=? ";
+		SqlRowSet rows=jdbcTemplate.queryForRowSet(command, userID);
+		Client client=null;
+		if(rows.next()){
+			client=mapRowToClient(rows);
+		}
+		return client;
 	}
 
 	@Override

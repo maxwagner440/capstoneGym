@@ -14,6 +14,7 @@ public interface UserDAO {
 	public void saveTrainer(Trainer trainer, long id);
 	public void saveClient(Client client, long id);
 	public boolean searchForEmailAndPassword(String email, String password);
+	public Client getClientById(long userID);
 	public boolean searchForUsernameAndPassword(String user, String password);
 	public void updatePassword(String user, String password);
 	public String getUserRole(String email);
