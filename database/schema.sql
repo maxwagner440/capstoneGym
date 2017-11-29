@@ -141,5 +141,5 @@ SELECT DISTINCT * FROM trainers_requests tr JOIN clients c ON tr.client_id=c.cli
 SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE mu.message_receiver_user_id=1 AND mu.message_creator_user_id=3 ORDER BY time_stamp DESC LIMIT 5;
 ROLLBACK;
 
-
+SELECT accept FROM trainers_requests WHERE client_id = 1 AND trainer_id = 1 LIMIT 1
 

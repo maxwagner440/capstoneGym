@@ -80,21 +80,29 @@ public class ProfileController {
 	}
 
 	//Cloudinary Controller
-//	@RequestMapping(path="/trainerProfile", method=RequestMethod.POST)
-//	public String updateTrainerPicture(@ModelAttribute ("trainerProf") Trainer trainerProf, RedirectAttributes attr, HttpSession session, @RequestParam ){
-//	attr.addFlashAttribute("trainerProf", trainerProf);	
-//		
-//		if(!userDAO.getTrainerById()) { 
-//		    
-//			  <!--   //NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT -->
-//			        trainerProf.setImageUrl("http://res.cloudinary.com/annaKonchak/" + trainerProf.getImageUrl());
-//			
-//			
-//			return "redirect:/trainerProfile";
-//		}
-//	}
-//	
-//	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
-//	public String updateClientPicture()
-//}
+	@RequestMapping(path="/trainerImage", method=RequestMethod.POST)
+	public String updateTrainerPicture(@RequestParam String imageUrl, @RequestParam long trainerId, RedirectAttributes attr, HttpSession session ){
+		Trainer thisTrainer = userDAO.getTrainerById(trainerId);
+		if(thisTrainer != null) { 
+		    
+			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+			thisTrainer.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+			userDAO.updateUser(thisTrainer.getId(), thisTrainer.getImageUrl());
+						
+		}
+		return "redirect:/trainerProfile";
+	}
+	
+	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
+	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
+		Client thisClient = userDAO.getClientById(clientId);
+		if(thisClient != null) { 
+		    
+			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+			thisClient.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
+						
+		}
+		return "redirect:/trainerProfile";
+	}
 }
