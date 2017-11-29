@@ -40,14 +40,14 @@ public class ProfileController {
 		
 		Trainer machop=(Trainer) session.getAttribute("profileToView");
 		Client thisClient=(Client) session.getAttribute("user");
-		int result = userDAO.getAcceptState(thisClient.getClientId(), machop.getTrainerId());
-		if(result != 1 || result != 2){
+//		int result = userDAO.getAcceptState(thisClient.getClientId(), machop.getTrainerId());
+//		if(result != 1 || result != 2){
 		userDAO.saveClientTrainerRelsationship(thisClient.getClientId(), machop.getTrainerId());
 		attr.addFlashAttribute("message", "You have requested to sign up with "+ machop.getUsername() + ". They will get back to you as soon as possible.");
-		}
-		else{
-			attr.addFlashAttribute("message", "You are already signed up with "+ machop.getUsername() + ".");
-		}
+//		}
+//		else{
+//			attr.addFlashAttribute("message", "You are already signed up with "+ machop.getUsername() + ".");
+//		}
 		return "redirect:/clientDashboard";
 	}
 	
@@ -80,29 +80,29 @@ public class ProfileController {
 	}
 
 	//Cloudinary Controller
-	@RequestMapping(path="/trainerImage", method=RequestMethod.POST)
-	public String updateTrainerPicture(@RequestParam String imageUrl, @RequestParam long trainerId, RedirectAttributes attr, HttpSession session ){
-		Trainer thisTrainer = userDAO.getTrainerById(trainerId);
-		if(thisTrainer != null) { 
-		    
-			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-			thisTrainer.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
-			userDAO.updateUser(thisTrainer.getId(), thisTrainer.getImageUrl());
-						
-		}
-		return "redirect:/trainerProfile";
-	}
-	
-	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
-	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
-		Client thisClient = userDAO.getClientById(clientId);
-		if(thisClient != null) { 
-		    
-			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-			thisClient.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
-			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
-						
-		}
-		return "redirect:/trainerProfile";
-	}
+//	@RequestMapping(path="/trainerImage", method=RequestMethod.POST)
+//	public String updateTrainerPicture(@RequestParam String imageUrl, @RequestParam long trainerId, RedirectAttributes attr, HttpSession session ){
+//		Trainer thisTrainer = userDAO.getTrainerById(trainerId);
+//		if(thisTrainer != null) { 
+//		    
+//			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+//			thisTrainer.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+//			userDAO.updateUser(thisTrainer.getId(), thisTrainer.getImageUrl());
+//						
+//		}
+//		return "redirect:/trainerProfile";
+//	}
+//	
+//	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
+//	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
+//		Client thisClient = userDAO.getClientById(clientId);
+//		if(thisClient != null) { 
+//		    
+//			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+//			thisClient.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+//			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
+//						
+//		}
+//		return "redirect:/trainerProfile";
+//	}
 }

@@ -34,7 +34,7 @@
             <div class="btns">    
             	<c:url var="acceptReq" value="/acceptRequest"/>
 				<form action="${acceptReq}" method="POST">
-				<button type="submit" name ="clientId" value="${client.clientId}" class="view-btn"> Accceot</button>
+				<button type="submit" name ="clientId" value="${client.clientId}" class="view-btn"> Accept</button>
 				</form>
 				
            		<br>
@@ -42,7 +42,7 @@
                 <c:url value="/denyRequest" var="denyReq"/>
                 <form action="${denyReq}" method="POST">
 
-                <button type="submit" class="deny-btn" name ="clientId" value="${client.clientId}">Deny</button>
+                <button type="submit" class="delete-btn" name ="clientId" value="${client.clientId}">Deny</button>
                 </form>
             </div>
             

@@ -13,8 +13,6 @@
 <body class="color-back">
 
 
-<h1>All Trainers</h1>
-
 
 
 
