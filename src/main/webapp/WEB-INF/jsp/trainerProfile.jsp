@@ -1,5 +1,6 @@
 
 <%@include file ="/WEB-INF/jsp/common/header.jspf" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 <title>Trainer Profile</title>
 
@@ -56,20 +57,43 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center"><c:out value="${user.getFullName()}"/></h4>
+         <c:url />
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Your Bio: <c:out value="${user.bio}"/> </p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Your Location: Cleveland, OH</p>
-	        <form:form method="POST" action="${formAction}" modelAttribute="newBrewery">
+	     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.1/js/jquery.iframe-transport.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.1/js/jquery.fileupload.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.19.1/js/vendor/jquery.ui.widget.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-jquery-file-upload/2.3.0/cloudinary-jquery-file-upload.min.js"></script>
+		 <script type='text/javascript'>
+
+			$.cloudinary.config({
+			    "cloud_name" : "cjmeigsy",
+			    "api_key" : "891733127358897",
+			    "private_cdn" : false,
+			    "cdn_subdomain" : false
+			});
+			
+			$(document).ready(function() {
+			      if($.fn.cloudinary_fileupload !== undefined) {
+			        $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+			      }
+			    });
+			</script>
+	        <c:url var="formAction" value="/trainerImage"/>
+	        <form method="POST" action="${formAction}">
+	        <input type="hidden" name="trainerId" value="${user.id}">
 				<div class="form-group">
-				<label for="breweryLogoUrl">Current Picture: </label>
-				<form:input path="breweryLogoUrl" class="form-control" />
-				<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="breweryLogoUrl" 
-				data-form-data= "{"upload_preset": "profile_images" }" ></input>
-				<form:errors path="breweryLogoUrl"></form:errors>
+				<label for="imageUrl">Current Picture: </label>
+				<input name="imageUrl" class="form-control" />
+				<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="imageUrl" 
+				data-form-data= '{"upload_preset": "capstone_profile_images" }'
+				accept=".jpg, .jpeg, .png"></input>
 			</div>
-			</form:form>
+			</form>
         </div>
       </div>
       <br>
@@ -182,7 +206,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
               <script src="jquery.barrating.min.js"></script>
               <script type="text/javascript">
                  $(function() {

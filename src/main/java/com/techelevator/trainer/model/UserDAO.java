@@ -68,4 +68,7 @@ public interface UserDAO {
 	public User getImageById(Long imageId);
 	public User getImageByUrl(String imageUrl);
 	public void saveImageByUrl(String imageUrl);
+	
+	//Update Trainer/Client
+	public void updateUser(Long userId, String imageUrl);
 }
