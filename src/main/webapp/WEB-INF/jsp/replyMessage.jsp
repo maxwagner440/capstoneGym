@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
+
     <meta charset="utf-8"> <!-- utf-8 works for most cases -->
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
@@ -27,6 +28,50 @@
 
     <!-- CSS Reset : BEGIN -->
     <style>
+    
+    /* past messages */
+				    .messageFont{
+					font-size: 1.5em;
+					font-family: sans-serif;
+					margin: 0px;
+					
+				}
+				    .profile {
+					background: #eee;
+					color: #1a232b;
+					display: grid;
+					grid-template-columns: 1fr;
+					grid-template-rows: auto;
+					grid-template-areas: "min-prof bio" ;
+					margin: 10px;			
+					border-radius: 5px;
+					overflow: auto;
+				}
+				
+				.left-prof {
+					grid-area: min-prof;
+					margin: 20px 30px;
+					grid-column-span: min-prof;
+				}
+				    
+				    .head-two {
+					margin: 0 auto;
+				}
+				
+				.small-info {
+						margin: 10px auto;
+					}
+				.info {
+					grid-area: bio;
+					margin: 20px 300px 0px 200px;
+					grid-column-span: "bio";
+					
+				}
+				
+				
+					
+				
+	
 .toUser {
     font-family: "open sans";
     font-size: 12pt;
@@ -180,7 +225,7 @@
         <div class="profile">
             <div class="left-prof">
                 <div class="head-two">
-                    <h2>Username: <c:out value="${message.username}"/></h2>
+                    <h3>Username: <c:out value="${message.username}"/></h3>
                 </div>
                 <!-- <div class="prof-pic">
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"/>
@@ -191,8 +236,8 @@
                 </div>
             </div>
             <div class="info">
-                <h3>Message: </h3>
-                <p><c:out value="${message.content}"/></p>
+                <h2>Message: </h2>
+                <p class="messageFont"><c:out value="${message.content}"/></p>
             </div>
             
               

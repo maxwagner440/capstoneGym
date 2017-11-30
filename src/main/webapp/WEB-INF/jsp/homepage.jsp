@@ -3,7 +3,7 @@
 <title>Raise the Bar</title>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/homePage.css">
     
  	<!-- <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
     <link rel="stylesheet" href="css/trainerProfile.css">
