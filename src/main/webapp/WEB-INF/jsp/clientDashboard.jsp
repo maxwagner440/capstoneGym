@@ -70,7 +70,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   
   <c:url var="allTrainers" value="/findAllTrainers"/>
   <a href="${allTrainers }" class="w3-button">Select a Trainer</a>
-    <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <c:url value="/logout" var="logout"/>
+    <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white something"> <c:url value="/logout" var="logout"/>
   <form action="${logout}" method="POST">
 		<input type="submit" value="Logout"/>
 	</form></div>

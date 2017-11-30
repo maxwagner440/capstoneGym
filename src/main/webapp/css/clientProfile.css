@@ -1,7 +1,9 @@
 /* TRAINER PROFILE W3.CSS 4.06 November 2017 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
-
+.something {
+    margin-left: 500px;
+}
 
 .w3-container w3-theme-d5{
     align-content: right !important;

@@ -39,10 +39,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </div>
 
   </div>
-  <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <c:url value="/logout" var="logout"/>
-  <form action="${logout}" method="POST">
-		<input type="submit" value="Logout"/>
-	</form></div>
+  <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white something"> <c:url value="/logout" var="logout"/>
+	  <form action="${logout}" method="POST">
+			<input type="submit" value="Logout"/>
+  	</form>
+	</div>
  </div> 
 </div>
 
