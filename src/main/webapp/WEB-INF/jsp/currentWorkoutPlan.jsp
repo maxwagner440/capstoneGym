@@ -16,8 +16,8 @@
         	<c:url value="img/frontSquat.jpg" var="frontSquat"/>
             <img class="lift-image" src="${frontSquat}" alt="Shirtless man front squatting" width="80%" height="30%">
                 <div class="textOnPic"><b>My Current Workouts</b></div>
-                <c:url value="/" var="home"/>
-                <div class="homeOnPic"><a href="${home }" class="navBar-home"><b>Raise the Bar- Home</b></a></div>
+                <c:url value="/${user.role.toLowerCase()}Dashboard" var="home"/>
+                <div class="homeOnPic"><a href="${home }" class="navBar-home"><b>Dashboard</b></a></div>
         </div>
 
     <div class="flex-container-goals">
