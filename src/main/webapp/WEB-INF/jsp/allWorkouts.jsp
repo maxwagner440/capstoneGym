@@ -72,8 +72,9 @@ footer {background: rgb(46, 45, 58);color:white;}
 
                   <nav class="nav">
                         <ul>
-                          <li><a href="#home" class="navBar-home">Home</a></li>
-                          <li><a href="trainers" class="navBar-trainers">Trainers</a></li>
+                        <c:url value="/" var="home"/>
+                          <li><a href="${home}" class="navBar-home">Home</a></li>
+                          
                         </ul>
                     </nav>
                 </header>

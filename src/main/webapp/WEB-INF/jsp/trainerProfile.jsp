@@ -6,6 +6,8 @@
 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+
+
 </style>
 <body class="w3-theme-l5">
 
@@ -87,7 +89,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 			      }
 			    });
 			</script>
-	        <c:url var="formAction" value="/trainerImage"/>
+	        <%-- <c:url var="formAction" value="/trainerImage"/>
 	        <form method="POST" action="${formAction}">
 	        <input type="hidden" name="trainerId" value="${user.id}">
 			<div class="form-group">
@@ -97,7 +99,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 				data-form-data= '{"upload_preset": "capstone_profile_images" }'
 				accept=".jpg, .jpeg, .png"></input>
 			</div>
-			</form>
+			</form> --%>
         </div>
       </div>
       <br>
@@ -142,31 +144,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Training Specialties</p>
-          <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">Locations</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-            <span class="w3-tag w3-small w3-theme">Games</span>
-            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
-          </p>
-        </div>
-      </div>
-      <br>
+      
       
       <!-- Alert Box -->
       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
+        
+      
         <p><strong>
         <div id="trainer-privacy">
 	<c:out value="Your privacy is currently ${user.visibility ? 'public' : 'private'}"/>
@@ -220,7 +203,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
               </script>
             </select>  
 
-             <p contenteditable="true" class="w3-border w3-padding">MAYBE put clickable stars on this row</p>
+             <p contenteditable="true" class="w3-border w3-padding"></p>
               <button type="button" class="w3-button w3-theme"><i class="fa fa"></i>Post</button> 
             </div>
           </div>
@@ -285,14 +268,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>Starting at $45/hour</p>
-        <p>Add an icon/add fine print</p>
+        <p>Your Starting Hourly Price is: 
+        
+        <br><strong>$<c:out value="${user.trainerHourlyPrice }"/>/hour</strong></p>
+        
       </div>
       <br>
       
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i>Any icon/anything we want or delete box</p>
-      </div>
+    
       
     <!-- End Right Column -->
     </div>
