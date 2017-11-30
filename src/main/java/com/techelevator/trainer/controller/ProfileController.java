@@ -80,29 +80,29 @@ public class ProfileController {
 	}
 
 	//Cloudinary Controller
-	@RequestMapping(path="/trainerImage", method=RequestMethod.POST)
-	public String updateTrainerPicture(@RequestParam String imageUrl, @RequestParam long trainerId, RedirectAttributes attr, HttpSession session ){
-		Trainer thisTrainer = userDAO.getTrainerById(trainerId);
-		if(thisTrainer != null) { 
-		    
-			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-			thisTrainer.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
-			userDAO.updateUser(thisTrainer.getId(), thisTrainer.getImageUrl());
-						
-		}
-		return "redirect:/trainerProfile";
-	}
-	
-	@RequestMapping(path="/clientImage", method=RequestMethod.POST)
-	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
-		Client thisClient = userDAO.getClientById(clientId);
-		if(thisClient != null) { 
-		    
-			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
-			thisClient.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
-			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
-						
-		}
-		return "redirect:/clientProfile";
-	}
+//	@RequestMapping(path="/trainerImage", method=RequestMethod.POST)
+//	public String updateTrainerPicture(@RequestParam String imageUrl, @RequestParam long trainerId, RedirectAttributes attr, HttpSession session ){
+//		Trainer thisTrainer = userDAO.getTrainerById(trainerId);
+//		if(thisTrainer != null) { 
+//		    
+//			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+//			thisTrainer.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+//			userDAO.updateUser(thisTrainer.getId(), thisTrainer.getImageUrl());
+//						
+//		}
+//		return "redirect:/trainerProfile";
+//	}
+//	
+//	@RequestMapping(path="/clientImage", method=RequestMethod.POST)
+//	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
+//		Client thisClient = userDAO.getClientById(clientId);
+//		if(thisClient != null) { 
+//		    
+//			//NEXT LINE IS THE VIP- MUST BE LINKED TO THE OBJECT 
+//			thisClient.setImageUrl("http://res.cloudinary.com/cjmeigsy/" + imageUrl);
+//			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
+//						
+//		}
+//		return "redirect:/clientProfile";
+//	}
 }

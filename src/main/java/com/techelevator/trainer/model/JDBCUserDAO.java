@@ -605,43 +605,43 @@ public class JDBCUserDAO implements UserDAO {
 		return result;
 	}
 
-	@Override
-	public User getImageById(Long imageId) {
-		String sqlGetImageById = "SELECT * FROM users WHERE image_id = ?";
-		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageId);
-		
-		if(results.next()){
-			return mapToRowUser(results);
-		} else{
-			return null;
-		}
-	}
-	
-	@Override
-	public User getImageByUrl(String imageUrl) {
-		String sqlGetImageById = "SELECT * FROM users WHERE image_url = ?";
-		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageUrl);
-	
-		if(results.next()){
-			return mapToRowUser(results);
-		} else{
-			return null;
-		}
-	}
-
-	@Override
-	public void saveImageByUrl(String imageUrl) {
-		String saveImageToUser="INSERT INTO users (image_url) VALUES (?)";
-		jdbcTemplate.update(saveImageToUser, imageUrl);
-		
-	}
-
-	@Override
-	public void updateUser(Long userId, String imageUrl) {
-		String updateTrainerImage="UPDATE users SET image_url (?) WHERE user_id =?";
-		jdbcTemplate.update(updateTrainerImage, imageUrl);
-	}	
+//	@Override
+//	public User getImageById(Long imageId) {
+//		String sqlGetImageById = "SELECT * FROM users WHERE image_id = ?";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageId);
+//		
+//		if(results.next()){
+//			return mapToRowUser(results);
+//		} else{
+//			return null;
+//		}
+//	}
+//	
+//	@Override
+//	public User getImageByUrl(String imageUrl) {
+//		String sqlGetImageById = "SELECT * FROM users WHERE image_url = ?";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageUrl);
+//	
+//		if(results.next()){
+//			return mapToRowUser(results);
+//		} else{
+//			return null;
+//		}
+//	}
+//
+//	@Override
+//	public void saveImageByUrl(String imageUrl) {
+//		String saveImageToUser="INSERT INTO users (image_url) VALUES (?)";
+//		jdbcTemplate.update(saveImageToUser, imageUrl);
+//		
+//	}
+//
+//	@Override
+//	public void updateUser(Long userId, String imageUrl) {
+//		String updateTrainerImage="UPDATE users SET image_url (?) WHERE user_id =?";
+//		jdbcTemplate.update(updateTrainerImage, imageUrl);
+//	}	
 }
 
