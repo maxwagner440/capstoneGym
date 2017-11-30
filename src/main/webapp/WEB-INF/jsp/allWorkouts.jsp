@@ -77,7 +77,7 @@ footer {background: rgb(46, 45, 58);color:white;}
                         </ul>
                     </nav>
                 </header>
-            <div class="box1">
+             <div class="box1">
                 <article class="article">
                 <c:url var="running" value="/runningWorkout"/>
                 
@@ -85,6 +85,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                   <p>Running is second only to rowing for calories burned per hour.</p>
                   <p>Running outside is far superior to working out in a gym!!!</p>
                   <p><strong>It's the best!</strong></p>
+                  <c:url value="/img/run.jpg" var="runPic"/>
+                  <img class="run-pic" src="${runPic}" alt="running couple" width="200em" height="150em">
                 </article>
             </div>
             <div class="box2">
@@ -93,6 +95,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Stressful.</p>
                         <p>Good luck fighting your microbiome and coming out on top.</p>
                         <p><strong>It's not the best!</strong></p>
+                        <c:url value="/img/weightLoss.jpg" var="weighttLoss"/>
+                        <img class="weight-loss-pic" src="${weighttLoss}" alt="weight loss couple" width="200em" height="150em">
                 </article>
             </div>
             <div class="box1">
@@ -101,6 +105,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Go team go!</p>
                         <p>Faster and stronger and better.</p>
                         <p><strong>It's second best!</strong></p>
+                        c:url value="/img/sportsP.jpg" var="sportsPPic"/>
+                        <img class="sports-perform-pic" src="${sportsPPic}" alt="sports performance" width="200em" height="150em">
                 </article>
             </div>
             <div class="box2">
@@ -109,6 +115,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Rhabdomyolysis</p>
                         <p>Break yourself with supervision, and then end up in the hospital with acute renal failure.</p>
                         <p><strong>It's not the best!</strong></p>
+                        <c:url value="/img/crossFit.jpg" var="crossFitPic"/>
+                        <img class="cross-fit-pic" src="${crossFitPic}" alt="crossFit tire" width="200em" height="150em">
                 </article>
             </div> 
             <div class="box1">
@@ -117,6 +125,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Maybe isn't fun.</p>
                         <p>It's boring.</p>
                         <p><strong>It's sort of maybe not the best!</strong></p>
+                        <c:url value="/img/conditioning.jpg" var="conditioning"/>
+                        <img class="conditioning-pic" src="${conditioning}" alt="conditioning" width="200em" height="150em">
                 </article>
             </div>  
             <div class="box2">
@@ -125,6 +135,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Weight lifting isn't fun.</p>
                         <p>Staring at yourself in a mirrow and grunting while picking up heavy weights is boring.</p>
                         <p><strong>It's not the best!</strong></p>
+                        <c:url value="/img/powerLifting.jpg" var="powerLiftPic"/>
+                        <img class="power-lift-pic" src="${powerLiftPic}" alt="power lift" width="200em" height="150em">
                 </article>
             </div> 
             <div class="box1">
@@ -133,6 +145,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Weight lifting isn't fun.</p>
                         <p>Staring at yourself in a mirrow and grunting while picking up heavy weights is boring.</p>
                         <p><strong>It's not the best!</strong></p>
+                        <c:url value="/img/olympicLift.jpg" var="olympicLiftPic"/>
+                        <img class="olympic-lift-pic" src="${olympicLiftPic}" alt="olympic lift" width="200em" height="150em">
                 </article>
             </div>   
             <div class="box2">
@@ -141,6 +155,8 @@ footer {background: rgb(46, 45, 58);color:white;}
                         <p>Weight lifting isn't fun.</p>
                         <p>Staring at yourself in a mirrow and grunting while picking up heavy weights is boring.</p>
                         <p><strong>It's not the best!</strong></p>
+                        <c:url value="/img/weightLifting.jpg" var="wtLiftingPic"/>
+                        <img class="weight-lifting-pic" src="${wtLiftingPic}" alt="weight lifting" width="200em" height="150em">
                 </article>
             </div>
             <div>
