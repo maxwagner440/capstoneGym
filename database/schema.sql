@@ -64,7 +64,6 @@ CREATE TABLE clients(
 CREATE TABLE clients_trainers(
                 client_id Serial,
                 trainer_id Serial,
-                CONSTRAINT pk_clients_trainers_client_id PRIMARY KEY (client_id, trainer_id),
                 CONSTRAINT fk_clients_trainers_clients FOREIGN KEY (client_id) REFERENCES clients (client_id),
                 CONSTRAINT fk_clients_trainers_trainers FOREIGN KEY (trainer_id) REFERENCES trainers (trainer_id)
                 
