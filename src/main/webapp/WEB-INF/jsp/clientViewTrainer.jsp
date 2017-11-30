@@ -268,7 +268,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <!-- Trigger/Open The Modal -->
                 <c:url var="signupWithTrainer" value="/signUpWithTrainer"/>
 		<form action="${signupWithTrainer}" method="POST">
-		<input type="hidden" name="trainerId" value="${trainer.id }"/>
+		<input type="hidden" name="trainerId" value="${profileToView.id }"/>
 		<input id="myBtn" type="submit" value="Request Trainer"/>
 		</form>
                 
@@ -280,7 +280,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>Starting at $45/hour</p>
+        <p>Starting at $<c:out value="${profileToView.trainerHourlyPrice }"/>/hour</p>
         <p>Add an icon/add fine print</p>
       </div>
       <br>

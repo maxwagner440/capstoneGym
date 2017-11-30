@@ -53,7 +53,7 @@ public class SearchController {
 	
 	@RequestMapping(path="/clientViewTrainer", method=RequestMethod.GET)
 	public String viewSpecificTrainer(HttpSession session, ModelMap model){
-		model.put("trainer", (Trainer) session.getAttribute("profileToView"));
+		
 		return "clientViewTrainer";
 		
 	}

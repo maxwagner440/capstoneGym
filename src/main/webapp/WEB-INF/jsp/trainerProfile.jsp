@@ -14,29 +14,33 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" 
     href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <!-- <img class="logo" src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" alt="RaiseTheBarLogo" width="150" height="150"> -->
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-      <img src="img/RaisetheBarLogo.png" 
-      class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
+    <c:url var="home" value="/"/>
+  <a href="${home }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="home"><b>Raise the Bar</b></a>
+  
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <c:url value="/viewMyMessages" var="viewMyMessages"/>
   <a href="${viewMyMessages}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+   
    <c:url value="/currentWorkoutPlan" var="currentWorkoutPlan"/>
       <a href="${currentWorkoutPlan}" class="w3-bar-item w3-button">See Your Workout</a>
+         
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
-      <span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+      <span class="w3-badge w3-right w3-small w3-green">3</span></button>    
+       
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
       <c:url value="/viewMyRequests" var="viewRequests"/>
       <a href="${viewRequests }" class="w3-bar-item w3-button">New client request</a>
       <c:url value="/viewAllClients" var="viewAllClients"/>
       <a href="${viewAllClients}" class="w3-bar-item w3-button">See all clients</a>
     </div>
+
   </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
-    class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
+  <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <c:url value="/logout" var="logout"/>
+  <form action="${logout}" method="POST">
+		<input type="submit" value="Logout"/>
+	</form></div>
  </div> 
 </div>
 

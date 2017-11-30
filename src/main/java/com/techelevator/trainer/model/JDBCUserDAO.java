@@ -290,7 +290,7 @@ public class JDBCUserDAO implements UserDAO {
 	@Override
 	public List<Client> getAllClientsFromTrainerId(Long trainerId){
 		List<Client> allClients = new ArrayList<>();
-		String getAllClients = "SELECT * FROM clients c LEFT JOIN clients_trainers ct ON c.client_id = ct.client_id"
+		String getAllClients = "SELECT DISTINCT * FROM clients c LEFT JOIN clients_trainers ct ON c.client_id = ct.client_id"
 				+ " JOIN users u ON u.user_id = c.user_id WHERE trainer_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(getAllClients, trainerId);
 		while(results.next()){
