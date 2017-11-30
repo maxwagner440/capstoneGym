@@ -433,7 +433,7 @@ public class JDBCUserDAO implements UserDAO {
 	public List<Message> getRecentConversationBetweenTrainerAndClient(long receiverId, long senderId, int numOfRecentMessagesInThePast){
 		List<Message> recentMessages=new ArrayList<>();
 		String command="SELECT * FROM messages_users mu JOIN message_content mc ON mu.message_content_id=mc.message_content_id WHERE "
-				+ "mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp DESC LIMIT ?";
+				+ "mu.message_receiver_user_id=? AND mu.message_creator_user_id=? ORDER BY time_stamp LIMIT ?";
 		SqlRowSet results=jdbcTemplate.queryForRowSet(command, senderId, receiverId, numOfRecentMessagesInThePast);
 		while(results.next()){
 			recentMessages.add(mapRowToMessage(results));

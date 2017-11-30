@@ -4,13 +4,15 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/homePage.css">
-    <!-- <link href="css/capstone.css" rel="stylesheet" title="logincss"/> -->
-    <!-- <link rel="stylesheet" href="css/trainerProfile.css">
+    
+ 	<!-- <link href="css/capstone.css" rel="stylesheet" title="logincss"/>
+    <link rel="stylesheet" href="css/trainerProfile.css">
     <link rel="stylesheet" href="css/clientProfile.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="fontawesome-stars.css"> -->
+	
     <script src="js/login.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +52,7 @@
 
 
   <a href="" class="navBar w3-button">About</a>
-  <a href="#projects" class="navBar w3-button">Training Specialties</a>
+  <a href="#training-specialties" class="navBar w3-button">Training Specialties</a>
   <a href="#trainers" class="navBar w3-button">Trainers</a>
   <!-- <a href="#contact" class="navBar w3-button">Contact</a> -->
   <c:url var="login" value="/login"/>
@@ -67,9 +69,9 @@
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
 <c:url var="backImg" value="img/greyGoldGym.png"/>
-<img class="w3-image" src="${backImg }" alt="Architecture" width="1500" height="800">
+<img class="w3-image" src="${backImg }" alt="Grey and Purple Gym" width="90%" height="50%">
 <div class="w3-display-middle w3-margin-top w3-center">
-<h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Raise the Bar</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
+<h1 class="text-pic"><span class="gym-pic-text"><b>Raise the Bar</b></span> <span class="gym-pic-text"></span></h1>
 </div>
 </header>
 
@@ -79,41 +81,49 @@
 <!-- About Section -->
 <div class="w3-container w3-padding-32" id="about">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
-    <p>We're here to make the unicorn match-up between clients and trainers.</p>
+    <h7>We're here to make the unicorn match-up between clients and trainers!</h7>
     <br>
     <p>Use us to search for trainers and utilize their expertise to tailor a fitness plan to match your fitness goals.</p>
     <p>Once you find and request a trainer, communicate via messages and work-out any time that fits with your lifestyle!</p>
   </div>
 
-<!-- Project Section -->
-<div class="w3-container w3-padding-32" id="projects">
+<!-- Training Specialties Section -->
+<div class="w3-container w3-padding-32" id="training-specialties">
 <c:url value="allWorkouts" var="allWorkouts"/>
-<h7 class="w3-border-bottom w3-border-light-grey w3-padding-16"><a href="${allWorkouts}" class="navBar-home">Training Specialties</a></h3>
+<h7 class="w3-border-bottom w3-border-light-grey w3-padding-16"><a href="${allWorkouts}" class="trainingTitle" id="TrainingTitle">Training Specialties</a></h3>
 </div>
 
 <div class="w3-row-padding">
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Running</div>
-    <img src="/w3images/house5.jpg" alt="House" style="width:100%">
+    <div class="title-training-specialty">Running</div>
+    <c:url value="/img/run.jpg" var="runPic"/>
+    <img class="run-pic" src="${runPic}" alt="running couple" width="99%">
+    <!-- <img src="/w3images/house5.jpg" alt="House" style="width:100% height:8em"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Weight Lifting</div>
-    <img src="/w3images/house2.jpg" alt="House" style="width:100%">
+    <div class="title-training-specialty">Weight Lifting</div>
+    <c:url value="/img/weightLifting.jpg" var="wtLiftingPic"/>
+    <img class="weight-lifting-pic" src="${wtLiftingPic}" alt="weight lifting" width="99%">
+    <!-- <img src="/w3images/house2.jpg" alt="House" style="width:100%"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Weight Loss/Gain</div>
-    <img src="/w3images/house3.jpg" alt="House" style="width:100%">
+    <div class="title-training-specialty">Weight Loss/Gain</div>
+    <c:url value="/img/weightLoss.jpg" var="weighttLoss"/>
+    <img class="weight-loss-pic" src="${weighttLoss}" alt="weight loss couple" width="99%">
+    <!-- <img src="/w3images/house3.jpg" alt="House" style="width:100%"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Sports Perfomance</div>
-    <img src="/w3images/house4.jpg" alt="House" style="width:100%">
+    <div class="title-training-specialty">Sports Perfomance</div>
+    <c:url value="/img/sportsP.jpg" var="sportsPPic"/>
+    <img class="sports-perform-pic" src="${sportsPPic}" alt="sports performance" width="99%">
+    <!-- <img src="/w3images/house4.jpg" alt="House" style="width:100%"> -->
   </div>
 </div>
 </div>
@@ -121,26 +131,34 @@
 <div class="w3-row-padding">
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Olympic Lifting</div>
-    <img src="/w3images/house2.jpg" alt="House" style="width:99%">
+    <div class="title-training-specialty">Olympic Lifting</div>
+    <c:url value="/img/olympicLift.jpg" var="olympicLiftPic"/>
+    <img class="olympic-lift-pic" src="${olympicLiftPic}" alt="olympic lift" width="99%">
+    <!-- <img src="/w3images/house2.jpg" alt="House" style="width:99%"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Power Lifting</div>
-    <img src="/w3images/house5.jpg" alt="House" style="width:99%">
+    <div class="title-training-specialty">Power Lifting</div>
+    <c:url value="/img/powerLifting.jpg" var="powerLiftPic"/>
+    <img class="power-lift-pic" src="${powerLiftPic}" alt="power lift" width="99%">
+    <!-- <img src="/w3images/house5.jpg" alt="House" style="width:99%"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Cross-Fit</div>
-    <img src="/w3images/house4.jpg" alt="House" style="width:99%">
+    <div class="title-training-specialty">Cross-Fit</div>
+    <c:url value="/img/crossFit.jpg" var="crossFitPic"/>
+    <img class="cross-fit-pic" src="${crossFitPic}" alt="crossFit tire" width="99%">
+    <!-- <img src="/w3images/house4.jpg" alt="House" style="width:99%"> -->
   </div>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <div class="w3-display-container">
-    <div class="w3-display-topleft w3-black w3-padding">Conditioning</div>
-    <img src="/w3images/house3.jpg" alt="House" style="width:99%">
+    <div class="title-training-specialty">Conditioning</div>
+    <c:url value="/img/conditioning.jpg" var="conditioning"/>
+    <img class="conditioning-pic" src="${conditioning}" alt="conditioning" width="99%">
+    <!-- <img src="/w3images/house3.jpg" alt="House" style="width:99%"> -->
   </div>
 </div>
 </div>
@@ -148,34 +166,30 @@
 <!-- Trainers Section -->
 <div class="trainers" id="trainers">
 <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Trainers</h3>
-<p>Trainers currently accepting clients.
-</p>
+<h8>Featured Trainers:</h8>
 
 <div class="w3-row-padding w3-grayscale">
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team2.jpg" alt="John" style="width:100%">
   <h3>John Doe</h3>
-  <p class="w3-opacity">Trainer</p>
-  <p>Sports Perfomance and Conditioning</p>
+  <!-- <p class="w3-opacity">Trainer</p> -->
+  <h9>Sports Perfomance and Conditioning</h9>
   <!-- <p><button class="w3-button w3-light-grey w3-block">Contact</button></p> -->
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
   <h3>Jane Doe</h3>
-  <p class="w3-opacity">Trainer</p>
-  <p>Power and Olympic Lifting</p>
+  <h9>Power and Olympic Lifting</h9>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
   <h3>Mike Ross</h3>
-  <p class="w3-opacity">Trainer</p>
-  <p>Weight loss and gain.</p>
+  <h9>Weight loss and gain.</h9>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
   <img src="/w3images/team4.jpg" alt="Dan" style="width:100%">
   <h3>Dan Star</h3>
-  <p class="w3-opacity">Trainer</p>
-  <p>Running and Cross-Fit</p>
+  <h9>Running and Cross-Fit</h9>
 </div>
 </div>
 </div>
@@ -294,11 +308,14 @@ marker.setMap(map);
 </html>
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
+<div>
+    <footer>Copyright &copy; Raise the Bar 2017</footer>
+</div>
+<!-- <footer class="w3-center w3-black w3-padding-16">
 <p>Raise the Bar 2017<a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green"></a></p>
-</footer>
+</footer> -->
 
-<%-- //this is Josh's way of linking the breweries to the map. The lat/long for each brewery were saved in the db- so each brewery (object) is in a
+<!-- <%-- //this is Josh's way of linking the breweries to the map. The lat/long for each brewery were saved in the db- so each brewery (object) is in a
 list with the lat/long linked to them, so a for each loop can pull out the brewery name an apply the label to the map.
  // Create an array of alphabetical characters used to label the markers.
 var labels = [
@@ -335,4 +352,4 @@ var labels = [
       
       </c:forEach>
 
-  ]// --%>
+  ]// --%> -->

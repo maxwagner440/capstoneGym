@@ -163,9 +163,12 @@
           		  <div class="loginError">${message}</div>
           		</div>
         
-          		
-          <br><p class="forgot"><a href="#">Forgot Password?</a></p>
-          
+          <br>
+          <div> <c:if test="${!empty(loginMessage) && user.id == -1}"> 
+           <c:out value="${loginMessage }"/>
+           </c:if> 
+           </div>
+          <br>
           <script
 			src="https://code.jquery.com/jquery-3.2.1.min.js">
           </script>
