@@ -10,6 +10,29 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
+<header>
+    <nav id="top-nav">
+        <div class="nav-bar">
+            <div class="nav-raise-logo">
+                <c:url var="home" value="/"/>
+                <a href="${home}" class="home-one"><strong>Raise the Bar</strong></a>
+                <!-- Float links to the right. Hide them on small screens -->
+            </div>
+            <div class="nav-bar-links"> 
+                <a href="#profile" class="linked">Profile</a>
+                <p>|</p>
+                <a href="#projects" class="linked">Training Specialties</a>
+                <p>|</p>
+                <a href="#trainers" class="linked">Trainers</a>
+                <p>|</p>
+                <a href="#contact" class="linked">Contact</a>
+                <p>|</p>
+                <c:url var="login" value="/login"/>
+                <a href="${login}" class="linked">Login / Sign-Up</a>
+            </div>
+        </div>
+    </nav>
+</header>
 <h1>Clients Making A Request</h1>
 <div class="search-page">
     <c:forEach var="client" items="${clients}">
@@ -34,7 +57,7 @@
             <div class="btns">    
             	<c:url var="acceptReq" value="/acceptRequest"/>
 				<form action="${acceptReq}" method="POST">
-				<button type="submit" name ="clientId" value="${client.clientId}" class="view-btn"> Accceot</button>
+				<button type="submit" name ="clientId" value="${client.clientId}" class="view-btn"> Accept</button>
 				</form>
 				
            		<br>
@@ -42,7 +65,7 @@
                 <c:url value="/denyRequest" var="denyReq"/>
                 <form action="${denyReq}" method="POST">
 
-                <button type="submit" class="deny-btn" name ="clientId" value="${client.clientId}">Deny</button>
+                <button type="submit" class="delete-btn" name ="clientId" value="${client.clientId}">Deny</button>
                 </form>
             </div>
             

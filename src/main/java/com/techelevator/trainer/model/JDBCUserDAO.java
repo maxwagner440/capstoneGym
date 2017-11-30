@@ -623,7 +623,7 @@ public class JDBCUserDAO implements UserDAO {
 		String sqlGetImageById = "SELECT * FROM users WHERE image_url = ?";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageUrl);
-		
+	
 		if(results.next()){
 			return mapToRowUser(results);
 		} else{

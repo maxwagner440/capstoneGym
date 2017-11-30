@@ -1,9 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<c:import url="/WEB-INF/jsp/common/navBar.jspf"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    <link href="css/getAll.css" rel="stylesheet" title="logincss"/>
+	<link href="css/getAll.css" rel="stylesheet" title="getallcss"/>
+	<!-- <link href="css/navBar.css" rel="stylesheet" title="navbarcss"/> -->
+    
     <!-- <script src="js/login.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,34 +14,25 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
-
-
-<h1>All Trainers</h1>
-
-
-
-
-
 <header>
     <nav id="top-nav">
         <div class="nav-bar">
             <div class="nav-raise-logo">
                 <c:url var="home" value="/"/>
-                <a href="${home}" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
+                <a href="${home}" class="home-one"><strong>Raise the Bar</strong></a>
                 <!-- Float links to the right. Hide them on small screens -->
-
             </div>
             <div class="nav-bar-links"> 
-                <a href="" class="about">About</a>
+                <a href="#profile" class="linked">Profile</a>
                 <p>|</p>
-                <a href="#projects" class="training">Training Specialties</a>
+                <a href="#projects" class="linked">Training Specialties</a>
                 <p>|</p>
-                <a href="#trainers" class="trainers">Trainers</a>
+                <a href="#trainers" class="linked">Trainers</a>
                 <p>|</p>
-                <a href="#contact" class="contacts">Contact</a>
+                <a href="#contact" class="linked">Contact</a>
                 <p>|</p>
                 <c:url var="login" value="/login"/>
-                <a href="${login}" class="login">Login / Sign-Up</a>
+                <a href="${login}" class="linked">Login / Sign-Up</a>
             </div>
         </div>
     </nav>
