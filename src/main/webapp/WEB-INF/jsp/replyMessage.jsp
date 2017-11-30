@@ -31,69 +31,58 @@
     
     /* past messages */
 				    
-				    .titleFont{
-					margin-left: -70px;
-				}
-				    .messageFont{
-					font-size: 1.5em;
-					font-family: sans-serif;
-					width: 100%;
-					padding-left: 100px;
-					padding-right: 100px;
-				margin-right: 200px;
-					
-				}
-				
-				.spacing{
-					margin-left: -210px;
-					padding-left: 100px;
-					padding-right: 100px;
-					border: 1px solid #ccae51;
-				}
-				
-				    .profile {
-					background: #eee;
-					color: #1a232b;
-					display: grid;
-					grid-template-columns: 1fr;
-					grid-template-rows: auto;
-					grid-template-areas: "min-prof bio" ;
-					margin: 10px;			
-					border-radius: 5px;
-					overflow: auto;
-					font-family: sans-serif;
-				}
-				
-				.left-prof {
-					grid-area: min-prof;
-					margin: 20px 30px;
-					grid-column-span: min-prof;
-					border-right: 1px solid #ccae51;
-					padding: 20px;
-				}
-				    
-				    .head-two {
-					margin: 0 auto;
-				}
-				
-				.small-info {
-						margin: auto;
-						
-						
-					}
-					
-				.info {
-					grid-area: bio;
-					margin: 20px 200px 0px 200px;
-					grid-column-span: "bio";
-					
-					
-				}
-				
-				
-					
-				
-	
+.titleFont{
+}
+.messageFont{
+	font-family: Veredana, sans-serif;
+	width: 100%;
+}
+
+.spacing{
+	border: 1px solid #ccae51;
+	width: 75%;
+	padding: 5px;
+}
+.spacing a {
+	font-size: 1em;
+}
+
+    .profile {
+	background: #eee;
+	color: #1a232b;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: auto;
+	grid-template-areas: "min-prof bio" ;
+	margin: 10px;			
+	border-radius: 5px;
+	overflow: auto;
+	font-family: sans-serif;
+}
+
+.left-prof {
+	grid-area: min-prof;
+	margin: 20px 30px;
+	grid-column-span: min-prof;
+	border-right: 1px solid #ccae51;
+	padding: 20px;
+}
+    
+.head-two {
+	margin: 0 auto;
+}
+
+.small-info {
+		margin: auto;
+}	
+.info {
+	grid-area: bio;
+	grid-column-span: "bio";	
+}
+.info p {
+	display: inline-block;
+	width: 100%;
+}	
 .toUser {
     font-family: "open sans";
     font-size: 12pt;
@@ -112,71 +101,71 @@
     height: 50%;
 }
 
-        /* What it does: Remove spaces around the email design added by some email clients. */
-        html,
-        body {
-            margin: 50px auto !important; padding: 50px !important;
-            height: 100% !important; width: 90% !important;
-        }
-        /* What it does: Stops email clients resizing small text. */
-        * {
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-        /* What it does: Centers email on Android 4.4 */
-        div[style*="margin: 16px 0"] {
-            margin: 0 !important;
-        }
-        /* What it does: Stops Outlook from adding extra spacing to tables. */
-        table,
-        td {
-            mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important;
-        }
-        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
-        table {
-            border-spacing: 0 !important; border-collapse: collapse !important; table-layout: fixed !important;
-            margin: 0 auto !important;
-        }
-        table table table {
-            table-layout: auto;
-        }
-        /* What it does: Uses a better rendering method when resizing images in IE. */
-        img {
-            -ms-interpolation-mode:bicubic;
-        }
-        /* What it does: A work-around for email clients meddling in triggered links. */
-        *[x-apple-data-detectors],  /* iOS */
-        .x-gmail-data-detectors,    /* Gmail */
-        .x-gmail-data-detectors *,
-        .aBn {
-            border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important;
-            font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important;
-            line-height: inherit !important;
-        }
-        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
-        .a6S {
-            display: none !important; opacity: 0.01 !important;
-        }
-        /* If the above doesn't work, add a .g-img class to any image in question. */
-        img.g-img + div {
-            display: none !important;
-        }
-        /* What it does: Prevents underlining the button text in Windows 10 */
-        .button-link {
-            text-decoration: none !important;
-        }
-        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-        /* Create one of these media queries for each additional viewport size you'd like to fix */
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
-            .email-container {
-                min-width: 375px !important;
-            }
-        }
-        /* What it does: Forces Gmail app to display email full width */
-        u ~ div .email-container {
-	        min-width: 100vw;
-        }
-    </style>
+/* What it does: Remove spaces around the email design added by some email clients. */
+html,
+body {
+    margin: 50px auto !important; padding: 50px !important;
+    height: 100% !important; width: 90% !important;
+}
+/* What it does: Stops email clients resizing small text. */
+* {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+/* What it does: Centers email on Android 4.4 */
+div[style*="margin: 16px 0"] {
+    margin: 0 !important;
+}
+/* What it does: Stops Outlook from adding extra spacing to tables. */
+table,
+td {
+    mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important;
+}
+/* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+table {
+    border-spacing: 0 !important; border-collapse: collapse !important; table-layout: fixed !important;
+    margin: 0 auto !important;
+}
+table table table {
+    table-layout: auto;
+}
+/* What it does: Uses a better rendering method when resizing images in IE. */
+img {
+    -ms-interpolation-mode:bicubic;
+}
+/* What it does: A work-around for email clients meddling in triggered links. */
+*[x-apple-data-detectors],  /* iOS */
+.x-gmail-data-detectors,    /* Gmail */
+.x-gmail-data-detectors *,
+.aBn {
+    border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important;
+    font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important;
+    line-height: inherit !important;
+}
+/* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+.a6S {
+    display: none !important; opacity: 0.01 !important;
+}
+/* If the above doesn't work, add a .g-img class to any image in question. */
+img.g-img + div {
+    display: none !important;
+}
+/* What it does: Prevents underlining the button text in Windows 10 */
+.button-link {
+    text-decoration: none !important;
+}
+/* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+/* Create one of these media queries for each additional viewport size you'd like to fix */
+@media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+    .email-container {
+        min-width: 375px !important;
+    }
+}
+/* What it does: Forces Gmail app to display email full width */
+u ~ div .email-container {
+ min-width: 100vw;
+}
+</style>
     <!-- CSS Reset : END -->
 
     <!-- Progressive Enhancements : BEGIN -->
@@ -223,8 +212,8 @@
     <![endif]-->
 
 </head>
-<body width="100%" bgcolor="#57707d" style="margin: 0; mso-line-height-rule: exactly;">
-    <center style="width: 100%; background: #57707d; text-align: left;">
+<body width="100%" bgcolor="#1a232b" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #1a232b; text-align: left;">
         <!--
             Set the email width. Defined in two places:
             1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.

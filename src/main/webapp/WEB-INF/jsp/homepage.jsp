@@ -62,7 +62,7 @@
 </div>
 
 </head>
-<body>
+<body class="home-page-text">
 
 <!-- Navbar (sit on top) -->
 
@@ -170,26 +170,26 @@
 
 <div class="w3-row-padding w3-grayscale">
 <div class="w3-col l3 m6 w3-margin-bottom">
-  <img src="/w3images/team2.jpg" alt="John" style="width:100%">
-  <h3>John Doe</h3>
+  <img src="http://digitalspyuk.cdnds.net/17/01/480x240/landscape-1483867156-gordon-ramsay-hells-kitchen.jpg" alt="Gordon Ramsay" style="width:100%">
+  <h3>Gordon Ramsay</h3>
   <!-- <p class="w3-opacity">Trainer</p> -->
   <h9>Sports Perfomance and Conditioning</h9>
   <!-- <p><button class="w3-button w3-light-grey w3-block">Contact</button></p> -->
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
-  <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-  <h3>Jane Doe</h3>
-  <h9>Power and Olympic Lifting</h9>
+  <img src="https://www.womenshealthmag.com/sites/womenshealthmag.com/files/7-genius-weight-loss-tips-from-jillian-michaels.jpg" alt="Jillian Michaels" style="width:100%">
+  <h3>Jillian Michaels</h3>
+  <h9>Weight loss and gain... but really loss.</h9>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
-  <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
-  <h3>Mike Ross</h3>
-  <h9>Weight loss and gain.</h9>
+  <img src="https://nerdist.com/wp-content/uploads/2016/12/the-incredible-hulk-marvel-studios-322x268.jpg" alt="Hulk" style="width:100%">
+  <h3>Hulk</h3>
+  <h9>Olympic Weight Lifting.</h9>
 </div>
 <div class="w3-col l3 m6 w3-margin-bottom">
-  <img src="/w3images/team4.jpg" alt="Dan" style="width:100%">
-  <h3>Dan Star</h3>
-  <h9>Running and Cross-Fit</h9>
+  <img src="https://petful-supercopyeditors.netdna-ssl.com/wp-content/uploads/2015/02/cesar-millan.jpg" alt="Cesar Millan" style="width:100%">
+  <h3>Cesar Millan</h3>
+  <h9>Conditioning (human training unverified).</h9>
 </div>
 </div>
 </div>
