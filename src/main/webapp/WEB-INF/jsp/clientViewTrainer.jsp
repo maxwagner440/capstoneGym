@@ -180,22 +180,45 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <p>Text for article.</p>
           <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-half">
-              <img src="/w3images/lights.jpg" style="width:100%" alt="Image" class="w3-margin-bottom">
+            
+             <c:url value="/img/absWorkout.jpg" var="absWorkoutPic"/>
+    	  	 <img class="absWorkout" src="${absWorkoutPic}" alt="abs Workout" width="99%"> 
+    	  	 
+              <!-- <img src="/w3images/lights.jpg" style="width:100%" alt="Image" class="w3-margin-bottom"> -->
             </div>
             <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom">
+            
+            <c:url value="/img/hikingWilderness.jpg" var="hikingWildernessPic"/>
+    	  	<img class="hikingWilderness" src="${hikingWildernessPic}" alt="hiking Wilderness article" width="99%"> 
+            
+              <!-- <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom"> -->
           </div>
         </div> 
       </div>
       
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">16 min</span>
-        <h4>Trainer Posting on Wall</h4><br>
+        
+        <span class="w3-right w3-opacity">1 min</span>
+        <h4>Trainer Posts</h4><br>
         <hr class="w3-clear">
         <p>Text for article.</p>
-        <!-- <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>Maybe allow a Comment</button>  -->
-      </div>  
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            
+             <c:url value="/img/ballWorkout.jpg" var="ballWorkoutPic"/>
+    	  	 <img class="ballWorkout" src="${ballWorkoutPic}" alt="ball Workout" width="99%"> 
+    	  	 
+              <!-- <img src="/w3images/lights.jpg" style="width:100%" alt="Image" class="w3-margin-bottom"> -->
+            </div>
+            <div class="w3-half">
+            
+            <c:url value="/img/activeWithDog.jpg" var="activeWithDogPic"/>
+    	  	<img class="activeWithDog" src="${activeWithDogPic}" alt="activeWithDog magazine article" width="99%"> 
+            
+              <!-- <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom"> -->
+          </div>
+        </div> 
+      </div>
 
     <!-- End Middle Column -->
     </div>
@@ -205,8 +228,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <c:url value="/img/backViewHoldingBar.png" var="backViewHoldingBarPic"/>
-                <img class="backViewHoldingBar" src="${backViewHoldingBarPic}" alt="Back View Muscles" style="height:106px;width:106px">
+          <c:url value="/img/backViewHoldingBar.jpg" var="backViewHoldingBarPic"/>
+                <img class="backViewHoldingBar" src="${backViewHoldingBarPic}" alt="Back View Muscles" width="70%" height="50%">
+
           <!-- <img src="/w3images/forest.jpg" alt="Image here" style="width:100%;"> -->
           <p><strong>Get a jumpstart on New Year Fitness Goals!</strong></p>
           <p>Friday 4:00pm</p>
