@@ -8,8 +8,11 @@ html,body{
     font-size:16px;
     line-height:1.25;
     background-color: #213a57;
-    -webkit-text-fill-color: rgb(200, 208, 219);
     text-decoration: none;
+}
+
+.home-page-text {
+	-webkit-text-fill-color: rgb(200, 208, 219);	
 }
 
 
@@ -134,6 +137,9 @@ background-color:rgba(0,0,0,0.4)}
     }
 .w3-container w3-padding-32 {
     background-color: #59535b;
+}
+.w3-row-padding img {
+	height: 12em;
 }
 .trainingTitle {
     font-size: 24px;
