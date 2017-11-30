@@ -3,7 +3,8 @@ body {
 }
 
 h2, h3 {
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
 }
 #full-container {
     margin-top: 20px;
@@ -47,7 +48,12 @@ h2, h3 {
     grid-template-columns: 1fr 2fr;
     grid-template-areas: "raise links";
     text-decoration: none;
-    
+}
+.nav-raise-logo a {
+	font-size: 2em;
+	text-decoration: none;
+	color: #1a232b;
+	font-family: Verdana, sans-serif;
 }
 .nav-raise-logo {
     grid-area: raise;
@@ -59,26 +65,30 @@ h2, h3 {
     margin: 35px 10px 0px 40px;
     color: #1a232b;
 }
-
+.nav-bar-links .link {
+	display: inline;
+}
 .nav-bar-links p {
     display: inline;
     margin: 0px;
     border: none;
+    color: #c9a437;
 }
 
-.nav-bar a {
+.nav-bar-links a {
     color: #1a232b;
-    margin: 0px 25px;
+    margin: 0px 5px;
     font-size: 1.3em;
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
     text-decoration: none;
     text-shadow: #888 5px 5px 5px;
 }
 .nav-bar a:hover {
     color: #c9a437;
-    transition: text-shadow #555 5px 5px 5px 0.8s;
+    text-shadow: #888 -5px -5px 5px; 
+    transition: 0.8s;
 }
-
 /***PORTRAIT SECTION***/
 
 #client-prof {
@@ -157,13 +167,13 @@ img {
 
 .client-workout {
     color: white;
-    background: rgb(84, 32, 133);
+    background: #4E9231;
     display: block;
     border-bottom: 1px solid #ccae51;
     text-align: center;
 }
 .client-workout:hover {
-    background: rgb(106, 50, 161);
+    background: #669F4E;
     border-bottom: 1px solid #ccae51;
 }
 .client-workout h2 {
@@ -261,7 +271,8 @@ input[type="file"] {
     background: rgb(75, 141, 132);
     width: 100px;
     height: 50px;
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
     font-size: 1em;
 }
 .file-customize:hover {
@@ -278,7 +289,8 @@ input[type="file"] {
     margin: 20px;
     width: 100px;
     height: 50px;
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
     font-size: 1em;
 }
 
@@ -290,7 +302,8 @@ input[type="file"] {
     margin: 20px;
     width: 100px;
     height: 50px;
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
     font-size: 1em;
 }
 .add-note-btn:hover {
@@ -304,7 +317,8 @@ input[type="file"] {
     margin: 20px;
     width: 100px;
     height: 50px;
-    font-family: 'Righteous', sans-serif;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
     font-size: 1em;
 }
 .remove-note-btn:hover {
@@ -315,4 +329,106 @@ input[type="file"] {
 
 .appear {
     height: 300px;
+}
+
+ /***THE MODAL(background)***/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/***Modal Content(NEW MESSAGE)***/
+.modal-content {
+    background-color: #fff;
+    gird-template-rows: 1fr 2fr;
+    grid-template-areas: "heading"
+    					"message-box";
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #7d97a5;
+    width: 50%;
+    height: auto;
+}
+.messgae-head {
+	background: #5f5fb4;
+	width:75%;
+	grid-area: heading;
+}
+.messgae-head h2 {
+	background: #5f5fb4;
+	display: inline;
+	width:75%;
+	grid-area: heading;
+}
+.message-body {
+	grid-area: message-box;
+	display: inline-block;
+	width: 250px;
+}
+.note-input {
+	height: 200px;
+	width: 350px;
+	border: 1px solid #ccae51; 
+}
+.note-submit input[type="submit"]{
+	height: 25px;
+	width: 75px;
+	background: #5f5fb4;
+}
+/* The Close Button */
+.close {
+    color: #222a2e;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #222a2e;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/***Modal Content(VIEW NOTES)***/
+.general-note-section {
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: 1fr auto;
+	grid-template-areas:"heading" 
+						"body";
+}
+.view-notes-heading {
+	grid-area: heading;
+}
+.view-note-body {
+	grid-area: body;
+	grid-template-columns: 2fr 1fr;
+	grid-template-areas: "notes timestamp";
+}
+.note-content, .note-timestamp {
+	display: inline-block;
+	background: #aaa;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: #888 5px 5px 5px;
+	color: #fff;
+	
+}
+.note-content {
+	grid-area: notes;
+	width: 40%;
+}
+ .note-timestamp {
+	grid-area: time-stamp;
+	width: 20%;
 }
