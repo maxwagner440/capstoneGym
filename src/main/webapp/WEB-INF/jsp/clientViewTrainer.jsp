@@ -21,9 +21,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" 
     href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <!-- <img class="logo" src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" alt="RaiseTheBarLogo" width="150" height="150"> -->
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-      <img src="/Users/annakurchak/workspace/exercises/untitled folder/RaisetheBarLogo.png" 
-      class="w3-circle" style="height:25px;width:25px" alt="RaiseTheBarLogo"></a>
+ 
    <c:url var="clientHome" value="/clientDashboard"/>
   <a href="${clientHome}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   
@@ -32,9 +30,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <input type="hidden" name="receiverId" value="${profileToView.id }"/>
 <button type="submit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></button>
 </form>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <c:url var="logo" value="img/RaiseTheBarLogo.png"/>
-    <img src="${logo }" class="w3-circle" style="height:50px;width:50px" alt="RaiseTheBarLogo"></a>
+  
  </div> 
 </div>
 
@@ -234,6 +230,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
           <p>Upcoming Events:</p>
           <c:url value="/img/backViewHoldingBar.jpg" var="backViewHoldingBarPic"/>
                 <img class="backViewHoldingBar" src="${backViewHoldingBarPic}" alt="Back View Muscles" width="70%" height="50%">
+
           <!-- <img src="/w3images/forest.jpg" alt="Image here" style="width:100%;"> -->
           <p><strong>Get a jumpstart on New Year Fitness Goals!</strong></p>
           <p>Friday 4:00pm</p>

@@ -57,15 +57,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
  <c:url var="home" value="/"/>
     <a href="${home }" class="w3-bar-item-home w3-button"><b>Raise the Bar</b></a>
-  <c:url var="workouts" value="/allWorkouts"/>
-  <a href="${workouts}" class="w3-bar-item w3-button">Workouts</a>
   <a href="" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
    <c:url var="clientHome" value="/clientDashboard"/>
   <a href="${clientHome }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
   <c:url value="/currentWorkoutPlan" var="currentWorkoutPlan"/>
-      <a href="${currentWorkoutPlan}" class="w3-bar-item w3-button">See Your Workout</a>
   <c:url value="/viewMyMessages" var="viewMessages"/>
   <a href="${viewMessages }" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  
+      <a href="${currentWorkoutPlan}" class="w3-bar-item w3-button">See Your Workout</a>
+       <c:url var="workouts" value="/allWorkouts"/>
+  <a href="${workouts}" class="w3-bar-item w3-button">Workouts</a>
+  
   <c:url var="allTrainers" value="/findAllTrainers"/>
   <a href="${allTrainers }" class="w3-button">Select a Trainer</a>
     <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"> <c:url value="/logout" var="logout"/>
