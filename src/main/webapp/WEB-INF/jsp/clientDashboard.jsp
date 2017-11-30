@@ -89,8 +89,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center"><c:out value="${user.getFullName() }"/></h4>
-         <p class="w3-center"><c:url value="/img/powerLifting.jpg" var="powerLiftPic"/>
-            <img class="power-lift-pic" src="${powerLiftPic}" alt="power lift" width="30em" height="30em"></p>
+         <p class="w3-center"><c:url value="/img/womanRopes.jpg" var="womanRopesPic"/>
+            <img class="power-lift-pic" src="${womanRopesPic}" alt="woman working ropes" width="30em" height="30em"></p>
          <hr>
          <p><strong>Don't Forget Why You Started: <c:out value="${user.goals }"/></strong>
         </div>
