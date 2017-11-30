@@ -30,12 +30,27 @@
     <style>
     
     /* past messages */
+				    
+				    .titleFont{
+					margin-left: -70px;
+				}
 				    .messageFont{
 					font-size: 1.5em;
 					font-family: sans-serif;
-					margin: 0px;
+					width: 100%;
+					padding-left: 100px;
+					padding-right: 100px;
+				margin-right: 200px;
 					
 				}
+				
+				.spacing{
+					margin-left: -210px;
+					padding-left: 100px;
+					padding-right: 100px;
+					border: 1px solid #ccae51;
+				}
+				
 				    .profile {
 					background: #eee;
 					color: #1a232b;
@@ -46,12 +61,15 @@
 					margin: 10px;			
 					border-radius: 5px;
 					overflow: auto;
+					font-family: sans-serif;
 				}
 				
 				.left-prof {
 					grid-area: min-prof;
 					margin: 20px 30px;
 					grid-column-span: min-prof;
+					border-right: 1px solid #ccae51;
+					padding: 20px;
 				}
 				    
 				    .head-two {
@@ -59,12 +77,16 @@
 				}
 				
 				.small-info {
-						margin: 10px auto;
+						margin: auto;
+						
+						
 					}
+					
 				.info {
 					grid-area: bio;
-					margin: 20px 300px 0px 200px;
+					margin: 20px 200px 0px 200px;
 					grid-column-span: "bio";
+					
 					
 				}
 				
@@ -225,7 +247,8 @@
         <div class="profile">
             <div class="left-prof">
                 <div class="head-two">
-                    <h3>Username: <c:out value="${message.username}"/></h3>
+                    <h3 >Username: </h3>
+                    <h3><strong><c:out value="${message.username}"/></strong></h3>
                 </div>
                 <!-- <div class="prof-pic">
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"/>
@@ -236,8 +259,8 @@
                 </div>
             </div>
             <div class="info">
-                <h2>Message: </h2>
-                <p class="messageFont"><c:out value="${message.content}"/></p>
+                <div class="titleFont"><h2>Message: </h2></div>
+                <div class="spacing"><p class="messageFont"><c:out value="${message.content}"/></p></div>
             </div>
             
               
