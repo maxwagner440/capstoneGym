@@ -604,7 +604,7 @@ public class JDBCUserDAO implements UserDAO {
 		int result = jdbcTemplate.queryForObject(search, int.class, clientId, trainerId);
 		return result;
 	}
-//
+
 //	@Override
 //	public User getImageById(Long imageId) {
 //		String sqlGetImageById = "SELECT * FROM users WHERE image_id = ?";
@@ -623,7 +623,7 @@ public class JDBCUserDAO implements UserDAO {
 //		String sqlGetImageById = "SELECT * FROM users WHERE image_url = ?";
 //		
 //		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetImageById, imageUrl);
-//		
+//	
 //		if(results.next()){
 //			return mapToRowUser(results);
 //		} else{

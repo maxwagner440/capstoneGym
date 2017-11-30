@@ -93,7 +93,7 @@ public class ProfileController {
 //		return "redirect:/trainerProfile";
 //	}
 //	
-//	@RequestMapping(path="/clientProfile", method=RequestMethod.POST)
+//	@RequestMapping(path="/clientImage", method=RequestMethod.POST)
 //	public String updateClientPicture(@RequestParam String imageUrl, @RequestParam long clientId, RedirectAttributes attr, HttpSession session ){
 //		Client thisClient = userDAO.getClientById(clientId);
 //		if(thisClient != null) { 
@@ -103,6 +103,6 @@ public class ProfileController {
 //			userDAO.updateUser(thisClient.getId(), thisClient.getImageUrl());
 //						
 //		}
-//		return "redirect:/trainerProfile";
+//		return "redirect:/clientProfile";
 //	}
 }

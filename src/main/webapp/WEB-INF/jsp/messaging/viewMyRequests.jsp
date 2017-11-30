@@ -10,6 +10,29 @@
     <title>Raise The Bar</title>
 </head>
 <body class="color-back">
+<header>
+    <nav id="top-nav">
+        <div class="nav-bar">
+            <div class="nav-raise-logo">
+                <c:url var="home" value="/"/>
+                <a href="${home}" class="home-one"><strong>Raise the Bar</strong></a>
+                <!-- Float links to the right. Hide them on small screens -->
+            </div>
+            <div class="nav-bar-links"> 
+                <a href="#profile" class="linked">Profile</a>
+                <p>|</p>
+                <a href="#projects" class="linked">Training Specialties</a>
+                <p>|</p>
+                <a href="#trainers" class="linked">Trainers</a>
+                <p>|</p>
+                <a href="#contact" class="linked">Contact</a>
+                <p>|</p>
+                <c:url var="login" value="/login"/>
+                <a href="${login}" class="linked">Login / Sign-Up</a>
+            </div>
+        </div>
+    </nav>
+</header>
 <h1>Clients Making A Request</h1>
 <div class="search-page">
     <c:forEach var="client" items="${clients}">

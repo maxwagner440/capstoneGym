@@ -2,50 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="css/trainerNotes.css" rel="stylesheet" title="uploadcss"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js">
-          </script>
-                     <style>
-                /* The Modal (background) */
-                .modal {
-                    display: none; /* Hidden by default */
-                    position: fixed; /* Stay in place */
-                    z-index: 1; /* Sit on top */
-                    padding-top: 100px; /* Location of the box */
-                    left: 0;
-                    top: 0;
-                    width: 100%; /* Full width */
-                    height: 100%; /* Full height */
-                    overflow: auto; /* Enable scroll if needed */
-                    background-color: rgb(0,0,0); /* Fallback color */
-                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                }
-                
-                /* Modal Content */
-                .modal-content {
-                    background-color: #7d97a5;
-                    margin: auto;
-                    padding: 20px;
-                    border: 1px solid #7d97a5;
-                    width: 80%;
-                }
-                
-                /* The Close Button */
-                .close {
-                    color: #fdfafa;
-                    float: right;
-                    font-size: 28px;
-                    font-weight: bold;
-                }
-                
-                .close:hover,
-                .close:focus {
-                    color: #222a2e;
-                    text-decoration: none;
-                    cursor: pointer;
-                }
-                </style>
+    </script>
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -73,13 +32,26 @@
                 
                   <!-- Modal content -->
                   <div class="modal-content">
-                    <span class="close">&times;</span>
+                  	<div class="message-head">
+                  		<span class="close">&times;</span>
+                  		<h2>New Note</h2>
+                  	</div>
+    				<div class="message-body">
                     <c:url var="makeNote" value="/trainerNotes"/>
-                    <form action="${makeNote }" method="POST">
-                    	<input type="text" name="note">
-                    	<input type="hidden" name="clientId" value="${client.clientId}"/>
-   						<input type="submit" />
-                    </form>
+	                    <form action="${makeNote}" method="POST">
+	                    	<textarea class="note-input" type="text" name="note"></textarea>
+	                    	<input type="hidden" name="clientId" value="${client.clientId}"/>
+	   						<input class="note-submit" type="submit" style="
+								    width: 75px;
+								    height: 50px;
+								    background: #5f5fb4;
+								    color: #fff;
+								    border: none;
+								    font-size: 1em;
+								    border-radius: 5px;
+								">
+	                    </form>
+                    </div>
                   </div>
                 
                 </div>
@@ -119,12 +91,21 @@
                 
                   <!-- Modal content -->
                   <div class="modal-content">
-                    <span class="close">&times;</span>
-                    
+                  	
                     <c:forEach items="${notes}" var="note">
                			<div class="general-note-section">
-               			<c:out value="${note.content }"/>
-               			<c:out value="${note.getDate()} ${note.getTime() }"/>
+	               			<div class="view-notes-heading">
+		                    	<span class="close">&times;</span>
+		                    	<h2>View Notes</h2>
+	                    	</div>
+	                    	<div class="view-note-body">
+		               			<div class="note-content">
+		               				<c:out value="${note.content}"/>
+		               			</div>
+		               			<div class="note-timestamp">
+		               				<c:out value="Date: ${note.getDate()}  Time: ${note.getTime() }"/>
+		               			</div>
+	               			</div>
                			</div>
                			<br>
                		</c:forEach>
@@ -164,25 +145,25 @@
                  });
                  </script>
                  
-   <header>
+<header>
     <nav id="top-nav">
         <div class="nav-bar">
             <div class="nav-raise-logo">
                 <c:url var="home" value="/"/>
-                <a href="${home}" class="w3-bar-item w3-button"><b>Raise the Bar</b></a>
+                <a href="${home}" class="home-one"><strong>Raise the Bar</strong></a>
                 <!-- Float links to the right. Hide them on small screens -->
             </div>
             <div class="nav-bar-links"> 
-                <a href="" class="about">About</a>
+                <a href="#profile" class="linked">Profile</a>
                 <p>|</p>
-                <a href="#projects" class="training">Training Specialties</a>
+                <a href="#projects" class="linked">Training Specialties</a>
                 <p>|</p>
-                <a href="#trainers" class="trainers">Trainers</a>
+                <a href="#trainers" class="linked">Trainers</a>
                 <p>|</p>
-                <a href="#contact" class="contacts">Contact</a>
+                <a href="#contact" class="linked">Contact</a>
                 <p>|</p>
                 <c:url var="login" value="/login"/>
-                <a href="${login}" class="login">Login / Sign-Up</a>
+                <a href="${login}" class="linked">Login / Sign-Up</a>
             </div>
         </div>
     </nav>
@@ -195,7 +176,7 @@
                     <h2><c:out value="${client.getFullName()}"/></h2>
                 </div>
                 <div class="client-image">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png">
+                    <img src="https://cdn.shopify.com/s/files/1/1222/3190/products/i_am_mr_meeseeks_rick_and_morty_tv_show_tshirt_in_India_by_silly_punter_4adada1e-1912-47dd-865b-e78ce7608415.jpg?v=1504446230">
                 </div>
             </section>
             <section id="client-info">

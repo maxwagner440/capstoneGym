@@ -58,7 +58,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center"><c:out value="${user.getFullName()}"/></h4>
-        
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
@@ -84,17 +83,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 			      }
 			    });
 			</script>
-	        <%-- <c:url var="formAction" value="/trainerImage"/>
+	        <c:url var="formAction" value="/trainerImage"/>
 	        <form method="POST" action="${formAction}">
 	        <input type="hidden" name="trainerId" value="${user.id}">
-				<div class="form-group">
+			<div class="form-group">
 				<label for="imageUrl">Current Picture: </label>
 				<input name="imageUrl" class="form-control" />
 				<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="imageUrl" 
 				data-form-data= '{"upload_preset": "capstone_profile_images" }'
 				accept=".jpg, .jpeg, .png"></input>
 			</div>
-			</form> --%>
+			</form>
         </div>
       </div>
       <br>
