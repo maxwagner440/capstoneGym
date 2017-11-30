@@ -110,6 +110,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
           </div>
           <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
           <div id="Demo3" class="w3-hide w3-container">
+          	<p>Link to pictures uploaded in the future</p>
          <div class="w3-row-padding">
          
          <br>
@@ -170,11 +171,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <hr class="w3-clear">
         <p>Text for article.</p>
           <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-              <img src="/w3images/lights.jpg" style="width:100%" alt="Image" class="w3-margin-bottom">
+          <div class="w3-half">
+          
+          <c:url value="/img/tenTrails.jpg" var="tenTrailsPic"/>
+    	  <img class="tenTrails" src="${tenTrailsPic}" alt="10 must hike trails" width="99%">
+            
+              <!-- <img src="/w3images/lights.jpg" style="width:100%" alt="Image" class="w3-margin-bottom"> -->
             </div>
             <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom">
+            
+          <c:url value="/img/nuts.jpg" var="nutsPic"/>
+    	  <img class="nuts" src="${nutsPic}" alt="nuts magazine article" width="99%">
+            
+              <!-- <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom"> -->
           </div>
         </div>
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
@@ -190,7 +199,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Available Events:</p>
-          <img src="/w3images/forest.jpg" alt="Image here" style="width:100%; height:40%;">
+          
+          <c:url value="/img/backViewHoldingBar.png" var="backViewHoldingBar"/>
+    	  <img class="backViewHoldingBar" src="${backViewHoldingBar}" alt="back view of man holding bar" width="99%">
+    	  
+          <!-- <img src="/w3images/forest.jpg" alt="Image here" style="width:60%; height:40%;"> -->
           <p><strong>Get a jumpstart on losing holiday weight!</strong></p>
           <p>Friday 4:00pm</p>
           <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>

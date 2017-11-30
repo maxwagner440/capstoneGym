@@ -272,28 +272,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Image here" style="width:100%;">
+          
+          <c:url value="/img/backViewHoldingBar.png" var="backViewHoldingBar"/>
+    	  <img class="backViewHoldingBar" src="${backViewHoldingBar}" alt="back view of man holding bar" width="99%">
+    	  
           <p><strong>Get a jumpstart on losing holiday weight!
           			How to make this modifiable?</strong></p>
           <p>Friday 4:00pm</p>
           <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-        </div>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Client Request You to Train Them</p>
-          <img src="/w3images/avatar6.png" alt="Client's Avatar" style="width:50%"><br>
-          <span>Client Name</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
         </div>
       </div>
       <br>
