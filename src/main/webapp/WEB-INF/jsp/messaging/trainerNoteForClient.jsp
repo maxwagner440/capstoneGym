@@ -91,13 +91,13 @@
                 
                   <!-- Modal content -->
                   <div class="modal-content">
-                  	
+                  
+                  	<h2>View Notes</h2>
+                  	<div class="view-notes-heading">
+		                    	<span class="close">&times;</span>  	
+	                  </div>
                     <c:forEach items="${notes}" var="note">
-               			<div class="general-note-section">
-	               			<div class="view-notes-heading">
-		                    	<span class="close">&times;</span>
-		                    	<h2>View Notes</h2>
-	                    	</div>
+               			<div class="general-note-section">	
 	                    	<div class="view-note-body">
 		               			<div class="note-content">
 		               				<c:out value="${note.content}"/>
