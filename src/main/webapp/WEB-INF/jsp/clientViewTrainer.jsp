@@ -56,11 +56,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center"><c:out value="${profileToView.getFullName() }"/></h4>
-         <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <c:url value="/img/manHoldingWeight.jpg" var="manHoldingWeightPic"/>
+                <img class="manHoldingWeightPic" src="${manHoldingWeightPic}" alt="Man holding free weight" style="height:106px;width:106px">
+         <!-- <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p> -->
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Specializing in X</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Cleveland, OH</p>
+         <p><i class="fa-fw w3-margin-right w3-text-theme"></i> Personal Trainer</p>
+         <p><i class="fa-fw w3-margin-right w3-text-theme"></i> Cleveland, OH</p>
         </div>
       </div>
       <br>
@@ -106,17 +107,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-container">
           <p>Training Specialties</p>
           <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">Locations</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-            <span class="w3-tag w3-small w3-theme">Games</span>
-            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+            <span class="w3-tag w3-small w3-theme-d5">Running</span>
+            <span class="w3-tag w3-small w3-theme-d4">Soccer</span>
+            <span class="w3-tag w3-small w3-theme-d3">Lacrosse</span>
+            <span class="w3-tag w3-small w3-theme-d2">Polo</span>
+            <span class="w3-tag w3-small w3-theme-d1">Baseball</span>
+            <span class="w3-tag w3-small w3-theme">Hiking</span>
+            <span class="w3-tag w3-small w3-theme-l1">Fitness</span>
             <span class="w3-tag w3-small w3-theme-l2">Food</span>
-            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+            <span class="w3-tag w3-small w3-theme-l3">Cooking</span>
+            <span class="w3-tag w3-small w3-theme-l4">Camping</span>
           </p>
         </div>
       </div>
@@ -146,7 +146,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         </div>
       </div> 
 
-      <div class="w3-row-padding">
+      <!-- <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
@@ -174,12 +174,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">1 min</span>
-        <h4>Client/Trainer Posting on Wall</h4><br>
+        <h4>Trainer Posting on Wall</h4><br>
         <hr class="w3-clear">
         <p>Text for article.</p>
           <div class="w3-row-padding" style="margin:0 -16px">
@@ -190,29 +190,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
               <img src="/w3images/nature.jpg" style="width:100%" alt="image" class="w3-margin-bottom">
           </div>
         </div> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>Maybe allow a Comment</button> 
       </div>
       
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">16 min</span>
-        <h4>Client/Trainer Posting on Wall</h4><br>
+        <h4>Trainer Posting on Wall</h4><br>
         <hr class="w3-clear">
         <p>Text for article.</p>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>Maybe allow a Comment</button> 
+        <!-- <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>Maybe allow a Comment</button>  -->
       </div>  
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">32 min</span>
-        <h4>Client/Trainer Posting on Wall</h4><br>
-        <hr class="w3-clear">
-        <p>Have you seen this?</p>
-        <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-        <p>Text for article.</p>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>Maybe allow a Comment</button> 
-      </div> 
-      
     <!-- End Middle Column -->
     </div>
     
@@ -221,11 +209,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Image here" style="width:100%;">
-          <p><strong>Get a jumpstart on losing holiday weight!
-          			How to make this modifiable?</strong></p>
+          <c:url value="/img/backViewHoldingBar.jpg" var="backViewHoldingBarPic"/>
+                <img class="backViewHoldingBar" src="${backViewHoldingBarPic}" alt="Back View Muscles" style="height:106px;width:106px">
+          <!-- <img src="/w3images/forest.jpg" alt="Image here" style="width:100%;"> -->
+          <p><strong>Get a jumpstart on New Year Fitness Goals!</strong></p>
           <p>Friday 4:00pm</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
         </div>
       </div>
       <br>
@@ -296,11 +284,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <p>Add an icon/add fine print</p>
       </div>
       <br>
-      
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i>Any icon/anything we want or delete box</p>
-      </div>
-      
+
     <!-- End Right Column -->
     </div>
     
