@@ -1,5 +1,6 @@
 <%@include file ="/WEB-INF/jsp/common/header.jspf" %>
 
+<link rel="stylesheet" href="css/fonts/font-awesome.min.css">
 
 <section class="featured">
 	<div id="index">
