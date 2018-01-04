@@ -1,5 +1,0 @@
-<div>
-    <footer>Copyright &copy; Raise the Bar 2017</footer>
-</div>
-
-footer {background: rgb(46, 45, 58);color:white; text-align: center;}
